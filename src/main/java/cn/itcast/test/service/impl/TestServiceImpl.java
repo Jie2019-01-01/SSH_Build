@@ -14,11 +14,8 @@ public class TestServiceImpl implements TestService{
 	
 	@Override
 	public void save(Person person) {
-		testDao.save(person);
-	}
-	
-	public void test() {
-		System.out.println("aaaaaaaaaaa");
+//		testDao.save(person);
+		System.out.println("123456789");
 	}
 
 }

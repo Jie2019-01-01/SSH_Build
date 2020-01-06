@@ -12,72 +12,76 @@
             http://www.springframework.org/schema/context 
             http://www.springframework.org/schema/context/spring-context.xsd
             http://www.springframework.org/schema/tx 
-            http://www.springframework.org/schema/tx/spring-tx.xsd" default-autowire="byType">
+            http://www.springframework.org/schema/tx/spring-tx.xsd" >
        
 	<!-- 自动扫描注解包 -->
-	<!-- 采用注解方式注入action、service、dao 
-	<context:component-scan base-package="com.lwj.test.action"/>
-	<context:component-scan base-package="com.lwj.test.dao"/> 
-	<context:component-scan base-package="com.lwj.test.service"/>-->
+	<!-- 采用注解方式注入action、service、dao -->
+	<context:component-scan base-package="com.lwj.test"/>
 	
 	<bean id="testService" class="cn.itcast.test.action.TestAction">
 		<property name="testService" ref="testService"></property>
 	</bean>
-	<bean id="testService" class="cn.itcast.test.service.impl.TestServiceImpl"></bean>
+	<bean id="testAction" class="cn.itcast.test.action.TestAction" scope="prototype"></bean>
 	
- 	<!-- 开启SpringMVC注解模式 
-	<mvc:annotation-driven/>   -->  
-	<!-- location值为参数配置文件的位置 -->
-<context:property-placeholder location="classpath:properties/db-config.properties"/>
-	<!-- 数据库相关配置 -->
-<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-	<property name="driverClass" value="${jdbc.driver}"/>
-	<property name="jdbcUrl" value="${jdbc.url}"/>
-	<property name="user" value="${jdbc.username}"/>
-	<property name="password" value="${jdbc.password}"/>
-	<property name="maxPoolSize" value="${maxPoolSize}"/>
-	<property name="minPoolSize" value="${minPoolSize}"/>
-	<property name="autoCommitOnClose" value="${autoCommitOnClose}"/>
-	<property name="checkoutTimeout" value="${checkoutTimeout}"/>
-	<property name="acquireRetryAttempts" value="${acquireIncrement}"/>
-</bean>
-	<!--  sessionFactory配置   -->
-<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-    <property name="dataSource" ref="dataSource"></property>
-    <property name="hibernateProperties">
-        <props>
-            <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
-            <prop key="hibernate.show_sql">true</prop>
-            <prop key="hibernate.format_sql">true</prop>
-            <prop key="hibernate.hbm2ddl.auto">update</prop>
-        </props>
-    </property>
-    <property name="configLocation">
-        <!--mapper实例映射关系文件配置在cfg文件里-->
-        <value>classpath:orm/hibernate.cfg.xml</value>
-    </property>
-</bean>
-	<!-- spring事务 -->
-<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-	<property name="sessionFactory" ref="sessionFactory"></property>
-</bean>
-<tx:annotation-driven transaction-manager="transactionManager"/>
-<aop:config proxy-target-class="true">
-	<aop:pointcut id="serviceMethod" expression="execution(* com.lwj.*.service.*.*(..))"/>
-	<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethod"/>
-</aop:config>
-<tx:advice id="txAdvice" transaction-manager="transactionManager">
-	<tx:attributes>
-		<!--默认：
-		    isolation:DEFAULT
-		    propagation:REQUIRED
-		    timeout:-1 事物超时时间由底层事物系统决定
-		    read-only:false
-		    rollback-for:所有允许异常回滚
-		    no-rollback-for:所有检查异常不回滚 -->
-		<tx:method name="get*" read-only="true"/>
-		<tx:method name="do*"/>
-	</tx:attributes>
-</tx:advice>
+		<!-- location值为参数配置文件的位置 -->
+	<context:property-placeholder location="classpath:properties/db-config.properties"/>
+	
+		<!-- 配置数据源 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${jdbc.driver}"/>
+		<property name="jdbcUrl" value="${jdbc.url}"/>
+		<property name="user" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+		<property name="maxPoolSize" value="${maxPoolSize}"/>
+		<property name="minPoolSize" value="${minPoolSize}"/>
+		<property name="autoCommitOnClose" value="${autoCommitOnClose}"/>
+		<property name="checkoutTimeout" value="${checkoutTimeout}"/>
+		<property name="acquireRetryAttempts" value="${acquireIncrement}"/>
+	</bean>
+	
+		<!-- 配置session工厂  -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+	    <property name="dataSource" ref="dataSource"></property>
+	    <!-- <property name="hibernateProperties">
+	        <props>
+	            <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+	            <prop key="hibernate.show_sql">true</prop>
+	            <prop key="hibernate.format_sql">true</prop>
+	            <prop key="hibernate.hbm2ddl.auto">update</prop>
+	        </props>
+	    </property> -->
+	    	<!--mapper实例映射关系文件配置在cfg文件里-->
+	    <property name="configLocation" value="classpath:orm/hibernate.cfg.xml"/>
+	</bean>
+	
+	<!--配置HibernateTemplate-->
+    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+		<!-- spring事务 -->
+	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+		<!-- spring-aop -->
+	<aop:config proxy-target-class="true">
+		<aop:pointcut id="myPointcut" expression="execution(* com.itcast.*.service.*.*(..))"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="myPointcut"/>
+	</aop:config>
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<!--默认：
+			    isolation:DEFAULT
+			    propagation:REQUIRED
+			    timeout:-1 事物超时时间由底层事物系统决定
+			    read-only:false
+			    rollback-for:所有允许异常回滚
+			    no-rollback-for:所有检查异常不回滚 -->
+			<tx:method name="get*" read-only="true"/>
+			<tx:method name="do*"/>
+		</tx:attributes>
+	</tx:advice>
 
 </beans>
