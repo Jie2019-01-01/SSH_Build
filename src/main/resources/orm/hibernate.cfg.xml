@@ -28,8 +28,8 @@
 	    <property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.internal.EhcacheRegionFactory</property>
 	    	<!-- 二级缓存 ehcache的配置文件位置 -->
 	    <property name="hibernate.cache.provider_configuration_file_resource_path">orm/ehcache.xml</property>
-	    	<!-- 数据表映射配置文件 -->
-	    <mapping resource="mapper/person.hbm.xml"/>
+	    	<!-- 数据表映射配置文件 
+	    <mapping resource="mapper/person.hbm.xml"/>-->
 
 	</session-factory>	
 </hibernate-configuration>        

@@ -49,6 +49,9 @@
 	    </property> -->
 	    	<!--mapper实例映射关系文件配置在cfg文件里-->
 	    <property name="configLocation" value="classpath:orm/hibernate.cfg.xml"/>
+	    <property name="mappingLocations">
+	    	<value>classpath:cn/itcast/erp/*/*/vo/*Model.hbm.xml</value>
+	    </property>
 	</bean>
 	
 	<!--配置HibernateTemplate-->
