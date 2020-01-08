@@ -15,7 +15,7 @@
   	<!-- spring5必须使用log4j2 -->
   <context-param>
   	<param-name>log4jConfigLocation</param-name>
-  	<param-value>classpath:log4j2.xml</param-value>
+  	<param-value>classpath:log4j2.properties</param-value>
   </context-param>
   
   	<!-- struts拦截器 -->
