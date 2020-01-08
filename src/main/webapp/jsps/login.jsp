@@ -22,18 +22,18 @@
 	<div class="container-login">
 		<div class="login-pic">
 			<div class="login-text">
-				<form action="main.jsp" method="post">
+				<s:form action="/emp_login" method="post">
 					<table width="100%" border="0" cellpadding="0" cellspacing="0">
 						<tr>
 							<td width="19%" height="28">用户名：</td>
 							<td colspan="2">
-								<input value="admin" type="text" size="18" />
+								<s:textfield name="em.userName" size="18"/>
 							</td>
 						</tr>
 						<tr>
 							<td height="31">密&nbsp;&nbsp;码：</td>
 							<td colspan="2">
-								<input value="1" type="test" size="18" />
+								<s:password name="em.pwd" size="18"/>
 							</td>
 						</tr>
 						<tr>
@@ -62,7 +62,7 @@
 							</td>
 						</tr>
 					</table>
-				</form>
+				</s:form>
 			</div>
 		</div>
 	</div>
