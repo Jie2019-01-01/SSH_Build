@@ -2,6 +2,7 @@ package cn.itcast.erp.auth.emp.vo;
 
 public class EmpModel {
 
+	public static final String EMP_LOGIN_USER_OBJECT_NAME = "loginEm";
 	// 注册功能
 	private Long uuid;
 	// 用户名

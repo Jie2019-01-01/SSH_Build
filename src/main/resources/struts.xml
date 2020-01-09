@@ -12,7 +12,10 @@
     	</action>
     	<!-- Emp -->
     	<action name="emp_*" class="empAction" method="{1}">
-    		<result name="success">/index.jsp</result>
+    			<!-- 结果跳转 -->
+    		<result name="loginFail">/WEB-INF/jsps/login.jsp</result>
+    		<result name="loginSuccess">/WEB-INF/jsps/main.jsp</result>
+    		
     		<!-- struts2.5版本使用通配符必须加上这个 -->
     		<allowed-methods>login</allowed-methods>
     	</action>
