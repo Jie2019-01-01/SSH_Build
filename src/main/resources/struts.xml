@@ -25,10 +25,14 @@
  			<result name="noLogin">/WEB-INF/jsps/login.jsp</result>
  		</global-results>
  		
-    	<!-- main.jsp中内容区域的引用 -->
+    	<!-- page -->
     	<action name="page_*">
     		<result>/WEB-INF/jsps/{1}.jsp</result>
     		<allowed-methods>execute</allowed-methods>
+    	</action>
+    	
+    	<!-- Dep -->
+    	<action name="dep_*" class="depAction" method="{1}">
     	</action>
     	
     	<!-- Emp -->
@@ -36,8 +40,7 @@
     			<!-- 结果跳转 -->
     		<result name="loginFail">/WEB-INF/jsps/login.jsp</result>
     		<result name="loginSuccess">/WEB-INF/jsps/main.jsp</result>
-    		
-    		<!-- struts2.5版本使用通配符必须加上这个 -->
+    			<!-- struts2.5版本使用通配符必须加上这个 -->
     		<allowed-methods>login</allowed-methods>
     	</action>
     </package>
