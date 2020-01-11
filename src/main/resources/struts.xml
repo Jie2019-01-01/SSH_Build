@@ -7,10 +7,25 @@
     <constant name="struts.devMode" value="true"/>
     <constant name="struts.ui.theme" value="simple"/>
     <package name="default" namespace="/" extends="struts-default">
-    	<!-- <action name="toLogin" class="com.opensymphony.xwork2.ActionSupport">
-    		<result name="success">/WEB-INF/jsps/login.jsp</result>
-    	</action> -->
+    	<!-- 声明拦截器 -->
+    	<interceptors>
+    		<!-- 自定义拦截器 -->
+    		<interceptor name="loginInterceptor" class="cn.itcast.erp.utils.interceptor.LoginInterceptor"/>
+    		<!-- 拦截器栈，引用默认拦截器栈和自定义拦截器 -->
+    		<interceptor-stack name="myStack">
+    			<interceptor-ref name="loginInterceptor"/>
+    			<interceptor-ref name="defaultStack"/>
+    		</interceptor-stack>
+    	</interceptors>
+    	<!-- 引用拦截器栈 -->
+    	<default-interceptor-ref name="myStack"/>
     	
+    	<!--对于struts拦截器出现的结果集，必须与全局result匹配 -->
+ 		<global-results>
+ 			<result name="noLogin">/WEB-INF/jsps/login.jsp</result>
+ 		</global-results>
+ 		
+    	<!-- main.jsp中内容区域的引用 -->
     	<action name="page_*">
     		<result>/WEB-INF/jsps/{1}.jsp</result>
     		<allowed-methods>execute</allowed-methods>
