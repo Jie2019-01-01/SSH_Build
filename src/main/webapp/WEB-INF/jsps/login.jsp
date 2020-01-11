@@ -28,7 +28,7 @@
 						<tr>
 							<td width="19%" height="28">用户名:</td>
 							<td colspan="2">
-								<s:textfield name="em.userName" size="18"/>
+								<s:textfield name="em.userName" size="18" value="admin"/>
 							</td>
 						</tr>
 						<tr>

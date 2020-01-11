@@ -8,6 +8,8 @@ import cn.itcast.erp.auth.emp.vo.EmpModel;
 
 public class EmpAction extends ActionSupport{
 
+	private static final long serialVersionUID = 1L;
+
 	public EmpModel em = new EmpModel();
 	
 	// 注入业务层接口
@@ -33,4 +35,5 @@ public class EmpAction extends ActionSupport{
 			return "loginSuccess";
 		}
 	}
+
 }

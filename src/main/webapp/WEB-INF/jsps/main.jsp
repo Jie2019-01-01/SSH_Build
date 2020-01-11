@@ -13,7 +13,7 @@
 		<div class="head">
 			<div class="head-left">
 				<span style="font-weight:bold; color:#1f4906">欢迎您-</span><br />
-				<span style="color:#4a940d">登录人</span>
+				<span style="color:#4a940d">${session['loginEm'].name}</span>
 			</div>
 			<div class="head-right">
 				<table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -145,7 +145,7 @@
 			</div>
 			<!--"left"end-->
 
-			<iframe id="frame-contect" src="context.jsp"
+			<iframe id="frame-contect" src="page_context.action"
 				style="width:848px;float:right;height:530px" scrolling="no"
 				name="main" frameborder="0"></iframe>
 			<!--"content-right"end-->

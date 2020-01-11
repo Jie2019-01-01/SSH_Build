@@ -7,9 +7,15 @@
     <constant name="struts.devMode" value="true"/>
     <constant name="struts.ui.theme" value="simple"/>
     <package name="default" namespace="/" extends="struts-default">
-    	<action name="toLogin" class="com.opensymphony.xwork2.ActionSupport">
+    	<!-- <action name="toLogin" class="com.opensymphony.xwork2.ActionSupport">
     		<result name="success">/WEB-INF/jsps/login.jsp</result>
+    	</action> -->
+    	
+    	<action name="page_*">
+    		<result>/WEB-INF/jsps/{1}.jsp</result>
+    		<allowed-methods>execute</allowed-methods>
     	</action>
+    	
     	<!-- Emp -->
     	<action name="emp_*" class="empAction" method="{1}">
     			<!-- 结果跳转 -->
