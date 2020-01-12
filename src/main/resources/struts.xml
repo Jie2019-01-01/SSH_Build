@@ -33,7 +33,8 @@
     	
     	<!-- Dep -->
     	<action name="dep_*" class="depAction" method="{1}">
-    		<result>/WEB-INF/jsps/dep/{1}.jsp</result>
+    		<result name="list">/WEB-INF/jsps/dep/list.jsp</result>
+    		<result name="input">/WEB-INF/jsps/dep/input.jsp</result>
     	</action>
     	
     	<!-- Emp -->

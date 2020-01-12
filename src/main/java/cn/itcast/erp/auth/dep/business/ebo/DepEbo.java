@@ -2,6 +2,7 @@ package cn.itcast.erp.auth.dep.business.ebo;
 
 import cn.itcast.erp.auth.dep.business.ebi.DepEbi;
 import cn.itcast.erp.auth.dep.dao.dao.DepDao;
+import cn.itcast.erp.auth.dep.vo.DepModel;
 
 public class DepEbo implements DepEbi{
 
@@ -9,5 +10,9 @@ public class DepEbo implements DepEbi{
 
 	public void setDepDao(DepDao depDao) {
 		this.depDao = depDao;
+	}
+
+	public void save(DepModel dm) {
+		depDao.save(dm);
 	}
 }
