@@ -14,4 +14,6 @@ public interface DepDao {
 
 	public void update(DepModel dm);
 
+	public void delete(DepModel dm);
+
 }

@@ -23,7 +23,7 @@
 	<div class="container-login">
 		<div class="login-pic">
 			<div class="login-text">
-				<s:form action="/emp_login" method="post">
+				<s:form action="emp_login" method="post">
 					<table width="100%" border="0" cellpadding="0" cellspacing="0">
 						<tr>
 							<td width="19%" height="28">用户名:</td>

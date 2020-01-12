@@ -29,4 +29,8 @@ public class DepEbo implements DepEbi{
 	public void update(DepModel dm) {
 		depDao.update(dm);
 	}
+
+	public void delete(DepModel dm) {
+		depDao.delete(dm);
+	}
 }

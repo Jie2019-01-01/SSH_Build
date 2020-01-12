@@ -25,4 +25,8 @@ public class DepImpl extends HibernateDaoSupport implements DepDao{
 	public void update(DepModel dm) {
 		this.getHibernateTemplate().update(dm);
 	}
+
+	public void delete(DepModel dm) {
+		this.getHibernateTemplate().delete(dm);
+	}
 }

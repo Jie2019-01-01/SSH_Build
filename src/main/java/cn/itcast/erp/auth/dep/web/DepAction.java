@@ -49,4 +49,10 @@ public class DepAction extends ActionSupport{
 		// 重新加载框架时会出现保存操作，所以这里设置重定向
 		return "toList";
 	}
+	
+	// 删除
+	public String delete() {
+		depEbi.delete(dm);
+		return "toList";
+	}
 }
