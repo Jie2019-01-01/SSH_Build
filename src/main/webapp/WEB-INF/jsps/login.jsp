@@ -34,7 +34,8 @@
 						<tr>
 							<td height="31">密&nbsp;&nbsp;码：</td>
 							<td colspan="2">
-								<s:password name="em.pwd" size="18"/>
+								<s:textfield name="em.pwd" size="18" value="admin"/>
+								<%-- <s:password name="em.pwd" size="18"/> --%>
 							</td>
 						</tr>
 						<tr>

@@ -12,4 +12,10 @@ public class DepAction extends ActionSupport{
 		this.depEbi = depEbi;
 	}
 	
+	/**
+	 * 跳转部门管理首页
+	 */
+	public String list() {
+		return SUCCESS;
+	}
 }
