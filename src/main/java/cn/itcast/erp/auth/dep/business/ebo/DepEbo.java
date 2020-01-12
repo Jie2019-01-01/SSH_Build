@@ -21,4 +21,12 @@ public class DepEbo implements DepEbi{
 	public List<DepModel> getAll() {
 		return depDao.getAll();
 	}
+
+	public DepModel get(Long uuid) {
+		return depDao.get(uuid);
+	}
+
+	public void update(DepModel dm) {
+		depDao.update(dm);
+	}
 }

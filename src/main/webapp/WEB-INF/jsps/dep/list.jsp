@@ -71,7 +71,10 @@
 								<td>
 									<img src="images/icon_3.gif" /> 
 									<span style="line-height:12px; text-align:center;"> 
-										<a href="input.jsp" class="xiu">修改</a>
+										<s:a action="dep_input" cssClass="xiu">
+											<s:param name="dm.uuid" value="uuid"/>
+											修改
+										</s:a>
 									</span> 
 									<img src="images/icon_04.gif" /> 
 									<span style="line-height:12px; text-align:center;"> 

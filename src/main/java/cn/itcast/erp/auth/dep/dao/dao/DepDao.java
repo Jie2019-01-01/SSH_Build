@@ -10,4 +10,8 @@ public interface DepDao {
 
 	public List<DepModel> getAll();
 
+	public DepModel get(Long uuid);
+
+	public void update(DepModel dm);
+
 }

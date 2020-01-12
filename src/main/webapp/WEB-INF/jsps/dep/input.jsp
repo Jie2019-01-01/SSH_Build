@@ -25,46 +25,47 @@
 	<div class="content-text">
 		<div class="square-order">
 			<s:form action="dep_save.action" method="post">
-  			<div style="border:1px solid #cecece;">
-				<table width="100%"  border="0" cellpadding="0" cellspacing="0">
-				  <tr bgcolor="#FFFFFF">
-				    <td>&nbsp;</td>
-				  </tr>
-				</table>
-				<table width="100%"  border="0" cellpadding="0" cellspacing="0">
-				    <tr  bgcolor="#FFFFFF">
-				      <td width="18%" height="30" align="center">部门名称</td>
-				      <td width="32%">
-				      	<s:textfield size="25" name="dm.name"/>
-				      </td>
-				      <td width="18%" align="center">电话</td>
-				      <td width="32%">
-				      	<s:textfield size="25" name="dm.tele"/>
-				      </td>
-				    </tr>
-				    <tr  bgcolor="#FFFFFF">
-				      <td colspan="4">&nbsp;</td>
-				    </tr>
-				</table>
-				
-			</div>
-			<div class="order-botton">
-				<div style="margin:1px auto auto 1px;">
+				<s:hidden name="dm.uuid"/>
+	  			<div style="border:1px solid #cecece;">
 					<table width="100%"  border="0" cellpadding="0" cellspacing="0">
-					  <tr>
-					    <td>
-					    	<a href="javascript:void(0)" id="commit">
-					    		<img src="images/order_tuo.gif" border="0" />
-					    	</a>
-					    </td>
+					  <tr bgcolor="#FFFFFF">
 					    <td>&nbsp;</td>
-					    <td><a href="#"><img src="images/order_tuo.gif" border="0" /></a></td>
-					    <td>&nbsp;</td>
-					    <td><a href="#"><img src="images/order_tuo.gif" border="0" /></a></td>
 					  </tr>
 					</table>
+					<table width="100%"  border="0" cellpadding="0" cellspacing="0">
+					    <tr  bgcolor="#FFFFFF">
+					      <td width="18%" height="30" align="center">部门名称</td>
+					      <td width="32%">
+					      	<s:textfield size="25" name="dm.name"/>
+					      </td>
+					      <td width="18%" align="center">电话</td>
+					      <td width="32%">
+					      	<s:textfield size="25" name="dm.tele"/>
+					      </td>
+					    </tr>
+					    <tr  bgcolor="#FFFFFF">
+					      <td colspan="4">&nbsp;</td>
+					    </tr>
+					</table>
+					
 				</div>
-			</div>
+				<div class="order-botton">
+					<div style="margin:1px auto auto 1px;">
+						<table width="100%"  border="0" cellpadding="0" cellspacing="0">
+						  <tr>
+						    <td>
+						    	<a href="javascript:void(0)" id="commit">
+						    		<img src="images/order_tuo.gif" border="0" />
+						    	</a>
+						    </td>
+						    <td>&nbsp;</td>
+						    <td><a href="#"><img src="images/order_tuo.gif" border="0" /></a></td>
+						    <td>&nbsp;</td>
+						    <td><a href="#"><img src="images/order_tuo.gif" border="0" /></a></td>
+						  </tr>
+						</table>
+					</div>
+				</div>
 			</s:form>
 		</div><!--"square-order"end-->
 	</div><!--"content-text"end-->

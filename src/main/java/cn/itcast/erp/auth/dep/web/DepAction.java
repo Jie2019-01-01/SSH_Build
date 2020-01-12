@@ -28,12 +28,24 @@ public class DepAction extends ActionSupport{
 	
 	// 跳转添加页面
 	public String input() {
+		// 通过uuid的值来确定是修改还是添加操作
+		if(dm.getUuid()!=null) {
+			// 修改操作
+			dm = depEbi.get(dm.getUuid());
+		}
 		return "input";
 	}
 	
 	// 信息输入之后的保存操作，然后跳转到list
 	public String save() {
-		depEbi.save(dm);
+		// 判断是新增还是修改，根据dm.getUuid()的值
+		if(dm.getUuid()==null) {
+			// 新增
+			depEbi.save(dm);
+		}else {
+			// 修改
+			depEbi.update(dm);
+		}
 		// 重新加载框架时会出现保存操作，所以这里设置重定向
 		return "toList";
 	}

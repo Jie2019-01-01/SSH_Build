@@ -17,4 +17,12 @@ public class DepImpl extends HibernateDaoSupport implements DepDao{
 		String hql = "from DepModel";
 		return (List<DepModel>) this.getHibernateTemplate().find(hql);
 	}
+
+	public DepModel get(Long uuid) {
+		return this.getHibernateTemplate().get(DepModel.class, uuid);
+	}
+
+	public void update(DepModel dm) {
+		this.getHibernateTemplate().update(dm);
+	}
 }
