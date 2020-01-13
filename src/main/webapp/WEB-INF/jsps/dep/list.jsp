@@ -4,9 +4,14 @@
 <link href="css/index.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/jquery-1.8.3.js"></script>
 <script type="text/javascript">
-	$(function() {
+	/* $(function() {
 		$("#query").click(function() {
 			$("form:first").submit();
+		});
+	}); */
+	$(function(){
+		$('#query').click(function(){
+			$('form:first').submit();
 		});
 	});
 	function showMsg(msg,uuid){
@@ -24,7 +29,7 @@
 		</div>
 	</div>
 	<div class="content-text">
-		<form action="list.jsp" method="post">
+		<form action="dep_queryList" method="post">
 			<div class="square-o-top">
 				<table width="100%" border="0" cellpadding="0" cellspacing="0"
 					style="font-size:14px; font-weight:bold; font-family:"黑体";">
@@ -32,9 +37,9 @@
 						<td width="68" height="30">&nbsp;&nbsp;&nbsp;</td>
 						<td width="123">&nbsp;</td>
 						<td width="62">部门名称:</td>
-						<td width="142"><input type="text" size="18" /></td>
+						<td width="142"><s:textfield name="dqm.name" size="18"/></td>
 						<td width="60">电话:</td>
-						<td width="149"><input type="text" size="18" /></td>
+						<td width="149"><s:textfield name="dqm.tele" size="18"/></td>
 						<td width="70"><a id="query"> <img
 								src="images/can_b_01.gif" border="0" /> </a></td>
 						<td width="70">

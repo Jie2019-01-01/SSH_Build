@@ -37,7 +37,7 @@
     		<result name="toList" type="redirectAction">dep_list</result>
     		<result name="input">/WEB-INF/jsps/dep/input.jsp</result>
     			<!-- 通配符不要忘记加allowed-methods -->
-    		<allowed-methods>list,input,save</allowed-methods>
+    		<allowed-methods>list,input,save,queryList</allowed-methods>
     	</action>
     	
     	<!-- Emp -->

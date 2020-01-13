@@ -5,6 +5,7 @@ import java.util.List;
 import cn.itcast.erp.auth.dep.business.ebi.DepEbi;
 import cn.itcast.erp.auth.dep.dao.dao.DepDao;
 import cn.itcast.erp.auth.dep.vo.DepModel;
+import cn.itcast.erp.auth.dep.vo.DepQueryModel;
 
 public class DepEbo implements DepEbi{
 
@@ -32,5 +33,9 @@ public class DepEbo implements DepEbi{
 
 	public void delete(DepModel dm) {
 		depDao.delete(dm);
+	}
+
+	public List<DepModel> getAll(DepQueryModel dqm) {
+		return depDao.getAll(dqm);
 	}
 }
