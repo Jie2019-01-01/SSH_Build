@@ -29,7 +29,7 @@
 		</div>
 	</div>
 	<div class="content-text">
-		<form action="dep_queryList" method="post">
+		<s:form action="dep_list" method="post">
 			<div class="square-o-top">
 				<table width="100%" border="0" cellpadding="0" cellspacing="0"
 					style="font-size:14px; font-weight:bold; font-family:"黑体";">
@@ -114,9 +114,34 @@
 							<td width="12%">当前第<span style="color:red;">1</span>/3页</td>
 						</tr>
 					</table>
+<s:hidden name="pageNum"/>
+<script type="text/javascript">
+	$(function(){
+		// 上一页
+		$('#pre').click(function(){
+			$('[name=pageNum]').val($('[name=pageNum]').val()-1);
+			$('form:first').submit();
+		});
+		// 下一页
+		$('#next').click(function(){
+			$('[name=pageNum]').val($('[name=pageNum]').val()*1+1);
+			$('form:first').submit();
+		});
+		// 首页
+		$('#fir').click(function(){
+			$('[name=pageNum]').val(1);
+			$('form:first').submit();
+		});
+		// 尾页
+		$('#last').click(function(){
+			$('[name=pageNum]').val();
+			$('form:first').submit();
+		});
+	});
+</script>
 				</s:else>
 			</div>
-		</form>
+		</s:form>
 	</div>
 	<div class="content-bbg"></div>
 </div>

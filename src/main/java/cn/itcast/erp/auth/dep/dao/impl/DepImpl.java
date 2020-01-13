@@ -46,7 +46,17 @@ public class DepImpl extends HibernateDaoSupport implements DepDao{
 		if(dqm.getTele()!=null && dqm.getTele().trim().length()>0) {
 			dc.add(Restrictions.like("tele", "%"+dqm.getTele().trim()+"%"));
 		}
-		
 		return (List<DepModel>) this.getHibernateTemplate().findByCriteria(dc);
+	}
+
+	public List<DepModel> getAll(DepQueryModel dqm, Integer pageNum, Integer pageCount) {
+		DetachedCriteria dc = DetachedCriteria.forClass(DepModel.class);
+		if(dqm.getName()!=null && dqm.getName().trim().length()>0) {
+			dc.add(Restrictions.like("name", "%"+dqm.getName().trim()+"%"));
+		}
+		if(dqm.getTele()!=null && dqm.getTele().trim().length()>0) {
+			dc.add(Restrictions.like("tele", "%"+dqm.getTele().trim()+"%"));
+		}
+		return (List<DepModel>) this.getHibernateTemplate().findByCriteria(dc, (pageNum-1)*pageCount, pageCount);
 	}
 }

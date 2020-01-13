@@ -38,4 +38,8 @@ public class DepEbo implements DepEbi{
 	public List<DepModel> getAll(DepQueryModel dqm) {
 		return depDao.getAll(dqm);
 	}
+
+	public List<DepModel> getAll(DepQueryModel dqm, Integer pageNum, Integer pageCount) {
+		return depDao.getAll(dqm,pageNum,pageCount);
+	}
 }

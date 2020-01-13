@@ -20,17 +20,14 @@ public class DepAction extends ActionSupport{
 	public DepModel dm = new DepModel();
 	public DepQueryModel dqm = new DepQueryModel();
 	
+	public Integer pageNum = 1;
+	public Integer pageCount = 2;
+	
 	// 跳转部门管理首页
 	public String list() {
 		//1.调用业务层，获取部门数据，在list页面中显示
-		List<DepModel> depList = depEbi.getAll();
-		ActionContext.getContext().put("depList", depList);
-		return "list";
-	}
-	
-	// 根据查询条件获取数据
-	public String queryList() {
-		List<DepModel> depList = depEbi.getAll(dqm);
+		pageNum = (Integer) ActionContext.getContext().get("pageNum");
+		List<DepModel> depList = depEbi.getAll(dqm, pageNum, pageCount);
 		ActionContext.getContext().put("depList", depList);
 		return "list";
 	}

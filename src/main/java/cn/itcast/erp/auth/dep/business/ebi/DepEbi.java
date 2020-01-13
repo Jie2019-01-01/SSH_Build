@@ -20,4 +20,6 @@ public interface DepEbi {
 
 	public List<DepModel> getAll(DepQueryModel dqm);
 
+	public List<DepModel> getAll(DepQueryModel dqm, Integer pageNum, Integer pageCount);
+
 }
