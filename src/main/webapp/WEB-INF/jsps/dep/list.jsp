@@ -4,13 +4,9 @@
 <link href="css/index.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/jquery-1.8.3.js"></script>
 <script type="text/javascript">
-	/* $(function() {
-		$("#query").click(function() {
-			$("form:first").submit();
-		});
-	}); */
 	$(function(){
 		$('#query').click(function(){
+			$('[name=pageNum]').val(1);
 			$('form:first').submit();
 		});
 	});
@@ -83,11 +79,11 @@
 									</span> 
 									<img src="images/icon_04.gif" /> 
 									<span style="line-height:12px; text-align:center;"> 
-										<%-- <a href="javascript:void(0)" class="xiu" onclick="showMsg('是否删除该项数据？当前部门删除后，所有部门内的员工将被删除，同时相关数据也将删除！',${uuid})">
-											删除
-										</a> --%>
 										<s:a action="dep_delete">
 											<s:param name="dm.uuid" value="uuid"/>
+											<s:param name="pageNum" value="pageNum"/>
+											<s:param name="lastPage" value="lastPage"/>
+											<s:param name="records" value="records"/>
 											删除
 										</s:a>
 									</span>
@@ -102,16 +98,12 @@
 							<td width="6%">
 								<a id="fir" class="sye">首&nbsp;&nbsp;页</a>
 							</td>
-							<s:if test="pageNum>1">
-								<td width="6%">
-									<a id="pre" class="sye">上一页</a>
-								</td>
-							</s:if>
-							<s:if test="pageNum<lastPage">
-								<td width="6%">
-									<a id="next" class="sye">下一页</a>
-								</td>
-							</s:if>
+							<td width="6%">
+								<a id="pre" class="sye">上一页</a>
+							</td>
+							<td width="6%">
+								<a id="next" class="sye">下一页</a>
+							</td>
 							<td width="6%">
 								<a id="last" class="sye">末&nbsp;&nbsp;页</a>
 							</td>
@@ -122,14 +114,46 @@
 <s:hidden name="lastPage"/>
 <script type="text/javascript">
 	$(function(){
+		// 控制分页按钮
+		/*
+			1. pageNum=1; 前两个按钮隐藏
+			2. pageNum=lastPage; 后两个按钮隐藏
+			3. 1< pageNum <lastPage; 全部显示
+			4. lastPage=1; 全部隐藏
+		*/
+		var pageNum = $('[name=pageNum]').val();
+		var lastPage = $('[name=lastPage]').val();
+		if(lastPage==1){
+			$('#fir').css('display','none');
+			$('#pre').css('display','none');
+			$('#next').css('display','none');
+			$('#last').css('display','none');
+		}else if(pageNum==lastPage){
+			$('#fir').css('display','inline');
+			$('#pre').css('display','inline');
+			$('#next').css('display','none');
+			$('#last').css('display','none');
+		}else if(pageNum==1){
+			$('#fir').css('display','none');
+			$('#pre').css('display','none');
+			$('#next').css('display','inline');
+			$('#last').css('display','inline');
+		}else{
+			$('#fir').css('display','inline');
+			$('#pre').css('display','inline');
+			$('#next').css('display','inline');
+			$('#last').css('display','inline');
+		}
+		
+		
 		// 上一页
 		$('#pre').click(function(){
-			$('[name=pageNum]').val($('[name=pageNum]').val()-1);
+			$('[name=pageNum]').val(pageNum-1);
 			$('form:first').submit();
 		});
 		// 下一页
 		$('#next').click(function(){
-			$('[name=pageNum]').val($('[name=pageNum]').val()*1+1);
+			$('[name=pageNum]').val(pageNum*1+1);
 			$('form:first').submit();
 		});
 		// 首页
@@ -139,7 +163,7 @@
 		});
 		// 尾页
 		$('#last').click(function(){
-			$('[name=pageNum]').val($('[name=lastPage]').val());
+			$('[name=pageNum]').val(lastPage);
 			$('form:first').submit();
 		});
 	});

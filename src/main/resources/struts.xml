@@ -34,7 +34,10 @@
     	<!-- Dep -->
     	<action name="dep_*" class="depAction" method="{1}">
     		<result name="list">/WEB-INF/jsps/dep/list.jsp</result>
-    		<result name="toList" type="redirectAction">dep_list</result>
+    		<result name="toList" type="redirectAction">
+    			<param name="actionName">dep_list</param>
+    			<param name="pageNum">${pageNum}</param>
+    		</result>
     		<result name="input">/WEB-INF/jsps/dep/input.jsp</result>
     			<!-- 通配符不要忘记加allowed-methods -->
     		<allowed-methods>list,input,save</allowed-methods>

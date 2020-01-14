@@ -1,6 +1,9 @@
 package cn.itcast.erp.auth.dep.web;
 
 import java.util.List;
+
+import org.apache.struts2.ServletActionContext;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import cn.itcast.erp.auth.dep.business.ebi.DepEbi;
@@ -60,7 +63,12 @@ public class DepAction extends ActionSupport{
 	
 	// 删除
 	public String delete() {
-		depEbi.delete(dm);
+		System.out.println(pageNum);
+		System.out.println(lastPage);
+		if(pageNum==lastPage && records%pageCount==1) {
+			pageNum -= 1;
+		}
+//		depEbi.delete(dm);
 		return "toList";
 	}
 }
