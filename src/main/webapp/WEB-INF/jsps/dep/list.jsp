@@ -98,23 +98,28 @@
 					<table width="100%" border="0" cellpadding="0" cellspacing="0">
 						<tr>
 							<td width="51%">&nbsp;</td>
-							<td width="13%">共24条记录
+							<td width="13%">共${records}条记录
 							<td width="6%">
 								<a id="fir" class="sye">首&nbsp;&nbsp;页</a>
 							</td>
-							<td width="6%">
-								<a id="pre" class="sye">上一页</a>
-							</td>
-							<td width="6%">
-								<a id="next" class="sye">下一页</a>
-							</td>
+							<s:if test="pageNum>1">
+								<td width="6%">
+									<a id="pre" class="sye">上一页</a>
+								</td>
+							</s:if>
+							<s:if test="pageNum<lastPage">
+								<td width="6%">
+									<a id="next" class="sye">下一页</a>
+								</td>
+							</s:if>
 							<td width="6%">
 								<a id="last" class="sye">末&nbsp;&nbsp;页</a>
 							</td>
-							<td width="12%">当前第<span style="color:red;">1</span>/3页</td>
+							<td width="12%">当前第<span style="color:red;">${pageNum}</span>/${lastPage}页</td>
 						</tr>
 					</table>
 <s:hidden name="pageNum"/>
+<s:hidden name="lastPage"/>
 <script type="text/javascript">
 	$(function(){
 		// 上一页
@@ -134,7 +139,7 @@
 		});
 		// 尾页
 		$('#last').click(function(){
-			$('[name=pageNum]').val();
+			$('[name=pageNum]').val($('[name=lastPage]').val());
 			$('form:first').submit();
 		});
 	});

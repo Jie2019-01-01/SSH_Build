@@ -1,10 +1,8 @@
 package cn.itcast.erp.auth.dep.web;
 
 import java.util.List;
-
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-
 import cn.itcast.erp.auth.dep.business.ebi.DepEbi;
 import cn.itcast.erp.auth.dep.vo.DepModel;
 import cn.itcast.erp.auth.dep.vo.DepQueryModel;
@@ -20,13 +18,17 @@ public class DepAction extends ActionSupport{
 	public DepModel dm = new DepModel();
 	public DepQueryModel dqm = new DepQueryModel();
 	
-	public Integer pageNum = 1;
-	public Integer pageCount = 2;
+	public Integer pageNum = 1;	// 当前页码
+	public Integer pageCount = 2; // 每页显示数量
+	public Integer lastPage; // 尾页
+	public Integer records;
 	
 	// 跳转部门管理首页
 	public String list() {
-		//1.调用业务层，获取部门数据，在list页面中显示
-		pageNum = (Integer) ActionContext.getContext().get("pageNum");
+		// 获取数据总量,为了确保与下面条件查询相符，这里也一定要加上条件
+		records = depEbi.getCount(dqm);
+		lastPage = (records+pageCount-1)/pageCount;
+		// 调用业务层，获取部门数据，在list页面中显示
 		List<DepModel> depList = depEbi.getAll(dqm, pageNum, pageCount);
 		ActionContext.getContext().put("depList", depList);
 		return "list";

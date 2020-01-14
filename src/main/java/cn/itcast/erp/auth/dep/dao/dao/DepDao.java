@@ -21,4 +21,6 @@ public interface DepDao {
 
 	public List<DepModel> getAll(DepQueryModel dqm, Integer pageNum, Integer pageCount);
 
+	public Integer getCount(DepQueryModel dqm);
+
 }
