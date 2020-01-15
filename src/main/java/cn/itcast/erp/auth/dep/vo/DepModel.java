@@ -1,6 +1,8 @@
 package cn.itcast.erp.auth.dep.vo;
 
-public class DepModel {
+import cn.itcast.erp.utils.base.BaseQueryModel;
+
+public class DepModel implements BaseQueryModel{
 
 	private Long uuid;
 	private String name;

@@ -18,8 +18,6 @@ public interface DepEbi {
 
 	public void delete(DepModel dm);
 
-	public List<DepModel> getAll(DepQueryModel dqm);
-
 	public List<DepModel> getAll(DepQueryModel dqm, Integer pageNum, Integer pageCount);
 
 	public Integer getCount(DepQueryModel dqm);
