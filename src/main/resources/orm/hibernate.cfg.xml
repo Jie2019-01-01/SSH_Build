@@ -16,8 +16,8 @@
 	    <property name="connection.pool_size">5</property>
 	    	<!-- 显示SQL -->
 	    <property name="show_sql">true</property>
-	    	<!-- 格式化SQL -->
-	    <property name="format_sql">true</property>
+	    	<!-- 格式化SQL
+	    <property name="format_sql">true</property> -->
 	    	<!-- 根据schema更新数据表的工具 -->
 	    <property name="hbm2ddl.auto">update</property>
 	    	<!-- 开启二级缓存 -->

@@ -5,6 +5,7 @@
 <script type="text/javascript" src="js/jquery-1.8.3.js"></script>
 <script type="text/javascript">
 	$(function(){
+		// 条件查询
 		$('#query').click(function(){
 			$('[name=pageNum]').val(1);
 			$('form:first').submit();
@@ -79,95 +80,26 @@
 									</span> 
 									<img src="images/icon_04.gif" /> 
 									<span style="line-height:12px; text-align:center;"> 
-										<s:a action="dep_delete">
-											<s:param name="dm.uuid" value="uuid"/>
-											<s:param name="pageNum" value="pageNum"/>
-											<s:param name="lastPage" value="lastPage"/>
-											<s:param name="records" value="records"/>
-											删除
-										</s:a>
+										<s:if test="pageNum==lastPage && lastPage!=1 && records%pageCount==1">
+											<s:a action="dep_delete">
+												<s:param name="dm.uuid" value="uuid"/>
+												<s:param name="pageNum" value="pageNum-1"/>
+												删除
+											</s:a>
+										</s:if>
+										<s:else>
+											<s:a action="dep_delete">
+												<s:param name="dm.uuid" value="uuid"/>
+												<s:param name="pageNum" value="pageNum"/>
+												删除
+											</s:a>
+										</s:else>
 									</span>
 								</td>
 							</tr>
-							</s:iterator>
+						</s:iterator>
 					</table>
-					<table width="100%" border="0" cellpadding="0" cellspacing="0">
-						<tr>
-							<td width="51%">&nbsp;</td>
-							<td width="13%">共${records}条记录
-							<td width="6%">
-								<a id="fir" class="sye">首&nbsp;&nbsp;页</a>
-							</td>
-							<td width="6%">
-								<a id="pre" class="sye">上一页</a>
-							</td>
-							<td width="6%">
-								<a id="next" class="sye">下一页</a>
-							</td>
-							<td width="6%">
-								<a id="last" class="sye">末&nbsp;&nbsp;页</a>
-							</td>
-							<td width="12%">当前第<span style="color:red;">${pageNum}</span>/${lastPage}页</td>
-						</tr>
-					</table>
-<s:hidden name="pageNum"/>
-<s:hidden name="lastPage"/>
-<script type="text/javascript">
-	$(function(){
-		// 控制分页按钮
-		/*
-			1. pageNum=1; 前两个按钮隐藏
-			2. pageNum=lastPage; 后两个按钮隐藏
-			3. 1< pageNum <lastPage; 全部显示
-			4. lastPage=1; 全部隐藏
-		*/
-		var pageNum = $('[name=pageNum]').val();
-		var lastPage = $('[name=lastPage]').val();
-		if(lastPage==1){
-			$('#fir').css('display','none');
-			$('#pre').css('display','none');
-			$('#next').css('display','none');
-			$('#last').css('display','none');
-		}else if(pageNum==lastPage){
-			$('#fir').css('display','inline');
-			$('#pre').css('display','inline');
-			$('#next').css('display','none');
-			$('#last').css('display','none');
-		}else if(pageNum==1){
-			$('#fir').css('display','none');
-			$('#pre').css('display','none');
-			$('#next').css('display','inline');
-			$('#last').css('display','inline');
-		}else{
-			$('#fir').css('display','inline');
-			$('#pre').css('display','inline');
-			$('#next').css('display','inline');
-			$('#last').css('display','inline');
-		}
-		
-		
-		// 上一页
-		$('#pre').click(function(){
-			$('[name=pageNum]').val(pageNum-1);
-			$('form:first').submit();
-		});
-		// 下一页
-		$('#next').click(function(){
-			$('[name=pageNum]').val(pageNum*1+1);
-			$('form:first').submit();
-		});
-		// 首页
-		$('#fir').click(function(){
-			$('[name=pageNum]').val(1);
-			$('form:first').submit();
-		});
-		// 尾页
-		$('#last').click(function(){
-			$('[name=pageNum]').val(lastPage);
-			$('form:first').submit();
-		});
-	});
-</script>
+					<s:include value="../tools/pading.jsp"/>
 				</s:else>
 			</div>
 		</s:form>

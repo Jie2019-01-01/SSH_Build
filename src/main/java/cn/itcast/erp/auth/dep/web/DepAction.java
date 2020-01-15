@@ -63,12 +63,7 @@ public class DepAction extends ActionSupport{
 	
 	// 删除
 	public String delete() {
-		System.out.println(pageNum);
-		System.out.println(lastPage);
-		if(pageNum==lastPage && records%pageCount==1) {
-			pageNum -= 1;
-		}
-//		depEbi.delete(dm);
+		depEbi.delete(dm);
 		return "toList";
 	}
 }
