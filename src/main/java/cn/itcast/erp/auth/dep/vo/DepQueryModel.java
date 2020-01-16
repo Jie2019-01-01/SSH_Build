@@ -1,5 +1,7 @@
 package cn.itcast.erp.auth.dep.vo;
 
-public class DepQueryModel extends DepModel{
+import cn.itcast.erp.utils.base.BaseQueryModel;
+
+public class DepQueryModel extends DepModel implements BaseQueryModel{
 
 }
