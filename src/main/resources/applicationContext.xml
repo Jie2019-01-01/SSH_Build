@@ -53,7 +53,7 @@
 	
 		<!-- spring-aop -->
 	<aop:config proxy-target-class="true">
-		<aop:pointcut id="myPointcut" expression="execution(* com.itcast.*.service.*.*(..))"/>
+		<aop:pointcut id="myPointcut" expression="execution(* cn.itcast.erp.auth.*.business.*.*(..))"/>
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="myPointcut"/>
 	</aop:config>
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
