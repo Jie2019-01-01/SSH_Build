@@ -1,40 +1,29 @@
 package cn.itcast.erp.auth.dep.web;
 
 import java.util.List;
-
-import org.apache.struts2.ServletActionContext;
-
-import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.ActionSupport;
 import cn.itcast.erp.auth.dep.business.ebi.DepEbi;
 import cn.itcast.erp.auth.dep.vo.DepModel;
 import cn.itcast.erp.auth.dep.vo.DepQueryModel;
+import cn.itcast.erp.utils.base.BaseAction;
 
-public class DepAction extends ActionSupport{
+public class DepAction extends BaseAction{
 
 	private static final long serialVersionUID = 1L;
+	
 	private DepEbi depEbi;
-	public void setDepEbi(DepEbi depEbi) {
-		this.depEbi = depEbi;
-	}
+	public void setDepEbi(DepEbi depEbi) {this.depEbi = depEbi;}
 	
 	public DepModel dm = new DepModel();
 	public DepQueryModel dqm = new DepQueryModel();
 	
-	public Integer pageNum = 1;	// 当前页码
-	public Integer pageCount = 2; // 每页显示数量
-	public Integer lastPage; // 尾页
-	public Integer records;
-	
 	// 跳转部门管理首页
 	public String list() {
-		// 获取数据总量,为了确保与下面条件查询相符，这里也一定要加上条件
-		records = depEbi.getCount(dqm);
-		lastPage = (records+pageCount-1)/pageCount;
-		// 调用业务层，获取部门数据，在list页面中显示
+		// depEbi.getCount(dqm): 获取数据总量
+		setRecords(depEbi.getCount(dqm));
 		List<DepModel> depList = depEbi.getAll(dqm, pageNum, pageCount);
-		ActionContext.getContext().put("depList", depList);
-		return "list";
+		put("depList", depList);
+		
+		return LIST;
 	}
 	
 	// 跳转添加页面
@@ -44,7 +33,7 @@ public class DepAction extends ActionSupport{
 			// 修改操作
 			dm = depEbi.get(dm.getUuid());
 		}
-		return "input";
+		return INPUT;
 	}
 	
 	// 信息输入之后的保存操作，然后跳转到list
@@ -58,12 +47,12 @@ public class DepAction extends ActionSupport{
 			depEbi.update(dm);
 		}
 		// 重新加载框架时会出现保存操作，所以这里设置重定向
-		return "toList";
+		return TO_LIST;
 	}
 	
 	// 删除
 	public String delete() {
 		depEbi.delete(dm);
-		return "toList";
+		return TO_LIST;
 	}
 }
