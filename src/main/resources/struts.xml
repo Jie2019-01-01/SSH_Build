@@ -23,6 +23,12 @@
     	<!--对于struts拦截器出现的结果集，必须与全局result匹配 -->
  		<global-results>
  			<result name="noLogin">/WEB-INF/jsps/login.jsp</result>
+ 			<result name="list">/WEB-INF/jsps/${actionName}/list.jsp</result>
+    		<result name="toList" type="redirectAction">
+    			<param name="actionName">${actionName}_list</param>
+    			<param name="pageNum">${pageNum}</param>
+    		</result>
+    		<result name="input">/WEB-INF/jsps/${actionName}/input.jsp</result>
  		</global-results>
  		
     	<!-- page -->
@@ -33,12 +39,6 @@
     	
     	<!-- Dep -->
     	<action name="dep_*" class="depAction" method="{1}">
-    		<result name="list">/WEB-INF/jsps/dep/list.jsp</result>
-    		<result name="toList" type="redirectAction">
-    			<param name="actionName">dep_list</param>
-    			<param name="pageNum">${pageNum}</param>
-    		</result>
-    		<result name="input">/WEB-INF/jsps/dep/input.jsp</result>
     			<!-- 通配符不要忘记加allowed-methods -->
     		<allowed-methods>list,input,save</allowed-methods>
     	</action>

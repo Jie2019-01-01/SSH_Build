@@ -39,4 +39,12 @@ public class BaseAction extends ActionSupport{
 //		if(pageNum<1) pageNum = 1;
 //		if(pageNum>pageCount) pageNum = pageCount;
 	}
+	
+	public String getActionName() {
+		// 以部门模块为例
+		String action = this.getClass().getSimpleName(); // DepAction
+		String temp = action.substring(0, action.length()-6); // Dep
+		String actionName = temp.substring(0,1).toLowerCase() + temp.substring(1); // dep
+		return actionName;
+	}
 }
