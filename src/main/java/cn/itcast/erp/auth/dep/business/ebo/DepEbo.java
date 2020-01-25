@@ -10,9 +10,7 @@ public class DepEbo implements DepEbi{
 
 	private DepDao depDao;
 
-	public void setDepDao(DepDao depDao) {
-		this.depDao = depDao;
-	}
+	public void setDepDao(DepDao depDao) {this.depDao = depDao;}
 
 	public void save(DepModel dm) {
 		depDao.save(dm);

@@ -1,9 +1,9 @@
 package cn.itcast.erp.auth.emp.dao.dao;
 
 import cn.itcast.erp.auth.emp.vo.EmpModel;
+import cn.itcast.erp.utils.base.BaseDao;
 
-public interface EmpDao {
-
+public interface EmpDao extends BaseDao<EmpModel>{
+	
 	public EmpModel getByUserNameAndPwd(String userName, String pwd);
-
-}
+}	

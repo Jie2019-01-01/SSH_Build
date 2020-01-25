@@ -42,7 +42,7 @@
     			<!-- 通配符不要忘记加allowed-methods -->
     		<allowed-methods>list,input,save</allowed-methods>
     	</action>
-    	
+    	 
     	<!-- Emp -->
     	<action name="emp_*" class="empAction" method="{1}">
     			<!-- 结果跳转 -->
@@ -51,5 +51,6 @@
     			<!-- struts2.5版本使用通配符必须加上这个 -->
     		<allowed-methods>login</allowed-methods>
     	</action>
+    	 
     </package>
 </struts>

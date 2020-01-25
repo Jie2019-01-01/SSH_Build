@@ -26,7 +26,7 @@ public class DepAction extends BaseAction{
 		return LIST;
 	}
 	
-	// 跳转添加页面
+	// 跳转input.jsp页面
 	public String input() {
 		// 通过uuid的值来确定是修改还是添加操作
 		if(dm.getUuid()!=null) {
