@@ -18,5 +18,4 @@
 	<bean id="empDao" class="cn.itcast.erp.auth.emp.dao.impl.EmpImpl">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
-
 </beans>

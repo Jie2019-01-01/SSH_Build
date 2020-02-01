@@ -168,6 +168,6 @@
 		<!--"footer"end-->
 	</div>
 	<!--"container"end-->
-	<%@include file="/jsps/tools/mask.jsp"%>
+	<%@include file="tools/mask.jsp"%>
 </body>
 </html>

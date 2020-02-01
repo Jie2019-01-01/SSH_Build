@@ -8,6 +8,7 @@ import cn.itcast.erp.utils.format.FormatUtil;
 public class EmpModel {
 
 	public static final String EMP_LOGIN_USER_OBJECT_NAME = "loginEm";
+
 	// 数据结构思想
 	// 性别key值
 	public static final Integer EMP_GENDER_OF_MAN = 1;
@@ -40,47 +41,7 @@ public class EmpModel {
 	private String lastLoginIp; // 登录ip
 	private String loginTimes; // 登录次数
 	
-	public String getGenderView() {
-		return genderView;
-	}
-	public String getBirthDayView() {
-		return birthDayView;
-	}
-	public String getLoginTimes() {
-		return loginTimes;
-	}
-	public void setLoginTimes(String loginTimes) {
-		this.loginTimes = loginTimes;
-	}
-	public String getLastLoginIp() {
-		return lastLoginIp;
-	}
-	public void setLastLoginIp(String lastLoginIp) {
-		this.lastLoginIp = lastLoginIp;
-	}
-	public String getLastLoginTimeView() {
-		return lastLoginTimeView;
-	}
-	public Long getLastLoginTime() {
-		return lastLoginTime;
-	}
-	public void setLastLoginTime(Long lastLoginTime) {
-		this.lastLoginTime = lastLoginTime;
-		this.lastLoginTimeView = FormatUtil.formatDate(lastLoginTime);
-	}
-	public Long getBirthDay() {
-		return birthDay;
-	}
-	public void setBirthDay(Long birthDay) {
-		this.birthDay = birthDay;
-		this.birthDayView = FormatUtil.formatDate(birthDay);
-	}
-	public DepModel getDm() {
-		return dm;
-	}
-	public void setDm(DepModel dm) {
-		this.dm = dm;
-	}
+	
 	public Long getUuid() {
 		return uuid;
 	}
@@ -129,5 +90,46 @@ public class EmpModel {
 	public void setGender(Integer gender) {
 		this.gender = gender;
 		this.genderView = genderMap.get(gender);
+	}
+	public String getGenderView() {
+		return genderView;
+	}
+	public String getBirthDayView() {
+		return birthDayView;
+	}
+	public String getLoginTimes() {
+		return loginTimes;
+	}
+	public void setLoginTimes(String loginTimes) {
+		this.loginTimes = loginTimes;
+	}
+	public String getLastLoginIp() {
+		return lastLoginIp;
+	}
+	public void setLastLoginIp(String lastLoginIp) {
+		this.lastLoginIp = lastLoginIp;
+	}
+	public String getLastLoginTimeView() {
+		return lastLoginTimeView;
+	}
+	public Long getLastLoginTime() {
+		return lastLoginTime;
+	}
+	public void setLastLoginTime(Long lastLoginTime) {
+		this.lastLoginTime = lastLoginTime;
+		this.lastLoginTimeView = FormatUtil.formatDate(lastLoginTime);
+	}
+	public Long getBirthDay() {
+		return birthDay;
+	}
+	public void setBirthDay(Long birthDay) {
+		this.birthDay = birthDay;
+		this.birthDayView = FormatUtil.formatDate(birthDay);
+	}
+	public DepModel getDm() {
+		return dm;
+	}
+	public void setDm(DepModel dm) {
+		this.dm = dm;
 	}
 }

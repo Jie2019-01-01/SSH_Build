@@ -8,8 +8,8 @@
 			<generator class="native"/>
 		</id>
 		<property name="userName"/>
-		<property name="pwd"/>
 		<property name="name"/>
+		<property name="pwd"/>
 		<property name="email"/>
 		<property name="tele"/>
 		<property name="address"/>

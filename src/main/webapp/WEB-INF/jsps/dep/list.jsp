@@ -11,13 +11,21 @@
 			$('form:first').submit();
 		});
 	});
-	function showMsg(msg,uuid){
+	
+	function showmsg(msg, uuid){
+		top.lock.show();
+		top.$('context-msg').style.display = 'block';
+		top.$('context-msg-text').innerHTML = msg;
+		top.$('hid-action').value = 'dep_delete.action?dm.uuid='+uuid;
+		top.lock.show();
+	}
+/* 	function showMsg(msg,uuid){
 		//top.document.getElementById("context-msg").style.display = "block";
 		top.$('context-msg').style.display = "block";
 		top.$('context-msg-text').innerHTML=msg;
 		top.$('hid-action').value="actionName";
 		top.lock.show();
-	}
+	} */
 </script>
 <div class="content-right">
 	<div class="content-r-pic_w">
@@ -80,20 +88,12 @@
 									</span> 
 									<img src="images/icon_04.gif" /> 
 									<span style="line-height:12px; text-align:center;"> 
-										<s:if test="pageNum==lastPage && lastPage!=1 && records%pageCount==1">
-											<s:a action="dep_delete">
-												<s:param name="dm.uuid" value="uuid"/>
-												<s:param name="pageNum" value="pageNum-1"/>
-												删除
-											</s:a>
-										</s:if>
-										<s:else>
-											<s:a action="dep_delete">
-												<s:param name="dm.uuid" value="uuid"/>
-												<s:param name="pageNum" value="pageNum"/>
-												删除
-											</s:a>
-										</s:else>
+										<%-- <s:a action="dep_delete">
+											<s:param name="dm.uuid" value="uuid"/>
+											<s:param name="pageNum" value="pageNum"/>
+											删除
+										</s:a> --%>
+										<a href="javascript:void(0)" id="delete" onclick="showmsg('确定删除这个部门吗?', ${uuid})">删除</a>
 									</span>
 								</td>
 							</tr>

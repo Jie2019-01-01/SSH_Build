@@ -1,9 +1,7 @@
 package cn.itcast.erp.auth.emp.web;
 
 import java.util.List;
-
 import org.apache.struts2.ServletActionContext;
-
 import cn.itcast.erp.auth.dep.business.ebi.DepEbi;
 import cn.itcast.erp.auth.dep.vo.DepModel;
 import cn.itcast.erp.auth.emp.business.ebi.EmpEbi;
@@ -24,7 +22,7 @@ public class EmpAction extends BaseAction{
 	public void setEmpEbi(EmpEbi empEbi) {this.empEbi = empEbi;}
 	private DepEbi depEbi;
 	public void setDepEbi(DepEbi depEbi) {this.depEbi = depEbi;}
-	
+
 	public String login() {
 		// 获取前台的用户名和密码, 传参到业务层
 		EmpModel loginEm = empEbi.login(em.getUserName(), em.getPwd());
@@ -46,12 +44,37 @@ public class EmpAction extends BaseAction{
 			return "loginSuccess";
 		}
 	}
-
+	
+	// 跳转到列表页
 	public String list() {
 		List<DepModel> depList = depEbi.getAll();
 		put("depList", depList);
 		List<EmpModel> empList = empEbi.getAll(eqm, pageNum, pageCount);
 		put("empList", empList);
 		return LIST;
+	}
+
+	// 跳转到input.jsp
+	public String input() {
+		if(em.getUuid()!=null) {
+			em = empEbi.get(em.getUuid());
+		}
+		return INPUT;
+	}
+
+	// 添加
+	public String save() {
+		if(em.getUuid()==null) {
+			empEbi.save(em);
+		}else {
+			empEbi.update(em);
+		}
+		return TO_LIST;
+	}
+
+	// 删除
+	public String delete() {
+		empEbi.delete(em);
+		return TO_LIST;
 	}
 }
