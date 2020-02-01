@@ -47,7 +47,8 @@
 				    <tr  bgcolor="#FFFFFF">
 				      <td align="center">密&nbsp;&nbsp;&nbsp;&nbsp;码</td>
 				      <td>
-				      	<s:password size="25" name="em.pwd"/>
+				      	<%-- <input type="password" size="25" name="em.pwd" value='<s:property value="em.pwd"/>'/> --%>
+				      	<s:textfield type="password" size="25" name="em.pwd"/>
 				      </td>
 				      <td  align="center">确认密码</td>
 				      <td >
@@ -86,7 +87,7 @@
 				    <tr  bgcolor="#FFFFFF">
 				      <td height="30" align="center">出生日期</td>
 				      <td>
-				      	<s:textfield name="birthDay" size="25" onfocus="c.showMoreDay=false;c.show(this);" readonly="true"/>
+				      	<s:textfield name="em.birthDayView" size="25" onfocus="c.showMoreDay=false;c.show(this);" readonly="true"/>
 					  </td>
 				      <td align="center">所属部门</td>
 				      <td>
@@ -107,15 +108,15 @@
 				    <tr  bgcolor="#FFFFFF">
 				      <td width="18%" height="30" align="center">&nbsp;</td>
 				      <td width="82%" colspan="3">
-				      	<input class="roles" type="checkbox">经理
-				      	<input class="roles" type="checkbox">主管
-				      	<input class="roles" type="checkbox">员工
-				      	<input class="roles" type="checkbox">经理
-				      	<input class="roles" type="checkbox">主管
-				      	<input class="roles" type="checkbox">员工
-				      	<input class="roles" type="checkbox">经理
-				      	<input class="roles" type="checkbox">主管
-				      	<input class="roles" type="checkbox">员工
+				      	<input class="roles" type="checkbox"/>经理
+				      	<input class="roles" type="checkbox"/>主管
+				      	<input class="roles" type="checkbox"/>员工
+				      	<input class="roles" type="checkbox"/>经理
+				      	<input class="roles" type="checkbox"/>主管
+				      	<input class="roles" type="checkbox"/>员工
+				      	<input class="roles" type="checkbox"/>经理
+				      	<input class="roles" type="checkbox"/>主管
+				      	<input class="roles" type="checkbox"/>员工
 				      </td>
 				    </tr>
 				    <tr  bgcolor="#FFFFFF">
@@ -123,6 +124,10 @@
 				    </tr>
 				</table>
 			</div>
+			<s:hidden name="em.uuid"/>
+			<s:hidden name="em.lastLoginIp"/>
+			<s:hidden name="em.lastLoginTime"/>
+			<s:hidden name="em.loginTimes"/>
 			<div class="order-botton">
 				<div style="margin:1px auto auto 1px;">
 					<table width="100%"  border="0" cellpadding="0" cellspacing="0">
@@ -133,7 +138,7 @@
 					    <td>&nbsp;</td>
 					    <td><a href="#"><img src="images/order_tuo.gif" border="0" /></a></td>
 					    <td>&nbsp;</td>
-					    <td><a href="#"><img src="images/order_tuo.gif" border="0" /></a></td>
+					    <td><a href="javascript:history.go(-1)"><img src="images/order_tuo.gif" border="0" /></a></td>
 					  </tr>
 					</table>
 				</div>

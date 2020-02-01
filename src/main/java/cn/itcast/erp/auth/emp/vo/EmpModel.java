@@ -94,6 +94,10 @@ public class EmpModel {
 	public String getGenderView() {
 		return genderView;
 	}
+	public void setBirthDayView(String birthDayView) {
+		this.birthDayView = birthDayView;
+		this.birthDay = FormatUtil.formatDate(birthDayView);
+	}
 	public String getBirthDayView() {
 		return birthDayView;
 	}

@@ -1,14 +1,16 @@
 package cn.itcast.erp.auth.emp.web;
 
 import java.util.List;
+
 import org.apache.struts2.ServletActionContext;
+
 import cn.itcast.erp.auth.dep.business.ebi.DepEbi;
 import cn.itcast.erp.auth.dep.vo.DepModel;
 import cn.itcast.erp.auth.emp.business.ebi.EmpEbi;
 import cn.itcast.erp.auth.emp.vo.EmpModel;
 import cn.itcast.erp.auth.emp.vo.EmpQueryModel;
 import cn.itcast.erp.utils.base.BaseAction;
-import cn.itcast.erp.utils.format.FormatUtil;
+import cn.itcast.erp.utils.format.MD5Utils;
 import cn.itcast.erp.utils.ip.IpUtils;
 
 public class EmpAction extends BaseAction{
@@ -41,7 +43,7 @@ public class EmpAction extends BaseAction{
 //			loginEm.setLoginTimes(String.valueOf(times));
 //			String ip = IpUtils.getIpAddr(ServletActionContext.getRequest());
 //			loginEm.setLastLoginIp(ip);
-			empEbi.update(loginEm);
+//			empEbi.update(loginEm);
 			return "loginSuccess";
 		}
 	}
@@ -70,11 +72,9 @@ public class EmpAction extends BaseAction{
 		return INPUT;
 	}
 
-	public String birthDay;
 	// 添加
 	public String save() {
 		if(em.getUuid()==null) {
-			em.setBirthDay(FormatUtil.formatDate(birthDay));;
 			em.setLastLoginIp(IpUtils.getIpAddr(ServletActionContext.getRequest()));
 			em.setLoginTimes("1");
 			em.setLastLoginTime(System.currentTimeMillis());
