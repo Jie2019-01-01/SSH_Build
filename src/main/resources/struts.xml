@@ -30,6 +30,7 @@
     		</result>
     		<result name="input">/WEB-INF/jsps/${actionName}/input.jsp</result>
  		</global-results>
+ 		<global-allowed-methods>login,logout</global-allowed-methods>
  		
     	<!-- page -->
     	<action name="page_*">
@@ -39,8 +40,6 @@
     	
     	<!-- Dep -->
     	<action name="dep_*" class="depAction" method="{1}">
-    			<!-- 通配符不要忘记加allowed-methods -->
-    		<allowed-methods>list,input,save</allowed-methods>
     	</action>
     	 
     	<!-- Emp -->
@@ -48,8 +47,6 @@
     			<!-- 结果跳转 -->
     		<result name="loginFail">/WEB-INF/jsps/login.jsp</result>
     		<result name="loginSuccess">/WEB-INF/jsps/main.jsp</result>
-    			<!-- struts2.5版本使用通配符必须加上这个 -->
-    		<allowed-methods>login</allowed-methods>
     	</action>
     	 
     </package>

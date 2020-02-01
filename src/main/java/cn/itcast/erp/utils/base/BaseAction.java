@@ -25,6 +25,10 @@ public class BaseAction extends ActionSupport{
 	protected void putSession(String key, Object value) {
 		ActionContext.getContext().getSession().put(key, value);
 	}
+	// 删除session
+	protected void removeSession(String key) {
+		ActionContext.getContext().getSession().remove(key);
+	}
 	
 	// 获取登录人信息
 	protected EmpModel getLogin() {

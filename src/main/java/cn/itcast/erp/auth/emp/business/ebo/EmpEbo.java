@@ -27,16 +27,17 @@ public class EmpEbo implements EmpEbi{
 		return empModel;
 	}
 	
-	public void save(EmpModel dm) {
-		empDao.save(dm);
+	public void save(EmpModel em) {
+		em.setPwd(MD5Utils.md5(em.getPwd()));
+		empDao.save(em);
 	}
 
-	public void update(EmpModel dm) {
-		empDao.update(dm);
+	public void update(EmpModel em) {
+		empDao.update(em);
 	}
 
-	public void delete(EmpModel dm) {
-		empDao.delete(dm);
+	public void delete(EmpModel em) {
+		empDao.delete(em);
 	}
 
 	public List<EmpModel> getAll() {

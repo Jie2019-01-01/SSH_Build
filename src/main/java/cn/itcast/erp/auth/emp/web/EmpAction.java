@@ -8,6 +8,7 @@ import cn.itcast.erp.auth.emp.business.ebi.EmpEbi;
 import cn.itcast.erp.auth.emp.vo.EmpModel;
 import cn.itcast.erp.auth.emp.vo.EmpQueryModel;
 import cn.itcast.erp.utils.base.BaseAction;
+import cn.itcast.erp.utils.format.FormatUtil;
 import cn.itcast.erp.utils.ip.IpUtils;
 
 public class EmpAction extends BaseAction{
@@ -35,15 +36,20 @@ public class EmpAction extends BaseAction{
 		}else {
 			// 登录成功
 			putSession(EmpModel.EMP_LOGIN_USER_OBJECT_NAME, loginEm);
-			loginEm.setLastLoginTime(System.currentTimeMillis());
-			int times = Integer.parseInt(loginEm.getLoginTimes())+1;
-			loginEm.setLoginTimes(String.valueOf(times));
-			String ip = IpUtils.getIpAddr(ServletActionContext.getRequest());
-			loginEm.setLastLoginIp(ip);
+//			loginEm.setLastLoginTime(System.currentTimeMillis());
+//			int times = Integer.parseInt(loginEm.getLoginTimes())+1;
+//			loginEm.setLoginTimes(String.valueOf(times));
+//			String ip = IpUtils.getIpAddr(ServletActionContext.getRequest());
+//			loginEm.setLastLoginIp(ip);
 			empEbi.update(loginEm);
 			return "loginSuccess";
 		}
 	}
+	public String logout() {
+		removeSession(EmpModel.EMP_LOGIN_USER_OBJECT_NAME);
+		return "noLogin";
+	}
+	
 	
 	// 跳转到列表页
 	public String list() {
@@ -59,12 +65,19 @@ public class EmpAction extends BaseAction{
 		if(em.getUuid()!=null) {
 			em = empEbi.get(em.getUuid());
 		}
+		List<DepModel> depList = depEbi.getAll();
+		put("depList", depList);
 		return INPUT;
 	}
 
+	public String birthDay;
 	// 添加
 	public String save() {
 		if(em.getUuid()==null) {
+			em.setBirthDay(FormatUtil.formatDate(birthDay));;
+			em.setLastLoginIp(IpUtils.getIpAddr(ServletActionContext.getRequest()));
+			em.setLoginTimes("1");
+			em.setLastLoginTime(System.currentTimeMillis());
 			empEbi.save(em);
 		}else {
 			empEbi.update(em);

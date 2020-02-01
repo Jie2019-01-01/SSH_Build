@@ -43,7 +43,7 @@
 								headerKey="-1" headerValue="----请-选-择----"/>
 						</td>
 							
-						<td width="70"><a href="input.jsp"> <img src="images/can_b_02.gif" border="0" /> </a></td>
+						<td width="70"><a href="emp_input.action"> <img src="images/can_b_02.gif" border="0" /> </a></td>
 					</tr>
 					<tr>
 						<td  height="30">电子邮件</td>

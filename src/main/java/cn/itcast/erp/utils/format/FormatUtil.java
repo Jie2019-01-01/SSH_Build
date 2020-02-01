@@ -17,6 +17,17 @@ public class FormatUtil {
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		return  df.format(new Date(time)); 
 	}
+	public static final Long formatDate(String sdate){
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		long ldate = 0l;
+		try {
+			Date date = df.parse(sdate);
+			ldate = date.getTime();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ldate;
+	}
 	
 	public static void main(String[] args) throws Exception{
 			// long ==> String

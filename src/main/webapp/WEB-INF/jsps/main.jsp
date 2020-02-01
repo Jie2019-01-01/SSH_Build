@@ -24,8 +24,8 @@
 							</a>
 						</td>
 						<td width="26%">
-							<a href="index2.jsp">
-								<img src="images/head-m.gif"	border="0" />
+							<a href="emp_logout.action">
+								<img src="images/head-m.gif" border="0" />
 							</a>
 						</td>
 						<td width="7%">&nbsp;</td>
