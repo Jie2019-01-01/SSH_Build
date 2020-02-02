@@ -46,8 +46,8 @@ public class EmpAction extends BaseAction{
 	public String list() {
 		List<DepModel> depList = depEbi.getAll();
 		put("depList", depList);
+		setRecords(empEbi.getCount(eqm));
 		List<EmpModel> empList = empEbi.getAll(eqm, pageNum, pageCount);
-//		List<EmpModel> empList = new ArrayList<EmpModel>();
 		put("empList", empList);
 		return LIST;
 	}
