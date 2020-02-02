@@ -14,7 +14,7 @@ public class BaseAction extends ActionSupport{
 	
 	public Integer records;
 	public Integer pageNum = 1;
-	public Integer pageCount = 5;
+	public Integer pageCount = 15;
 	public Integer lastPage;
 	
 	// 存放数据到request
@@ -24,10 +24,6 @@ public class BaseAction extends ActionSupport{
 	// 存放数据到session
 	protected void putSession(String key, Object value) {
 		ActionContext.getContext().getSession().put(key, value);
-	}
-	// 删除session
-	protected void removeSession(String key) {
-		ActionContext.getContext().getSession().remove(key);
 	}
 	
 	// 获取登录人信息

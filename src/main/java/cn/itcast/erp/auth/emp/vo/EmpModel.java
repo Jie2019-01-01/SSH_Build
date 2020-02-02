@@ -2,6 +2,7 @@ package cn.itcast.erp.auth.emp.vo;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import cn.itcast.erp.auth.dep.vo.DepModel;
 import cn.itcast.erp.utils.format.FormatUtil;
 
@@ -39,9 +40,14 @@ public class EmpModel {
 	private Long lastLoginTime; // 最后登录时间
 	private String lastLoginTimeView; // 登录时间视图
 	private String lastLoginIp; // 登录ip
-	private String loginTimes; // 登录次数
+	private Integer loginTimes; // 登录次数
 	
-	
+	public Integer getLoginTimes() {
+		return loginTimes;
+	}
+	public void setLoginTimes(Integer loginTimes) {
+		this.loginTimes = loginTimes;
+	}
 	public Long getUuid() {
 		return uuid;
 	}
@@ -94,18 +100,15 @@ public class EmpModel {
 	public String getGenderView() {
 		return genderView;
 	}
-	public void setBirthDayView(String birthDayView) {
-		this.birthDayView = birthDayView;
-		this.birthDay = FormatUtil.formatDate(birthDayView);
+	public Long getBirthDay() {
+		return birthDay;
+	}
+	public void setBirthDay(Long birthDay) {
+		this.birthDay = birthDay;
+		this.birthDayView = FormatUtil.formatTime(birthDay);
 	}
 	public String getBirthDayView() {
 		return birthDayView;
-	}
-	public String getLoginTimes() {
-		return loginTimes;
-	}
-	public void setLoginTimes(String loginTimes) {
-		this.loginTimes = loginTimes;
 	}
 	public String getLastLoginIp() {
 		return lastLoginIp;
@@ -121,14 +124,9 @@ public class EmpModel {
 	}
 	public void setLastLoginTime(Long lastLoginTime) {
 		this.lastLoginTime = lastLoginTime;
-		this.lastLoginTimeView = FormatUtil.formatDate(lastLoginTime);
-	}
-	public Long getBirthDay() {
-		return birthDay;
-	}
-	public void setBirthDay(Long birthDay) {
-		this.birthDay = birthDay;
-		this.birthDayView = FormatUtil.formatDate(birthDay);
+		if(lastLoginTime!=0) {
+			this.lastLoginTimeView = FormatUtil.formatTime(lastLoginTime);
+		}
 	}
 	public DepModel getDm() {
 		return dm;

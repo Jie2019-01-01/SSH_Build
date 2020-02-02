@@ -47,8 +47,7 @@
 				    <tr  bgcolor="#FFFFFF">
 				      <td align="center">密&nbsp;&nbsp;&nbsp;&nbsp;码</td>
 				      <td>
-				      	<%-- <input type="password" size="25" name="em.pwd" value='<s:property value="em.pwd"/>'/> --%>
-				      	<s:textfield type="password" size="25" name="em.pwd"/>
+				      	<s:password size="25" name="em.pwd"/>
 				      </td>
 				      <td  align="center">确认密码</td>
 				      <td >
@@ -73,8 +72,7 @@
 				    <tr  bgcolor="#FFFFFF">
 				      <td height="30" align="center">性&nbsp;&nbsp;&nbsp;&nbsp;别</td>
 				      <td>
-						<s:select cssStyle="width:190px" list="@cn.itcast.erp.auth.emp.vo.EmpModel@genderMap" 
-							headerKey="-1" headerValue="----请-选-择----" name="em.gender"/>
+						<s:select cssStyle="width:190px" list="@cn.itcast.erp.auth.emp.vo.EmpModel@genderMap" name="em.gender"/>
 					  </td>
 				      <td align="center">地&nbsp;&nbsp;&nbsp;&nbsp;址</td>
 				      <td>
@@ -87,12 +85,12 @@
 				    <tr  bgcolor="#FFFFFF">
 				      <td height="30" align="center">出生日期</td>
 				      <td>
-				      	<s:textfield name="em.birthDayView" size="25" onfocus="c.showMoreDay=false;c.show(this);" readonly="true"/>
+				      	<input type="text" size="25" onfocus="c.showMoreDay=false;c.show(this);" readonly="true" value="${em.birthDayView}"/>
+				      	<s:hidden name="em.birthDay"/>
 					  </td>
 				      <td align="center">所属部门</td>
 				      <td>
-						<s:select cssStyle="width:190px" name="em.dm.uuid" list="depList" headerKey="-1" 
-							headerValue="----请-选-择----" listKey="uuid" listValue="name"/>
+						<s:select cssStyle="width:190px" name="em.dm.uuid" list="depList" listKey="uuid" listValue="name"/>
 					  </td>
 				    </tr>
 				    <tr  bgcolor="#FFFFFF">
@@ -125,9 +123,9 @@
 				</table>
 			</div>
 			<s:hidden name="em.uuid"/>
-			<s:hidden name="em.lastLoginIp"/>
+			<%-- <s:hidden name="em.lastLoginIp"/>
 			<s:hidden name="em.lastLoginTime"/>
-			<s:hidden name="em.loginTimes"/>
+			<s:hidden name="em.loginTimes"/> --%>
 			<div class="order-botton">
 				<div style="margin:1px auto auto 1px;">
 					<table width="100%"  border="0" cellpadding="0" cellspacing="0">

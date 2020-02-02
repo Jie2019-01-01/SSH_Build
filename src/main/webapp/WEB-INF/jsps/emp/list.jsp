@@ -26,7 +26,7 @@
 		</div>
 	</div>
 	<div class="content-text">
-		<form action="list.jsp" method="post">
+		<form action="emp_list.action" method="post">
 			<div class="square-o-top">
 				<table width="100%" border="0" cellpadding="0" cellspacing="0"
 					style="font-size:14px; font-weight:bold; font-family:"黑体";">
@@ -60,8 +60,7 @@
 						</td>
 						<td>部门名称</td>
 						<td>
-							<s:select cssClass="kuan" name="eqm.dm.uuid" list="depList" listKey="uuid" listValue="name" 
-								headerKey="-1" headerValue="----请-选-择----"></s:select>
+							<s:select cssClass="kuan" name="eqm.dm.uuid" list="depList" listKey="uuid" listValue="name"></s:select>
 						</td>
 						<td><a id="query"> <img src="images/can_b_01.gif" border="0" /> </a></td>
 					</tr>
@@ -69,45 +68,53 @@
 			</div>
 			<!--"square-o-top"end-->
 			<div class="square-order">
-				<table width="100%" border="1" cellpadding="0" cellspacing="0">
-					<tr align="center"
-						style="background:url(images/table_bg.gif) repeat-x;">
-						<td width="10%" height="30">用户名</td>
-						<td width="10%">真实姓名</td>
-						<td width="5%">性别</td>
-						<td width="12%">出生日期</td>
-						<td width="10%">电话</td>
-						<td width="12%">电子邮件</td>
-						<td width="9%">所属部门</td>
-						<td width="16%">最后登录时间</td>
-						<td width="16%">操作</td>
-					</tr>
-					<s:iterator var="emp" value="empList">
-						<tr align="center" bgcolor="#FFFFFF">
-							<td width="13%" height="30">${emp.userName}</td>
-							<td>${emp.name}</td>
-							<td>${emp.genderView}</td>
-							<td>${emp.birthDayView}</td>
-							<td>${emp.tele}</td>
-							<td>${emp.email}</td>
-							<td>${emp.dm.name}</td>
-							<td>${emp.lastLoginTimeView}</td>
-							<td>
-								<img src="images/icon_3.gif" /> 
-								<span style="line-height:12px; text-align:center;"> 
-									<s:a action="emp_input.action" cssClass="xiu">
-										<s:param name="em.uuid" value="uuid"/>
-										修改
-									</s:a>
-								</span> 
-								<img src="images/icon_04.gif" /> 
-								<span style="line-height:12px; text-align:center;"> 
-									<a href="javascript:void(0)" class="xiu" onclick="showMsg('是否删除该项数据？',318)">删除</a>
-								</span>
-							</td>
+				<s:if test="#empList.size==0">
+					<center>
+						<span style="font-size:20px;color:#96D34A;font-weight:bold">没有查找到满足条件的数据！</span>
+					</center>
+				</s:if>
+				<s:else>
+					<table width="100%" border="1" cellpadding="0" cellspacing="0">
+						<tr align="center"
+							style="background:url(images/table_bg.gif) repeat-x;">
+							<td width="10%" height="30">用户名</td>
+							<td width="10%">真实姓名</td>
+							<td width="5%">性别</td>
+							<td width="12%">出生日期</td>
+							<td width="10%">电话</td>
+							<td width="12%">电子邮件</td>
+							<td width="9%">所属部门</td>
+							<td width="16%">最后登录时间</td>
+							<td width="16%">操作</td>
 						</tr>
-					</s:iterator>
-				</table>
+						<s:iterator value="empList">
+							<tr align="center" bgcolor="#FFFFFF">
+								<td width="13%" height="30">${userName}</td>
+								<td>${name}</td>
+								<td>${genderView}</td>
+								<td>${birthDayView}</td>
+								<td>${tele}</td>
+								<td>${email}</td>
+								<td>${dm.name}</td>
+								<td>${lastLoginTimeView}</td>
+								<td>
+									<img src="images/icon_3.gif" /> 
+									<span style="line-height:12px; text-align:center;"> 
+										<s:a action="emp_input.action" cssClass="xiu">
+											<s:param name="em.uuid" value="uuid"/>
+											修改
+										</s:a>
+									</span> 
+									<img src="images/icon_04.gif" /> 
+									<span style="line-height:12px; text-align:center;"> 
+										<a href="javascript:void(0)" class="xiu" onclick="showMsg('是否删除该项数据？',318)">删除</a>
+									</span>
+								</td>
+							</tr>
+						</s:iterator>
+					</table>
+					<s:include value="../tools/pading.jsp"></s:include>
+				</s:else>
 			</div>
 		</form>
 	</div>

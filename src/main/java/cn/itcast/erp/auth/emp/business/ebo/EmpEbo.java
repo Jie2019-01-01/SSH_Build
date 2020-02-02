@@ -1,11 +1,16 @@
 package cn.itcast.erp.auth.emp.business.ebo;
 
 import java.util.List;
+
+import org.apache.struts2.ServletActionContext;
+
 import cn.itcast.erp.auth.emp.business.ebi.EmpEbi;
 import cn.itcast.erp.auth.emp.dao.dao.EmpDao;
 import cn.itcast.erp.auth.emp.vo.EmpModel;
 import cn.itcast.erp.auth.emp.vo.EmpQueryModel;
+import cn.itcast.erp.utils.exception.AppException;
 import cn.itcast.erp.utils.format.MD5Utils;
+import cn.itcast.erp.utils.ip.IpUtils;
 
 public class EmpEbo implements EmpEbi{
 
@@ -23,17 +28,43 @@ public class EmpEbo implements EmpEbi{
 		// 密码加密
 		pwd = MD5Utils.md5(pwd);
 		// 调用数据层
-		EmpModel empModel = empDao.getByUserNameAndPwd(userName, pwd);
-		return empModel;
+		EmpModel loginEm = empDao.getByUserNameAndPwd(userName, pwd);
+		if(loginEm!=null) {
+			loginEm.setLastLoginTime(System.currentTimeMillis());
+			int times = loginEm.getLoginTimes()+1;
+			loginEm.setLoginTimes(times);
+			String ip = IpUtils.getIpAddr(ServletActionContext.getRequest());
+			loginEm.setLastLoginIp(ip);
+			empDao.update(loginEm);
+		}
+		return loginEm;
 	}
 	
 	public void save(EmpModel em) {
+		if(em.getUserName()==null || em.getUserName().trim().length()==0) {
+			throw new AppException("INFO_EMP_USERNAME_IS_EMPTY");
+		}
 		em.setPwd(MD5Utils.md5(em.getPwd()));
+		//设置默认值
+		em.setLastLoginTime(System.currentTimeMillis());
+		em.setLastLoginIp("-");
+		em.setLoginTimes(0);
 		empDao.save(em);
 	}
 
 	public void update(EmpModel em) {
-		empDao.update(em);
+		// 快照思想更新
+		// 1、根据id查询出数据
+		// 2、由em接收前台传过来的数据
+		// 3、允许更新的数据重新设置到temp中
+		// 4、不用使用update方法，快照直接即可更新
+		EmpModel temp = empDao.get(em.getUuid());
+		temp.setName(em.getName());
+		temp.setEmail(em.getEmail());
+		temp.setTele(em.getTele());
+		temp.setGender(em.getGender());
+		temp.setAddress(em.getAddress());
+		temp.setDm(em.getDm());
 	}
 
 	public void delete(EmpModel em) {
