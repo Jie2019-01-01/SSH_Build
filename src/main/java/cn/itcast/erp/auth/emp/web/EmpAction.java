@@ -1,6 +1,9 @@
 package cn.itcast.erp.auth.emp.web;
 
 import java.util.List;
+
+import com.opensymphony.xwork2.ActionContext;
+
 import cn.itcast.erp.auth.dep.business.ebi.DepEbi;
 import cn.itcast.erp.auth.dep.vo.DepModel;
 import cn.itcast.erp.auth.emp.business.ebi.EmpEbi;
@@ -36,10 +39,31 @@ public class EmpAction extends BaseAction{
 			return "loginSuccess";
 		}
 	}
+	// 注销
 	public String logout() {
 		putSession(EmpModel.EMP_LOGIN_USER_OBJECT_NAME, null);
 		return "loginFail";
 	}
+	// 修改密码
+	public String newPwd;
+	public String toChangePwd() {
+		return "toChangePwd";
+	}
+	public String changePwd() {
+		boolean flag = empEbi.changePwd(getLogin().getUserName(), eqm.getPwd(), newPwd);
+		if(flag) {
+			// 修改成功
+			// 注销
+			putSession(EmpModel.EMP_LOGIN_USER_OBJECT_NAME, null);
+			return "loginFail";
+			
+		}else {
+			// 修改失败：可能是密码不对
+			ActionContext.getContext().put("error", "密码输入错误...");
+			return "toChangePwd";
+		}
+	}
+	
 	
 	
 	// 跳转到列表页

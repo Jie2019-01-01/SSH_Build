@@ -2,6 +2,9 @@ package cn.itcast.erp.utils.base;
 
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
 public interface BaseDao<T> {
 	
 	// 增

@@ -35,7 +35,7 @@ public class EmpEbo implements EmpEbi{
 			loginEm.setLoginTimes(times);
 			String ip = IpUtils.getIpAddr(ServletActionContext.getRequest());
 			loginEm.setLastLoginIp(ip);
-			empDao.update(loginEm);
+			// 不需要写update方法，直接快照更新
 		}
 		return loginEm;
 	}
@@ -85,6 +85,13 @@ public class EmpEbo implements EmpEbi{
 
 	public Integer getCount(EmpQueryModel dqm) {
 		return empDao.getCount(dqm);
+	}
+
+	public boolean changePwd(String userName, String pwd, String newPwd) {
+		// 密码加密
+		pwd = MD5Utils.md5(pwd);
+		newPwd = MD5Utils.md5(newPwd);
+		return empDao.changePwdByUserNameAndPwd(userName, pwd, newPwd);
 	}
 
 }

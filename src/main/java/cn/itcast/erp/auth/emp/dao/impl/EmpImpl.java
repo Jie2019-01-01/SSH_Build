@@ -1,11 +1,10 @@
 package cn.itcast.erp.auth.emp.dao.impl;
 
-import java.util.Date;
 import java.util.List;
-
+import org.hibernate.Session;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
-
+import org.hibernate.query.Query;
 import cn.itcast.erp.auth.emp.dao.dao.EmpDao;
 import cn.itcast.erp.auth.emp.vo.EmpModel;
 import cn.itcast.erp.auth.emp.vo.EmpQueryModel;
@@ -43,27 +42,21 @@ public class EmpImpl extends BaseDaoImpl<EmpModel> implements EmpDao{
 		}
 	}
 	
-	public static void main(String[] args) {
-		// 当前毫秒: 1580639628612
-		
-		// 去除小时、分钟、秒后的时间，也就是早上的时间: 1580601600000
-//		System.out.println(curMills/1000/60/60/24*24*60*60*1000);
-		
-		// 格式化早晨时间
-//		System.out.println(new Date(1580601600000l));
-		// 格式化当前时间
-//		System.out.println(new Date(1580639628612l));
-		
-		// 计算早晨到当前时间的小时
-//		Long result = (1580639628612l-1580601600000l)/1000/60/60;
-	}
-	
 	public EmpModel getByUserNameAndPwd(String userName, String pwd) {
 		String hql = "from EmpModel where userName=:userName and pwd=:pwd";
-		String[] loginName = new String[] {"userName", "pwd"};
-		String[] loginPwd = new String[] {userName, pwd};
 		System.out.println("开始执行模板");
-		List<EmpModel> temp = (List<EmpModel>) this.getHibernateTemplate().findByNamedParam(hql, loginName, loginPwd);
+		List<EmpModel> temp = (List<EmpModel>) this.getHibernateTemplate().findByNamedParam(hql, new String[] {"userName", "pwd"}, new String[] {userName, pwd});
 		return temp.size()>0? temp.get(0):null;
+	}
+
+	public boolean changePwdByUserNameAndPwd(String userName, String pwd, String newPwd) {
+		String hql = "update EmpModel set pwd=:newPwd where userName=:userName and pwd=:pwd";
+		Session session = this.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		Query query = session.createQuery(hql);
+		query.setParameter("newPwd", newPwd);
+		query.setParameter("userName", userName);
+		query.setParameter("pwd", pwd);
+		int row = query.executeUpdate();
+		return row>0;
 	}
 }
