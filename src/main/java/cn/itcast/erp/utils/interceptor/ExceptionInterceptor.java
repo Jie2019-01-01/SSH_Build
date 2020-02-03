@@ -16,11 +16,11 @@ public class ExceptionInterceptor extends AbstractInterceptor{
 			// 发送消息到程序员邮箱
 			// 报警（根据需求）
 			ActionSupport as = (ActionSupport) invocation.getAction();
-			as.addActionError(e.getMessage());
+			as.addActionError(as.getText(e.getMessage()));
 			return "error";
 		}catch(Exception e) {
 			ActionSupport as = (ActionSupport) invocation.getAction();
-			as.addActionError("对不起，服务器已关闭，请联系管理员！");
+			as.addActionError(as.getText("INFO_EMP_SERVER_CLOSE"));
 			return "error";
 		}
 	}

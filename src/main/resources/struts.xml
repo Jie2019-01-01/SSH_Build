@@ -3,9 +3,9 @@
     "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
     "http://struts.apache.org/dtds/struts-2.5.dtd">
 <struts>
-    <!-- <constant name="struts.objectFactory" value="spring" /> -->
     <constant name="struts.devMode" value="true"/>
     <constant name="struts.ui.theme" value="simple"/>
+    <constant name="struts.custom.i18n.resources" value="msg"/>
     <package name="default" namespace="/" extends="struts-default">
     		<!-- 声明拦截器 -->
     	<interceptors>
