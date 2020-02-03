@@ -53,7 +53,6 @@ public class EmpEbo implements EmpEbi{
 	}
 
 	public void update(EmpModel em) {
-		int a = 1/0;
 		// 快照思想更新
 		// 1、根据id查询出数据
 		// 2、由em接收前台传过来的数据
