@@ -4,7 +4,7 @@
 <script type="text/javascript" src="js/jquery-1.8.3.js"></script>
 <script type="text/javascript" src="js/Calendar.js"></script>
 <script type="text/javascript">
-	$(function() {
+	/* $(function() {
 		$("#all").click(function() {
 			$("[name=resources]:checkbox").attr("checked",$("#all").attr("checked")=="checked");
 		});
@@ -13,6 +13,29 @@
                 $(this).attr("checked", !$(this).attr("checked"));
             });
 
+		});
+	}); */
+	
+	$(function(){
+		// 资源
+		// 全选
+		$('#all').click(function(){
+			var flag = $(this).attr('checked');
+			$('[name=resesUuids]').attr('checked', flag=='checked');
+			$('#reverse').attr('checked', false);
+		});
+		// 全选状态过滤
+		$('[name=resesUuids]').click(function(){
+			if($(this).attr('checked')!='checked'){
+				$('#all').attr('checked', false);
+			}
+		});
+		// 反选
+		$('#reverse').click(function(){
+			$('[name=resesUuids]').each(function(){
+				$(this).attr('checked', !$(this).attr('checked'));
+			});
+			$('#all').attr('checked', false);
 		});
 	});
 </script>
@@ -62,8 +85,8 @@
 				     <tr  bgcolor="#FFFFFF">
 				      <td width="18%" height="30" align="center">菜单名称</td>
 				      <td width="82%" colspan="3">
-				      	<input type="checkbox" id="all">全选&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				      	<input type="checkbox" id="reverse">反选
+				      	<input type="checkbox" id="all2">全选&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				      	<input type="checkbox" id="reverse2">反选
 				      </td>
 				    </tr>
 				    <tr  bgcolor="#FFFFFF">

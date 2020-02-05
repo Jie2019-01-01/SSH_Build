@@ -40,4 +40,8 @@ public class ResEbo implements ResEbi{
 		return resDao.getCount(dqm);
 	}
 
+	public List<ResModel> getResByEmpId(Long uuid) {
+		return resDao.getResByEmpId(uuid);
+	}
+
 }

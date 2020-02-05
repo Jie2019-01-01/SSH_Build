@@ -12,10 +12,12 @@
     			<!-- 自定义拦截器 -->
     		<interceptor name="loginInterceptor" class="cn.itcast.erp.utils.interceptor.LoginInterceptor"/>
     		<interceptor name="exceptionInterceptor" class="cn.itcast.erp.utils.interceptor.ExceptionInterceptor"/>
+    		<interceptor name="authInterceptor" class="cn.itcast.erp.utils.interceptor.AuthInterceptor"/>
     			<!-- 拦截器栈，引用默认拦截器栈和自定义拦截器 -->
     		<interceptor-stack name="myStack">
-    			<interceptor-ref name="loginInterceptor"/>
     			<interceptor-ref name="exceptionInterceptor"/>
+    			<interceptor-ref name="loginInterceptor"/>
+    			<interceptor-ref name="authInterceptor"/>
     			<interceptor-ref name="defaultStack"/>
     		</interceptor-stack>
     	</interceptors>
