@@ -1,6 +1,7 @@
 package cn.itcast.erp.utils.interceptor;
 
 import java.util.List;
+import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
@@ -29,23 +30,11 @@ public class AuthInterceptor extends AbstractInterceptor {
 		
 			//2.get当前登录人
 		EmpModel loginEm = (EmpModel) ActionContext.getContext().getSession().get(EmpModel.EMP_LOGIN_USER_OBJECT_NAME);
-			//2.1对登录操作放行
-		if("cn.itcast.erp.auth.emp.web.EmpAction.login".equals(allName)) {
-			return invocation.invoke();
-		}
-			//2.2判断当前登录人是否为空
-		if(loginEm==null)
-			return "noLogin";
 		
 			//3判断只要不是资源操作，全部放行
-		List<ResModel> resList = resEbi.getAll();
-		StringBuilder sbf = new StringBuilder();
-		for(ResModel res: resList) {
-			sbf.append(res.getUrl());
-			sbf.append(",");
-		}
 			//3.1如果资源拼接的字符串中没有allName,则放行
-		if(sbf.indexOf(allName)<0)
+		String allRes = (String) ServletActionContext.getServletContext().getAttribute("allRes");
+		if(!allRes.contains(allName))
 			return invocation.invoke();
 		
 			//4.获取员工包含的权限(资源-角色-员工)
