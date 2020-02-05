@@ -18,6 +18,10 @@
 		<property name="lastLoginIp"/>
         <property name="lastLoginTime"/>
         <property name="loginTimes"/>
-		<many-to-one name="dm" column="depUuid" class="cn.itcast.erp.auth.dep.vo.DepModel" lazy="false" fetch="join"/>
+		<many-to-one name="dm" column="depUuid" class="cn.itcast.erp.auth.dep.vo.DepModel" fetch="join"/>
+		<set name="roles" table="tbl_emp_role">
+		    <key column="empUuid"/>
+		    <many-to-many class="cn.itcast.erp.auth.role.vo.RoleModel" column="roleUuid"/>
+		</set>
 	</class>
 </hibernate-mapping>

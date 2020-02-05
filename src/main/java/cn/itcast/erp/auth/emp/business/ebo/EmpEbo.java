@@ -1,6 +1,8 @@
 package cn.itcast.erp.auth.emp.business.ebo;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.struts2.ServletActionContext;
 
@@ -8,6 +10,7 @@ import cn.itcast.erp.auth.emp.business.ebi.EmpEbi;
 import cn.itcast.erp.auth.emp.dao.dao.EmpDao;
 import cn.itcast.erp.auth.emp.vo.EmpModel;
 import cn.itcast.erp.auth.emp.vo.EmpQueryModel;
+import cn.itcast.erp.auth.role.vo.RoleModel;
 import cn.itcast.erp.utils.exception.AppException;
 import cn.itcast.erp.utils.format.MD5Utils;
 import cn.itcast.erp.utils.ip.IpUtils;
@@ -46,6 +49,20 @@ public class EmpEbo implements EmpEbi{
 		}
 		em.setPwd(MD5Utils.md5(em.getPwd()));
 		//设置默认值
+		em.setLastLoginTime(System.currentTimeMillis());
+		em.setLastLoginIp("-");
+		em.setLoginTimes(0);
+		empDao.save(em);
+	}
+	public void save(EmpModel em, Long[] roleUuids) {
+		Set<RoleModel> roles = new HashSet<RoleModel>();
+		for(Long roleUuid: roleUuids) {
+			RoleModel temp = new RoleModel();
+			temp.setUuid(roleUuid);
+			roles.add(temp);
+		}
+		em.setRoles(roles);
+		em.setPwd(MD5Utils.md5(em.getPwd()));
 		em.setLastLoginTime(System.currentTimeMillis());
 		em.setLastLoginIp("-");
 		em.setLoginTimes(0);
@@ -93,5 +110,4 @@ public class EmpEbo implements EmpEbi{
 		newPwd = MD5Utils.md5(newPwd);
 		return empDao.changePwdByUserNameAndPwd(userName, pwd, newPwd);
 	}
-
 }

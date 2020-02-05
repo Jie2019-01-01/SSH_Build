@@ -19,9 +19,11 @@ public class ExceptionInterceptor extends AbstractInterceptor{
 			as.addActionError(as.getText(e.getMessage()));
 			return "error";
 		}catch(Exception e) {
-			ActionSupport as = (ActionSupport) invocation.getAction();
+			e.printStackTrace();
+			return invocation.invoke();
+			/*ActionSupport as = (ActionSupport) invocation.getAction();
 			as.addActionError(as.getText("INFO_EMP_SERVER_CLOSE"));
-			return "error";
+			return "error";*/
 		}
 	}
 

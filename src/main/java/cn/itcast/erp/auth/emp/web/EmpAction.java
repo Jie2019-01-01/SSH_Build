@@ -9,6 +9,8 @@ import cn.itcast.erp.auth.dep.vo.DepModel;
 import cn.itcast.erp.auth.emp.business.ebi.EmpEbi;
 import cn.itcast.erp.auth.emp.vo.EmpModel;
 import cn.itcast.erp.auth.emp.vo.EmpQueryModel;
+import cn.itcast.erp.auth.role.business.ebi.RoleEbi;
+import cn.itcast.erp.auth.role.vo.RoleModel;
 import cn.itcast.erp.utils.base.BaseAction;
 
 public class EmpAction extends BaseAction{
@@ -20,8 +22,10 @@ public class EmpAction extends BaseAction{
 	
 	// 注入业务层接口
 	private EmpEbi empEbi;
-	public void setEmpEbi(EmpEbi empEbi) {this.empEbi = empEbi;}
 	private DepEbi depEbi;
+	private RoleEbi roleEbi;
+	public void setEmpEbi(EmpEbi empEbi) {this.empEbi = empEbi;}
+	public void setRoleEbi(RoleEbi roleEbi) {this.roleEbi = roleEbi;}
 	public void setDepEbi(DepEbi depEbi) {this.depEbi = depEbi;}
 
 	public String login() {
@@ -77,9 +81,12 @@ public class EmpAction extends BaseAction{
 	}
 
 	// 跳转到input.jsp
+	public Long[] roleUuids;
 	public String input() {
 		List<DepModel> depList = depEbi.getAll();
 		put("depList", depList);
+		List<RoleModel> roleList = roleEbi.getAll();
+		put("roleList", roleList);
 		if(em.getUuid()!=null) {
 			em = empEbi.get(em.getUuid());
 		}
@@ -89,7 +96,7 @@ public class EmpAction extends BaseAction{
 	// 添加
 	public String save() {
 		if(em.getUuid()==null) {
-			empEbi.save(em);
+			empEbi.save(em, roleUuids);
 		}else {
 			empEbi.update(em);
 		}

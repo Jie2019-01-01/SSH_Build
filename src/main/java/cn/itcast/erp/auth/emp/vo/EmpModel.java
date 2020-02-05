@@ -2,8 +2,10 @@ package cn.itcast.erp.auth.emp.vo;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import cn.itcast.erp.auth.dep.vo.DepModel;
+import cn.itcast.erp.auth.role.vo.RoleModel;
 import cn.itcast.erp.utils.format.FormatUtil;
 
 public class EmpModel {
@@ -34,7 +36,6 @@ public class EmpModel {
 	private String address; // 地址
 	private Integer gender; // 性别
 	private String genderView;
-	private DepModel dm; // 所属部门
 	private Long birthDay; // 出生日期
 	private String birthDayView; // 出生日期视图
 	private Long lastLoginTime; // 最后登录时间
@@ -42,6 +43,17 @@ public class EmpModel {
 	private String lastLoginIp; // 登录ip
 	private Integer loginTimes; // 登录次数
 	
+	// 多对一部门
+	private DepModel dm;
+	// 多对多角色
+	private Set<RoleModel> roles;
+	
+	public Set<RoleModel> getRoles() {
+		return roles;
+	}
+	public void setRoles(Set<RoleModel> roles) {
+		this.roles = roles;
+	}
 	public Integer getLoginTimes() {
 		return loginTimes;
 	}
