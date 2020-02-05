@@ -1,6 +1,8 @@
 package cn.itcast.erp.auth.emp.web;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.opensymphony.xwork2.ActionContext;
 
@@ -89,6 +91,11 @@ public class EmpAction extends BaseAction{
 		put("roleList", roleList);
 		if(em.getUuid()!=null) {
 			em = empEbi.get(em.getUuid());
+			roleUuids = new Long[em.getRoles().size()];
+			int i = 0;
+			for(RoleModel temp: em.getRoles()) {
+				roleUuids[i++] = temp.getUuid();
+			}
 		}
 		return INPUT;
 	}
@@ -98,7 +105,7 @@ public class EmpAction extends BaseAction{
 		if(em.getUuid()==null) {
 			empEbi.save(em, roleUuids);
 		}else {
-			empEbi.update(em);
+			empEbi.update(em,roleUuids);
 		}
 		return TO_LIST;
 	}

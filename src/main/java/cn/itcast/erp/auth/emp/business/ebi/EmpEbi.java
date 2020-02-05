@@ -11,4 +11,6 @@ public interface EmpEbi extends BaseEbi<EmpModel, EmpQueryModel>{
 	public boolean changePwd(String userName, String pwd, String newPwd);
 
 	public void save(EmpModel em, Long[] roleUuids);
+
+	public void update(EmpModel em, Long[] roleUuids);
 }

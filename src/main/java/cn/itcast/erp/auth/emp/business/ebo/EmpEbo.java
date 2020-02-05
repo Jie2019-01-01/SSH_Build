@@ -43,8 +43,9 @@ public class EmpEbo implements EmpEbi{
 		return loginEm;
 	}
 	
+	// 废弃
 	public void save(EmpModel em) {
-		if(em.getUserName()==null || em.getUserName().trim().length()==0) {
+		/*if(em.getUserName()==null || em.getUserName().trim().length()==0) {
 			throw new AppException("INFO_EMP_USERNAME_IS_EMPTY");
 		}
 		em.setPwd(MD5Utils.md5(em.getPwd()));
@@ -52,7 +53,7 @@ public class EmpEbo implements EmpEbi{
 		em.setLastLoginTime(System.currentTimeMillis());
 		em.setLastLoginIp("-");
 		em.setLoginTimes(0);
-		empDao.save(em);
+		empDao.save(em);*/
 	}
 	public void save(EmpModel em, Long[] roleUuids) {
 		Set<RoleModel> roles = new HashSet<RoleModel>();
@@ -69,8 +70,9 @@ public class EmpEbo implements EmpEbi{
 		empDao.save(em);
 	}
 
+	// 废弃
 	public void update(EmpModel em) {
-		// 快照思想更新
+		/*// 快照思想更新
 		// 1、根据id查询出数据
 		// 2、由em接收前台传过来的数据
 		// 3、允许更新的数据重新设置到temp中
@@ -81,7 +83,23 @@ public class EmpEbo implements EmpEbi{
 		temp.setTele(em.getTele());
 		temp.setGender(em.getGender());
 		temp.setAddress(em.getAddress());
+		temp.setDm(em.getDm());*/
+	}
+	public void update(EmpModel em, Long[] roleUuids) {
+		EmpModel temp = empDao.get(em.getUuid());
+		temp.setName(em.getName());
+		temp.setEmail(em.getEmail());
+		temp.setTele(em.getTele());
+		temp.setGender(em.getGender());
+		temp.setAddress(em.getAddress());
 		temp.setDm(em.getDm());
+		Set<RoleModel> roles = new HashSet<RoleModel>();
+		for(Long uuid: roleUuids) {
+			RoleModel rm = new RoleModel();
+			rm.setUuid(uuid);
+			roles.add(rm);
+		}
+		temp.setRoles(roles);
 	}
 
 	public void delete(EmpModel em) {
