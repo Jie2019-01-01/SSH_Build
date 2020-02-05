@@ -56,10 +56,7 @@
 				    <tr  bgcolor="#FFFFFF">
 				      <td width="18%" height="30" align="center">&nbsp;</td>
 				      <td width="82%" colspan="3">
-				      	<input type="checkbox"/>员工列表
-				      	<input type="checkbox"/>添加/修改员工
-				      	<input type="checkbox"/>删除员工
-				      	<input type="checkbox"/>提交编辑员工
+				      	<s:checkboxlist name="resesUuids" list="resList" listKey="uuid" listValue="name"/>
 				      </td>
 				    </tr>
 				     <tr  bgcolor="#FFFFFF">
