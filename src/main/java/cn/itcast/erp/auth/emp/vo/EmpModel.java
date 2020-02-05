@@ -48,6 +48,15 @@ public class EmpModel {
 	// 多对多角色
 	private Set<RoleModel> roles;
 	
+	// 辅助值:用于存放用户包含的资源信息
+	private String resAll;
+	
+	public String getResAll() {
+		return resAll;
+	}
+	public void setResAll(String resAll) {
+		this.resAll = resAll;
+	}
 	public Set<RoleModel> getRoles() {
 		return roles;
 	}

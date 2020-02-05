@@ -10,6 +10,7 @@
     	<property name="empEbi" ref="empEbi"/>
     	<property name="depEbi" ref="depEbi"/>
     	<property name="roleEbi" ref="roleEbi"/>
+    	<property name="resEbi" ref="resEbi"/>
     </bean>
     	<!-- Ebi -->
     <bean id="empEbi" class="cn.itcast.erp.auth.emp.business.ebo.EmpEbo">

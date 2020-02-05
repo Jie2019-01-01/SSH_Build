@@ -1,13 +1,10 @@
 package cn.itcast.erp.utils.interceptor;
 
-import java.util.List;
 import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 import cn.itcast.erp.auth.emp.vo.EmpModel;
-import cn.itcast.erp.auth.res.business.ebi.ResEbi;
-import cn.itcast.erp.auth.res.vo.ResModel;
 import cn.itcast.erp.utils.exception.AppException;
 
 /**
@@ -15,12 +12,6 @@ import cn.itcast.erp.utils.exception.AppException;
  * @author liuweijie
  */
 public class AuthInterceptor extends AbstractInterceptor {
-
-	private ResEbi resEbi;
-	public void setResEbi(ResEbi resEbi) {
-		this.resEbi = resEbi;
-	}
-
 
 	public String intercept(ActionInvocation invocation) throws Exception {
 			//1.get当前要执行的操作
@@ -38,13 +29,10 @@ public class AuthInterceptor extends AbstractInterceptor {
 			return invocation.invoke();
 		
 			//4.获取员工包含的权限(资源-角色-员工)
-		List<ResModel> rmList = resEbi.getResByEmpId(loginEm.getUuid());
 			//4.1当前登录人是否有权限执行当前操作
-		for(ResModel rm: rmList) {
-			if(rm.getUrl().equals(allName)) {
-				return invocation.invoke();
-			}
-		}
+		if(loginEm.getResAll().contains(allName))
+			return invocation.invoke();
+		
 		throw new AppException("对不起，您没有该操作的权限，请不要执行非法操作！");
 	}
 }

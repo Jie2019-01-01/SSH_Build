@@ -1,8 +1,6 @@
 package cn.itcast.erp.auth.emp.web;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import com.opensymphony.xwork2.ActionContext;
 
@@ -11,6 +9,8 @@ import cn.itcast.erp.auth.dep.vo.DepModel;
 import cn.itcast.erp.auth.emp.business.ebi.EmpEbi;
 import cn.itcast.erp.auth.emp.vo.EmpModel;
 import cn.itcast.erp.auth.emp.vo.EmpQueryModel;
+import cn.itcast.erp.auth.res.business.ebi.ResEbi;
+import cn.itcast.erp.auth.res.vo.ResModel;
 import cn.itcast.erp.auth.role.business.ebi.RoleEbi;
 import cn.itcast.erp.auth.role.vo.RoleModel;
 import cn.itcast.erp.utils.base.BaseAction;
@@ -26,6 +26,8 @@ public class EmpAction extends BaseAction{
 	private EmpEbi empEbi;
 	private DepEbi depEbi;
 	private RoleEbi roleEbi;
+	private ResEbi resEbi;
+	public void setResEbi(ResEbi resEbi) {this.resEbi = resEbi;}
 	public void setEmpEbi(EmpEbi empEbi) {this.empEbi = empEbi;}
 	public void setRoleEbi(RoleEbi roleEbi) {this.roleEbi = roleEbi;}
 	public void setDepEbi(DepEbi depEbi) {this.depEbi = depEbi;}
@@ -41,6 +43,13 @@ public class EmpAction extends BaseAction{
 			return "loginFail";
 		}else {
 			// 登录成功
+			List<ResModel> rmList = resEbi.getResByEmpId(loginEm.getUuid());
+			StringBuilder sbf = new StringBuilder();
+			for(ResModel rm: rmList) {
+				sbf.append(rm.getUrl());
+				sbf.append(",");
+			}
+			loginEm.setResAll(sbf.toString());
 			putSession(EmpModel.EMP_LOGIN_USER_OBJECT_NAME, loginEm);
 			return "loginSuccess";
 		}
