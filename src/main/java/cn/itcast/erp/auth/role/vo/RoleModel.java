@@ -2,6 +2,7 @@ package cn.itcast.erp.auth.role.vo;
 
 import java.util.Set;
 
+import cn.itcast.erp.auth.menu.vo.MenuModel;
 import cn.itcast.erp.auth.res.vo.ResModel;
 
 public class RoleModel {
@@ -13,6 +14,15 @@ public class RoleModel {
 	// 对资源多对多
 	private Set<ResModel> reses;
 	
+	// 对菜单多对多
+	private Set<MenuModel> menus;
+	
+	public Set<MenuModel> getMenus() {
+		return menus;
+	}
+	public void setMenus(Set<MenuModel> menus) {
+		this.menus = menus;
+	}
 	public Set<ResModel> getReses() {
 		return reses;
 	}

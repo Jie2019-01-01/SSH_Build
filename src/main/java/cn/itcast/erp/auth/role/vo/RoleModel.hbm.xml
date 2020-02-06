@@ -9,9 +9,16 @@
 		</id>
 		<property name="name"/>
 		<property name="code"/>
+		
+			<!-- 对资源多对多 -->
 		<set name="reses" table="tbl_role_res">
 			<key column="roleUuid"/>
 			<many-to-many column="resUuid" class="cn.itcast.erp.auth.res.vo.ResModel"/>
+		</set>
+			<!-- 对菜单多对多 -->
+		<set name="menus" table="tbl_role_menu">
+			<key column="roleUuid"/>
+			<many-to-many column="menuUuid" class="cn.itcast.erp.auth.menu.vo.MenuModel"/>
 		</set>
 	</class>
 </hibernate-mapping>

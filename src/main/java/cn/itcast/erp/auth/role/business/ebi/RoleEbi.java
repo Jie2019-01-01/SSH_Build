@@ -8,4 +8,8 @@ public interface RoleEbi extends BaseEbi<RoleModel, RoleQueryModel>{
 
 	public void save(RoleModel rm, Long[] resesUuids);
 
-	public void update(RoleModel rm, Long[] resesUuids);}
+	public void update(RoleModel rm, Long[] resesUuids);
+
+	public void save(RoleModel rm, Long[] resesUuids, Long[] menuUuids);
+
+	public void update(RoleModel rm, Long[] resesUuids, Long[] menuUuids);}
