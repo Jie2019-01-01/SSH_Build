@@ -14,7 +14,7 @@ public class BaseAction extends ActionSupport{
 	
 	public Integer records;
 	public Integer pageNum = 1;
-	public Integer pageCount = 20;
+	public Integer pageCount = 	10;
 	public Integer lastPage;
 	
 	// 存放数据到request

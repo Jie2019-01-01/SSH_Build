@@ -11,7 +11,6 @@ import cn.itcast.erp.auth.emp.dao.dao.EmpDao;
 import cn.itcast.erp.auth.emp.vo.EmpModel;
 import cn.itcast.erp.auth.emp.vo.EmpQueryModel;
 import cn.itcast.erp.auth.role.vo.RoleModel;
-import cn.itcast.erp.utils.exception.AppException;
 import cn.itcast.erp.utils.format.MD5Utils;
 import cn.itcast.erp.utils.ip.IpUtils;
 

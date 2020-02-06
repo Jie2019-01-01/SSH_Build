@@ -5,7 +5,7 @@ import java.util.Set;
 import cn.itcast.erp.auth.res.vo.ResModel;
 
 public class RoleModel {
-
+	
 	private Long uuid;
 	private String name;
 	private String code;

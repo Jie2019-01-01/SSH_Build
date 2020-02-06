@@ -9,7 +9,7 @@
 		</id>
 		<property name="name"/>
 		<property name="code"/>
-		<set name="reses" table="tbl_role_res" lazy="false" fetch="select">
+		<set name="reses" table="tbl_role_res">
 			<key column="roleUuid"/>
 			<many-to-many column="resUuid" class="cn.itcast.erp.auth.res.vo.ResModel"/>
 		</set>

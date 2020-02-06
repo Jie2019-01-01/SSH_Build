@@ -69,5 +69,4 @@
 			<tx:method name="do*"/>
 		</tx:attributes>
 	</tx:advice>
-
 </beans>

@@ -8,7 +8,7 @@ import cn.itcast.erp.auth.dep.vo.DepModel;
 import cn.itcast.erp.auth.role.vo.RoleModel;
 import cn.itcast.erp.utils.format.FormatUtil;
 
-public class EmpModel {
+public class EmpModel{
 
 	public static final String EMP_LOGIN_USER_OBJECT_NAME = "loginEm";
 

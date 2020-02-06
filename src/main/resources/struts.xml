@@ -37,16 +37,16 @@
  		</global-results>
  		<global-allowed-methods>login,logout,toChangePwd,changePwd</global-allowed-methods>
  		
-    	<!-- page -->
+    		<!-- page -->
     	<action name="page_*">
     		<result>/WEB-INF/jsps/{1}.jsp</result>
     	</action>
     	
-    	<!-- Dep -->
+    		<!-- Dep -->
     	<action name="dep_*" class="depAction" method="{1}">
     	</action>
     	 
-    	<!-- Emp -->
+    		<!-- Emp -->
     	<action name="emp_*" class="empAction" method="{1}">
     			<!-- 结果跳转 -->
     		<result name="loginFail">/WEB-INF/jsps/login.jsp</result>
@@ -58,8 +58,12 @@
     	<action name="role_*" class="roleAction" method="{1}">
     	</action>
     	
-    	<!-- Res -->
+    		<!-- Res -->
     	<action name="res_*" class="resAction" method="{1}">
+    	</action>
+    	
+    		<!-- Menu -->
+    	<action name="menu_*" class="menuAction" method="{1}">
     	</action>
     </package>
 </struts>
