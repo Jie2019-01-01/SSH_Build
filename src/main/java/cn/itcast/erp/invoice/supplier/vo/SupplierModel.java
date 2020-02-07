@@ -63,5 +63,6 @@ public class SupplierModel {
 	}
 	public void setNeeds(Integer needs) {
 		this.needs = needs;
+		this.needsView = needsMap.get(needs);
 	}
 }
