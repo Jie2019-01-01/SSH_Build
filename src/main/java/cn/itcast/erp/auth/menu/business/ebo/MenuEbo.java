@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import cn.itcast.erp.auth.emp.vo.EmpModel;
 import cn.itcast.erp.auth.menu.business.ebi.MenuEbi;
 import cn.itcast.erp.auth.menu.dao.dao.MenuDao;
 import cn.itcast.erp.auth.menu.vo.MenuModel;
@@ -74,6 +75,13 @@ public class MenuEbo implements MenuEbi{
 			roles.add(rm);
 		}
 		temp.setRoles(roles);
-//		menuDao.update(mm);
+	}
+
+	public List<MenuModel> getAllOneLevelByEmp(EmpModel emp) {
+		return menuDao.getAllOneLevelByEmp(emp.getUuid());
+	}
+
+	public List<MenuModel> getByEmpAndPuuid(EmpModel emp, Long puuid) {
+		return menuDao.getByEmpAndPuuid(emp.getUuid(), puuid);
 	}
 }

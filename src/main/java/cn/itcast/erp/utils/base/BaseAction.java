@@ -1,5 +1,10 @@
 package cn.itcast.erp.utils.base;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts2.ServletActionContext;
+
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import cn.itcast.erp.auth.emp.vo.EmpModel;
@@ -46,5 +51,12 @@ public class BaseAction extends ActionSupport{
 		String temp = action.substring(0, action.length()-6); // Dep
 		String actionName = temp.substring(0,1).toLowerCase() + temp.substring(1); // dep
 		return actionName;
+	}
+	
+	public HttpServletRequest getRequest() {
+		return ServletActionContext.getRequest();
+	}
+	public HttpServletResponse getResponse() {
+		return ServletActionContext.getResponse();
 	}
 }

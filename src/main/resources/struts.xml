@@ -35,7 +35,7 @@
     		</result>
     		<result name="input">/WEB-INF/jsps/${actionName}/input.jsp</result>
  		</global-results>
- 		<global-allowed-methods>login,logout,toChangePwd,changePwd</global-allowed-methods>
+ 		<global-allowed-methods>login,logout,toChangePwd,changePwd,showMenu</global-allowed-methods>
  		
     		<!-- page -->
     	<action name="page_*">

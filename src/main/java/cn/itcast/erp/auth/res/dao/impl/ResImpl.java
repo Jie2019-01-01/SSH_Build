@@ -16,7 +16,7 @@ public class ResImpl extends BaseDaoImpl<ResModel> implements ResDao{
 	}
 
 	public List<ResModel> getResByEmpId(Long uuid) {
-		String hql = "select res from EmpModel em join em.roles re join re.reses res where em.uuid=:uuid";
+		String hql = "select distinct res from EmpModel em join em.roles re join re.reses res where em.uuid=:uuid";
 		List<ResModel> resList = (List<ResModel>) this.getHibernateTemplate().findByNamedParam(hql, "uuid", uuid);
 		return resList;
 	}

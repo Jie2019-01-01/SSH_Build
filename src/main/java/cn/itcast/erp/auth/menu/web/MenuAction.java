@@ -1,6 +1,11 @@
 package cn.itcast.erp.auth.menu.web;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
+
 import cn.itcast.erp.auth.menu.business.ebi.MenuEbi;
 import cn.itcast.erp.auth.menu.vo.MenuModel;
 import cn.itcast.erp.auth.menu.vo.MenuQueryModel;
@@ -19,6 +24,41 @@ public class MenuAction extends BaseAction{
 	}
 	public void setMenuEbi(MenuEbi menuEbi) {
 		this.menuEbi = menuEbi;
+	}
+	
+	//菜单列表
+	public void showMenu() throws IOException {
+		HttpServletResponse res = getResponse();
+		res.setContentType("text/html;charset=utf-8");
+		StringBuilder json = new StringBuilder();
+		json.append("[");
+		String root = getRequest().getParameter("root");
+		if("source".equals(root)) {
+				// 一级菜单
+			List<MenuModel> menuList = menuEbi.getAllOneLevelByEmp(getLogin());
+			for(MenuModel menu:menuList) {
+				json.append("{\"text\":\"");
+				json.append(menu.getName());
+				json.append("\", \"hasChildren\": true, \"classes\":\"folder\",\"id\":");
+				json.append(menu.getUuid());
+				json.append("},");
+			}
+		}else {
+			List<MenuModel> menuList = menuEbi.getByEmpAndPuuid(getLogin(),new Long(root));
+			// 非一级菜单
+			for(MenuModel menu:menuList) {
+				json.append("{\"text\":\"");
+				json.append("<a class='hei' target='main' href='"+menu.getUrl()+"'>");
+				json.append(menu.getName());
+				json.append("</a>");
+				json.append("\", \"classes\":\"file\"},");
+			}
+		}
+		json.deleteCharAt(json.length()-1);
+		json.append("]");
+		PrintWriter pw = res.getWriter();
+		pw.write(json.toString());
+		pw.flush();
 	}
 
 	//列表
