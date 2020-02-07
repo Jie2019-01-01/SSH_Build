@@ -23,6 +23,11 @@ public class LoginInterceptor extends AbstractInterceptor{
 			invocation.invoke();
 		}
 		
+		String operName = invocation.getProxy().getActionName();
+		if("page_login".equals(operName)) {
+			invocation.invoke();
+		}
+		
 //		3.如果用户未登录，则跳转登录页面
 		if(empModel==null) {
 			return "noLogin";

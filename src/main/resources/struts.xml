@@ -26,7 +26,7 @@
     	
     		<!--对于struts拦截器出现的结果集，必须与全局result匹配 -->
  		<global-results>
- 			<result name="noLogin">/WEB-INF/jsps/login.jsp</result>
+ 			<result name="noLogin">index2.jsp</result>
  			<result name="list">/WEB-INF/jsps/${actionName}/list.jsp</result>
  			<result name="error">/WEB-INF/jsps/error.jsp</result>
     		<result name="toList" type="redirectAction">
@@ -68,6 +68,10 @@
     	
     		<!-- Supplier -->
     	<action name="supplier_*" class="supplierAction" method="{1}">
+    	</action>
+    	
+    		<!-- GoodsType -->
+    	<action name="goodsType_*" class="goodsTypeAction" method="{1}">
     	</action>
     </package>
 </struts>
