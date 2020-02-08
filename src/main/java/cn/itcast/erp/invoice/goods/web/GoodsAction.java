@@ -33,7 +33,7 @@ public class GoodsAction extends BaseAction{
 
 	//到添加
 	public String input(){
-		put("supplierList", supplierEbi.getAll());
+		put("supplierList", supplierEbi.getHasType());
 		if(gm.getUuid()!=null){
 			gm = goodsEbi.get(gm.getUuid());
 		}

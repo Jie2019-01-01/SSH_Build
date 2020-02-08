@@ -44,4 +44,8 @@ public class SupplierEbo implements SupplierEbi{
 		return supplierDao.getCount(sqm);
 	}
 
+	public List<SupplierModel> getHasType() {
+		return supplierDao.getHasType();
+	}
+
 }
