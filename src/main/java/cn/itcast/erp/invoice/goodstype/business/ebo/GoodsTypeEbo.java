@@ -7,6 +7,7 @@ import cn.itcast.erp.invoice.goodstype.vo.GoodsTypeModel;
 import cn.itcast.erp.invoice.goodstype.vo.GoodsTypeQueryModel;
 
 public class GoodsTypeEbo implements GoodsTypeEbi{
+	
 	private GoodsTypeDao goodsTypeDao;
 	public void setGoodsTypeDao(GoodsTypeDao goodsTypeDao) {
 		this.goodsTypeDao = goodsTypeDao;
@@ -38,5 +39,9 @@ public class GoodsTypeEbo implements GoodsTypeEbi{
 
 	public Integer getCount(GoodsTypeQueryModel gqm) {
 		return goodsTypeDao.getCount(gqm);
+	}
+
+	public List<GoodsTypeModel> getAllBySm(Long uuid) {
+		return goodsTypeDao.getAllBySm(uuid);
 	}
 }

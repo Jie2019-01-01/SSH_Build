@@ -2,8 +2,8 @@ package cn.itcast.erp.invoice.goodstype.vo;
 
 import cn.itcast.erp.invoice.supplier.vo.SupplierModel;
 
-public class GoodsTypeModel {
-
+public class GoodsTypeModel{
+	
 	private Long uuid;
 	private String name;
 	private SupplierModel sm;

@@ -8,6 +8,7 @@
             <generator class="native" />
         </id>
         <property name="name"/>
+        	<!--  lazy="false" -->
         <many-to-one name="sm" column="supplierUuid" class="cn.itcast.erp.invoice.supplier.vo.SupplierModel"/>
     </class>
 </hibernate-mapping>

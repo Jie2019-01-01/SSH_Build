@@ -1,14 +1,18 @@
 package cn.itcast.erp.invoice.goodstype.web;
 
+import java.util.ArrayList;
 import java.util.List;
-
 import cn.itcast.erp.invoice.goodstype.business.ebi.GoodsTypeEbi;
 import cn.itcast.erp.invoice.goodstype.vo.GoodsTypeModel;
 import cn.itcast.erp.invoice.goodstype.vo.GoodsTypeQueryModel;
 import cn.itcast.erp.invoice.supplier.business.ebi.SupplierEbi;
+import cn.itcast.erp.invoice.supplier.vo.SupplierModel;
 import cn.itcast.erp.utils.base.BaseAction;
 
 public class GoodsTypeAction extends BaseAction{
+	
+	private static final long serialVersionUID = 599007872047L;
+	
 	public GoodsTypeModel gm = new GoodsTypeModel();
 	public GoodsTypeQueryModel gqm = new GoodsTypeQueryModel();
 
@@ -57,4 +61,15 @@ public class GoodsTypeAction extends BaseAction{
 		return TO_LIST;
 	}
 
+	
+	//----------------------------------ajax-----------------------------------------
+	// ajax获取供应商uuid对应的商品各类
+	private List<GoodsTypeModel> gtmList;
+	public List<GoodsTypeModel> getGtmList() {return gtmList;}
+
+	public String ajaxBySm() {
+//		supplierEbi.get(gm.getSm().getUuid());
+		gtmList = goodsTypeEbi.getAllBySm(gm.getSm().getUuid());
+		return "ajaxBySm";
+	}
 }

@@ -6,7 +6,7 @@
     <constant name="struts.devMode" value="true"/>
     <constant name="struts.ui.theme" value="simple"/>
     <constant name="struts.custom.i18n.resources" value="msg"/>
-    <package name="default" namespace="/" extends="struts-default">
+    <package name="default" namespace="/" extends="json-default">
     		<!-- 声明拦截器 -->
     	<interceptors>
     			<!-- 自定义拦截器 -->
@@ -35,7 +35,7 @@
     		</result>
     		<result name="input">/WEB-INF/jsps/${actionName}/input.jsp</result>
  		</global-results>
- 		<global-allowed-methods>login,logout,toChangePwd,changePwd,showMenu</global-allowed-methods>
+ 		<global-allowed-methods>login,logout,toChangePwd,changePwd,showMenu,ajaxBySm</global-allowed-methods>
  		
     		<!-- page -->
     	<action name="page_*">
@@ -72,6 +72,19 @@
     	
     		<!-- GoodsType -->
     	<action name="goodsType_*" class="goodsTypeAction" method="{1}">
+    		<result name="ajaxBySm" type="json">
+    				<!-- 设置数据的来源，一般值写action，表示从所有的get方法中取值 v-->
+    			<param name="root">action</param>
+    			<param name="includeProperties">
+    				gtmList\[\d+\]\.uuid,
+    				gtmList\[\d+\]\.name,
+    			</param>
+    		</result>
     	</action>
+    	
+    		<!-- Goods -->
+    	<action name="goods_*" class="goodsAction" method="{1}">
+    	</action>
+    	
     </package>
 </struts>
