@@ -2,7 +2,6 @@ package cn.itcast.erp.invoice.goods.dao.impl;
 
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
-
 import cn.itcast.erp.invoice.goods.dao.dao.GoodsDao;
 import cn.itcast.erp.invoice.goods.vo.GoodsModel;
 import cn.itcast.erp.invoice.goods.vo.GoodsQueryModel;
@@ -13,7 +12,9 @@ public class GoodsImpl extends BaseDaoImpl<GoodsModel> implements GoodsDao{
 
 	public void doQbc(BaseQueryModel qm, DetachedCriteria dc){
 		GoodsQueryModel gqm = (GoodsQueryModel)qm;
-		// TODO 添加自定义查询条件
+		if(gqm.getUnit()!=null && gqm.getUnit().trim().length()>0) {
+			dc.add(Restrictions.eq("unit", gqm.getUnit().trim()));
+		}
 	}
 
 }

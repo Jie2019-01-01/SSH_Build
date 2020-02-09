@@ -9,6 +9,13 @@
 			$("[name='pageNum']").val(1);
 			$("form:first").submit();
 		});
+		
+		$('.unit').click(function(){
+			var unit = $(this).html();
+			$('#goods_list_gqm_unit').val(unit);
+			$("[name='pageNum']").val(1);
+			$("form:first").submit();
+		});
 	});
 	function showMsg(msg,uuid){
 		//top.document.getElementById("context-msg").style.display = "block";
@@ -25,7 +32,7 @@
 		</div>
 	</div>
 	<div class="content-text">
-		<s:form action="list.jsp" method="post"> 
+		<s:form action="goods_list.action" method="post"> 
 			<div class="square-o-top">
 				<table width="100%" border="0" cellpadding="0" cellspacing="0"
 					style="font-size:14px; font-weight:bold; font-family:"黑体";">
@@ -43,7 +50,7 @@
 						<td>生产厂家</td>
 						<td><input type="text" size="14" /></td>
 						<td>单&nbsp;&nbsp;&nbsp;&nbsp;位</td>
-						<td><input type="text" size="14" /></td>
+						<td><s:textfield name="gqm.unit" size="14"/></td>
 						<td width="70"><a href="goods_input.action"><img src="images/can_b_02.gif" border="0" /> </a></td>
 					</tr>
 					<tr>
@@ -81,7 +88,7 @@
 							<td>${origin}</td>
 							<td align="right">${inPriceView}&nbsp;元&nbsp;</td>
 							<td align="right">${outPriceView}&nbsp;元&nbsp;</td>
-							<td>${unit}</td>
+							<td><a href="javascript:void(0)" class="unit">${unit}</a></td>
 							<td>
 								<img src="images/icon_3.gif" /> 
 								<span style="line-height:12px; text-align:center;"> 
