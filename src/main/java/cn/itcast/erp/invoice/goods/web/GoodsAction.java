@@ -7,6 +7,7 @@ import cn.itcast.erp.invoice.goods.vo.GoodsModel;
 import cn.itcast.erp.invoice.goods.vo.GoodsQueryModel;
 import cn.itcast.erp.invoice.goodstype.business.ebi.GoodsTypeEbi;
 import cn.itcast.erp.invoice.supplier.business.ebi.SupplierEbi;
+import cn.itcast.erp.invoice.supplier.vo.SupplierModel;
 import cn.itcast.erp.utils.base.BaseAction;
 
 public class GoodsAction extends BaseAction{
@@ -34,6 +35,8 @@ public class GoodsAction extends BaseAction{
 		setRecords(goodsEbi.getCount(gqm));
 		List<GoodsModel> goodsList = goodsEbi.getAll(gqm,pageNum,pageCount);
 		put("goodsList", goodsList);
+		List<SupplierModel> supplierList = supplierEbi.getAll();
+		put("supplierList",supplierList);
 		return LIST;
 	}
 

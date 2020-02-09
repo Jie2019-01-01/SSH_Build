@@ -39,11 +39,10 @@
 					<tr>
 						<td>供应商:</td>
 						<td>
-							<select class="kuan">
-								<option value="-1">----请-选-择----</option>
-								<option value="1">康师傅</option>
-								<option value="2">七匹狼</option>
-							</select>
+							<s:select name="gqm.gtm.sm.uuid" list="supplierList" headerKey="-1" 
+								headerValue="----请-选-择----" listKey="uuid" listValue="name" 
+								cssStyle="width:125px;height:22px;"/>
+							
 						</td>
 						<td height="30">商&nbsp;品&nbsp;名</td>
 						<td><input type="text" size="14" /></td>
@@ -51,7 +50,7 @@
 						<td><input type="text" size="14" /></td>
 						<td>单&nbsp;&nbsp;&nbsp;&nbsp;位</td>
 						<td><s:textfield name="gqm.unit" size="14"/></td>
-						<td width="70"><a href="goods_input.action"><img src="images/can_b_02.gif" border="0" /> </a></td>
+						<td width="70"><a id="query"><img src="images/can_b_01.gif" border="0" /></a></td>
 					</tr>
 					<tr>
 						<td height="30">进货价格</td>
@@ -62,7 +61,7 @@
 						<td><input type="text" size="14" /></td>
 						<td>到</td>
 						<td><input type="text" size="14" /></td>
-						<td><a id="query"> <img src="images/can_b_01.gif" border="0" /> </a></td>
+						<td><a href="goods_input.action"><img src="images/can_b_02.gif" border="0" /></td>
 					</tr>
 				</table>
 			</div>
