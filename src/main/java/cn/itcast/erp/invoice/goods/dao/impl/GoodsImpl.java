@@ -1,5 +1,7 @@
 package cn.itcast.erp.invoice.goods.dao.impl;
 
+import java.util.List;
+
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import cn.itcast.erp.invoice.goods.dao.dao.GoodsDao;
@@ -27,6 +29,11 @@ public class GoodsImpl extends BaseDaoImpl<GoodsModel> implements GoodsDao{
 			dc.createAlias("gtm", "g");
 			dc.add(Restrictions.eq("g.sm", gqm.getGtm().getSm()));
 		}
+	}
+
+	public List<GoodsModel> getByGtm(Long gtmUuid) {
+		String hql = "from GoodsModel where gtm.uuid=:gtmUuid";
+		return (List<GoodsModel>) this.getHibernateTemplate().findByNamedParam(hql, "gtmUuid", gtmUuid);
 	}
 
 }

@@ -90,7 +90,28 @@
     	<action name="order_*" class="orderAction" method="{1}">
     		<result name="buyList">/WEB-INF/jsps/order/buy/buyList.jsp</result>
     		<result name="buyInput">/WEB-INF/jsps/order/buy/buyInput.jsp</result>
-    		<allowed-methods>buyList,buyInput</allowed-methods>
+    		<result name="ajaxGetGtmAndGm" type="json">
+    			<param name="includeProperties">
+    				gtmList\[\d+\]\.uuid,
+    				gtmList\[\d+\]\.name,
+    				gmList\[\d+\]\.uuid,
+    				gmList\[\d+\]\.name,
+    				inPriceView
+    			</param>
+    		</result>
+    		<result name="ajaxGetGm" type="json">
+    			<param name="includeProperties">
+    				gmList\[\d+\]\.uuid,
+    				gmList\[\d+\]\.name,
+    				inPriceView
+    			</param>
+    		</result>
+    		<result name="ajaxGetInPrice" type="json">
+    			<param name="includeProperties">
+    				inPriceView
+    			</param>
+    		</result>
+    		<allowed-methods>buyList,buyInput,ajaxGetGtmAndGm,ajaxGetGm,ajaxGetInPrice</allowed-methods>
     	</action>
     	
     </package>
