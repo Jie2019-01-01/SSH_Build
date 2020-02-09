@@ -1,6 +1,7 @@
 package cn.itcast.erp.invoice.goods.vo;
 
 import cn.itcast.erp.invoice.goodstype.vo.GoodsTypeModel;
+import cn.itcast.erp.utils.format.FormatUtil;
 
 public class GoodsModel {
 
@@ -12,7 +13,17 @@ public class GoodsModel {
 	
 	private Double inPrice;
 	private Double outPrice;
+	private String inPriceView;
+	private String outPriceView;
 	
+	public String getInPriceView() {
+		return inPriceView;
+	}
+
+	public String getOutPriceView() {
+		return outPriceView;
+	}
+
 	//对商品类别多对一
 	private GoodsTypeModel gtm;
 
@@ -62,6 +73,7 @@ public class GoodsModel {
 
 	public void setInPrice(Double inPrice) {
 		this.inPrice = inPrice;
+		this.inPriceView = FormatUtil.formatMonmey(inPrice);
 	}
 
 	public Double getOutPrice() {
@@ -70,6 +82,7 @@ public class GoodsModel {
 
 	public void setOutPrice(Double outPrice) {
 		this.outPrice = outPrice;
+		this.outPriceView = FormatUtil.formatMonmey(outPrice);
 	}
 
 	public GoodsTypeModel getGtm() {

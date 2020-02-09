@@ -1,6 +1,7 @@
 package cn.itcast.erp.utils.format;
 
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -24,7 +25,14 @@ public class FormatUtil {
 		}
 		return ldate;
 	}
+	
+	public static final String formatMonmey(Double monmey) {
+//		DecimalFormat df = new DecimalFormat("#.00");
+//		return df.format(monmey);
+		return String.format("%.2f", monmey);
+	}
+	
 	public static void main(String[] args) {
-		System.out.println(formatTime(1487001600000l));
+		System.out.println(formatMonmey(0.5));
 	}
 }

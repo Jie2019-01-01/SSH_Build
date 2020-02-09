@@ -5,6 +5,7 @@ import cn.itcast.erp.invoice.goods.business.ebi.GoodsEbi;
 import cn.itcast.erp.invoice.goods.dao.dao.GoodsDao;
 import cn.itcast.erp.invoice.goods.vo.GoodsModel;
 import cn.itcast.erp.invoice.goods.vo.GoodsQueryModel;
+import cn.itcast.erp.utils.exception.AppException;
 
 public class GoodsEbo implements GoodsEbi{
 	private GoodsDao goodsDao;
@@ -13,11 +14,19 @@ public class GoodsEbo implements GoodsEbi{
 	}
 
 	public void save(GoodsModel gm) {
-		goodsDao.save(gm);
+		if(gm!=null && gm.getGtm()!=null && gm.getGtm().getUuid()!=-1) {
+			goodsDao.save(gm);
+		}else {
+			throw new AppException("对不起，请指定供应商和商品类别!");
+		}
 	}
 
 	public void update(GoodsModel gm) {
-		goodsDao.update(gm);
+		if(gm!=null && gm.getGtm()!=null && gm.getGtm().getUuid()!=-1) {
+			goodsDao.update(gm);
+		}else {
+			throw new AppException("对不起，请指定供应商和商品类别!");
+		}
 	}
 
 	public void delete(GoodsModel gm) {

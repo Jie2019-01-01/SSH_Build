@@ -66,26 +66,29 @@
 						style="background:url(images/table_bg.gif) repeat-x;">
 						<td width="12%" height="30">供应商</td>
 						<td width="12%">商品名</td>
-						<td width="12%">生产厂家</td>
+						<td width="15%">生产厂家</td>
 						<td width="12%">产地</td>
 						<td width="12%">进货价格</td>
 						<td width="12%">销售价格</td>
-						<td width="12%">单位</td>
+						<td width="6%">单位</td>
 						<td width="16%">操作</td>
 					</tr>
 					<s:iterator value="goodsList">
 						<tr align="center" bgcolor="#FFFFFF">
-							<td width="13%" height="30">***</td>
+							<td width="13%" height="30">${gtm.sm.name}</td>
 							<td>${name}</td>
 							<td>${producer}</td>
 							<td>${origin}</td>
-							<td align="right">${inPrice}&nbsp;元&nbsp;</td>
-							<td align="right">${outPrice}&nbsp;元&nbsp;</td>
+							<td align="right">${inPriceView}&nbsp;元&nbsp;</td>
+							<td align="right">${outPriceView}&nbsp;元&nbsp;</td>
 							<td>${unit}</td>
 							<td>
 								<img src="images/icon_3.gif" /> 
 								<span style="line-height:12px; text-align:center;"> 
-									<a href="./input.jsp" class="xiu">修改</a> 
+									<s:a action="goods_input" cssClass="xiu">
+										<s:param name="gm.uuid" value="uuid"/>
+										修改
+									</s:a> 
 								</span> 
 								<img src="images/icon_04.gif" /> 
 								<span style="line-height:12px; text-align:center;"> 
