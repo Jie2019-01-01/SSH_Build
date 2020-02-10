@@ -45,37 +45,69 @@
 		});
 		
 		// 修改商品分类
-		$('.goodsType').change(function(){
+		$('.goodsType').live('change', function(){
+			// 获取跟随该事件改变的对象
+			/*var $td = $(this).parent();
+			var $gmSelect = $td.next().children('select');
+			var $num = $td.next().next().children('input');
+			var $price = $td.next().next().next().children('input');
+			var $total = $td.next().next().next().next();*/
+			var $tr = $(this).parent().parent();
+			var $gmSelect = $tr.children('td:eq(1)').children('select');
+			var $num = $tr.children('td:eq(2)').children('input');
+			var $price = $tr.children('td:eq(3)').children('input');
+			var $total = $tr.children('td:eq(4)');
+			
 			var goodsTypeUuid = $(this).val();
 			$.post('order_ajaxGetGm.action', {'goodsTypeUuid': goodsTypeUuid}, function(data){
-				$('.goods').empty();
+				$gmSelect.empty();
 				var gmList = data.gmList;
 				for(var i=0; i<gmList.length; i++){
 					var gm = gmList[i];
 					var $op = "<option value='"+gm.uuid+"'>"+gm.name+"</option>";
-					$('.goods').append($op);
+					$gmSelect.append($op);
 				}
 				// 采购数量改为1
-				$('.num.order_num').val(1);
+				$num.val(1);
 				// 商品单价
 				var price = data.inPriceView==null ?'': data.inPriceView;
-				$('.prices.order_num').val(price);
-				$('.total').html(price+'&nbsp;元');
+				$price.val(price);
+				$total.html(price+'&nbsp;元');
 			});
 		});
 		// 修改商品
-		$('.goods').change(function(){
+		$('.goods').live('change', function(){
+			var $tr = $(this).parent().parent();
+			var $num = $tr.children('td:eq(2)').children('input');
+			var $price = $tr.children('td:eq(3)').children('input');
+			var $total = $tr.children('td:eq(4)');
+			
 			var goodsUuid = $(this).val();
 			$.post('order_ajaxGetInPrice.action', {'goodsUuid':goodsUuid}, function(data){
+				// 采购数量
+				$num.val(1);
 				// 商品单价
 				var price = data.inPriceView==null ?'': data.inPriceView;
-				$('.prices.order_num').val(price);
-				$('.total').html(price+'&nbsp;元');
+				$price.val(price);
+				$total.html(price+'&nbsp;元');
 			});
 		});
 		
+		// 控制新建按钮点击间隔（每次点击要求，上次点击的数据返回之后才可再点）
+		var checkFlag = true;
 		// 采购订单新建
 		$('#add').click(function(){
+			// 将供应商设置为不可修改
+			$('#supplier').attr('disabled', true);
+			$('.goodsType').attr('disabled', true);
+			$('.goods').attr('disabled', true);
+			
+			if(!checkFlag){
+				alert('你慢点...');
+				return;
+			}
+			checkFlag = false;
+			
 			// 判断商品是否已经新建
 			var goods = $('.goods');
 			var used = '';
@@ -135,13 +167,28 @@
 				// 判断返回的类别和商品是否都是一个，如果是则隐藏“新建”按钮
 				if(gtmList.length==1 && gmList.length==1){
 						// 第一种
-					$('#add').hide();
+					//$('#add').hide();
 						// 第二种
-					//$('#add').css('display','none');
+					$('#add').css('display','none');
 						//企业开发推荐:定义一个新的class属性，为其设置display=none，然后切换到该class
 					//$('#add').toggleClass('newClass');
 				}
+				
+				checkFlag = true;
 			});
+		});
+		
+		// 订单删除
+		$('.deleteBtn').live('click',function(){
+			if($('.deleteBtn').length==1){
+				alert('留下一个吧！');
+				return;
+			}
+			
+			var $curTr = $(this).parent().parent();
+			$curTr.remove();
+			
+			$('#add').css('display','inline');
 		});
 	});
 </script>
