@@ -73,6 +73,76 @@
 				$('.total').html(price+'&nbsp;元');
 			});
 		});
+		
+		// 采购订单新建
+		$('#add').click(function(){
+			// 判断商品是否已经新建
+			var goods = $('.goods');
+			var used = '';
+			for(var i=0; i<goods.length; i++){
+				used += "@"+goods[i].value+"@,";
+			}
+			$.post(
+				'order_ajaxGetGtmAndGm2.action', 
+				{'supplierUuid': $('#supplier').val(), 'used':used}, 
+			function(data){
+				// 生成tr行
+				$tr = $('<tr align="center" bgcolor="#FFFFFF"></tr>');
+				
+				// 生成第一个td
+				$td = $('<td height="30"></td>');
+				$select = $('<select name="" class="goodsType" style="width:200px"></select>');
+				var gtmList = data.gtmList;
+				for(var i=0; i<gtmList.length; i++){
+					var gtm = gtmList[i];
+					$op = $('<option value="'+gtm.uuid+'">'+gtm.name+'</option>');
+					$select.append($op);
+				}
+				$td.append($select);
+				$tr.append($td);
+				
+				// 生成第二个td
+				$td = $('<td></td>');
+				$select = $('<select name="" class="goods" style="width:200px"></select>');
+				var gmList = data.gmList;
+				for(var i=0; i<gmList.length; i++){
+					var gm = gmList[i];
+					$op = $('<option value="'+gm.uuid+'">'+gm.name+'</option>');
+					$select.append($op);
+				}
+				$td.append($select);
+				$tr.append($td);
+				
+				// 生成第三个td
+				$td = $('<td><input name="nums" class="num order_num" style="width:67px;border:1px solid black;text-align:right;padding:2px" type="text" value="1"></td>');
+				$tr.append($td);
+				
+				// 生成第四个td
+				var price = data.inPriceView;
+				$td = $('<td><input name="prices" class="prices order_num" style="width:93px;border:1px solid black;text-align:right;padding:2px" type="text" value="'+price+'"> 元</td>');
+				$tr.append($td);
+				
+				// 生成第五个td
+				$td = $('<td class="total" align="right">'+price+'&nbsp;元</td>');
+				$tr.append($td);
+				
+				// 生成第六个td
+				$td = $('<td><a class="deleteBtn delete xiu" value="4"><img src="images/icon_04.gif"> 删除</a></td>');
+				$tr.append($td);
+				
+				$('#finalTr').before($tr);
+				
+				// 判断返回的类别和商品是否都是一个，如果是则隐藏“新建”按钮
+				if(gtmList.length==1 && gmList.length==1){
+						// 第一种
+					$('#add').hide();
+						// 第二种
+					//$('#add').css('display','none');
+						//企业开发推荐:定义一个新的class属性，为其设置display=none，然后切换到该class
+					//$('#add').toggleClass('newClass');
+				}
+			});
+		});
 	});
 </script>
 <div class="content-right">

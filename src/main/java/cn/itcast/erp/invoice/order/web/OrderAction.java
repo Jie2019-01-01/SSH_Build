@@ -97,6 +97,41 @@ public class OrderAction extends BaseAction{
 		return "ajaxGetGtmAndGm";
 	}
 	
+	public String used;
+	public String ajaxGetGtmAndGm2() {
+		// 通过供应商uuid查询商品类别信息
+		gtmList = goodsTypeEbi.getAllBySm(supplierUuid);
+		// 通过商品类别uuid查询商品信息
+		if(gtmList.size()>0) {
+			// 取出每一个商品类别，判断对应的分类是否全部添加了，是则从集合中移除该分类，不返回前端
+			Gtms:
+			for(int i=gtmList.size()-1; i>=0; i--) {
+				List<GoodsModel> gmTemps = goodsEbi.getByGtm(gtmList.get(i).getUuid());
+				for(GoodsModel gmTemp: gmTemps) {
+					//方法一：包含已使用的id，则判断下一个下一个商品id，所有商品id都包含，则删除该类别
+					//方法二：不包含已使用的id，则该类别保留，循环判断下一个类别
+					if(!used.contains("@"+gmTemp.getUuid()+"@")) {
+						continue Gtms;
+					}
+				}
+				//如果这里执行，表示没有走上面循环中的if,则应该删除该类别
+				gtmList.remove(i);
+			}
+			
+			gmList = goodsEbi.getByGtm(gtmList.get(0).getUuid());
+			if(gmList.size()>0) {
+				// 在集合中去除已添加的商品信息
+				for(int i=gmList.size()-1; i>=0; i--) {
+					if(used!=null && used.contains("@"+gmList.get(i).getUuid()+"@")) {
+						gmList.remove(i);
+					}
+				}
+				inPriceView = gmList.size()==0? "": gmList.get(0).getInPriceView();
+			}
+		}
+		return "ajaxGetGtmAndGm";
+	}
+	
 	public String ajaxGetGm(){
 		// 通过商品类别uuid查询商品信息
 		gmList = goodsEbi.getByGtm(goodsTypeUuid);

@@ -111,7 +111,10 @@
     				inPriceView
     			</param>
     		</result>
-    		<allowed-methods>buyList,buyInput,ajaxGetGtmAndGm,ajaxGetGm,ajaxGetInPrice</allowed-methods>
+    		<allowed-methods>
+    			buyList,buyInput,ajaxGetGtmAndGm,ajaxGetGtmAndGm2,
+    			ajaxGetGm,ajaxGetInPrice
+    		</allowed-methods>
     	</action>
     	
     </package>
