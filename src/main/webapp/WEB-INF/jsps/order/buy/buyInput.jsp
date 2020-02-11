@@ -59,7 +59,13 @@
 			var $total = $tr.children('td:eq(4)');
 			
 			var goodsTypeUuid = $(this).val();
-			$.post('order_ajaxGetGm.action', {'goodsTypeUuid': goodsTypeUuid}, function(data){
+			var gmSelects = $('.goods');
+			var used = '';
+			for(var i=0; i<gmSelects.length; i++){
+				used += '@'+gmSelects[i].value+'@,';
+			}
+			
+			$.post('order_ajaxGetGm.action', {'goodsTypeUuid': goodsTypeUuid, 'used': used}, function(data){
 				$gmSelect.empty();
 				var gmList = data.gmList;
 				for(var i=0; i<gmList.length; i++){
@@ -75,6 +81,7 @@
 				$total.html(price+'&nbsp;元');
 			});
 		});
+		
 		// 修改商品
 		$('.goods').live('change', function(){
 			var $tr = $(this).parent().parent();

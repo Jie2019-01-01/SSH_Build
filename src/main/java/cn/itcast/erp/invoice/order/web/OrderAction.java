@@ -136,7 +136,16 @@ public class OrderAction extends BaseAction{
 		// 通过商品类别uuid查询商品信息
 		gmList = goodsEbi.getByGtm(goodsTypeUuid);
 		if(gmList.size()>0) {
-			inPriceView = gmList.size()==0? "": gmList.get(0).getInPriceView();
+			// 过滤已添加过的商品
+			for(int i=gmList.size()-1; i>=0; i--) {
+				//通过used和每个商品的uuid来判断哪些需要过滤，哪些需要返回
+				//方法一：used不包含gmUuid，则跳过；若包含，则删除
+				//方法二：used包含gmUuid，则删除；若不包含，则跳过
+				if(used.contains("@"+gmList.get(i).getUuid()+"@"))
+					gmList.remove(i);
+			}
+			// 为商品进价赋值
+			inPriceView = gmList.get(0).getInPriceView();
 		}
 		return "ajaxGetGm";
 	}
