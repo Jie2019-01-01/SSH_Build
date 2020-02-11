@@ -13,7 +13,7 @@
 		</div>
 	</div>
 	<div class="content-text">
-		<form action="inList.jsp" method="post">
+		<s:form action="order_buySave.action" method="get">
 			<div class="square-o-top">
 				<table width="100%" border="0" cellpadding="0" cellspacing="0"
 					style="font-size:14px; font-weight:bold; font-family:"黑体";">
@@ -23,7 +23,7 @@
 					<tr>
 						<td width="68px" height="30">供应商：</td>
 						<td width="648px">
-							<s:select id="supplier" cssClass="kuan" cssStyle="width:190px" list="supplierList" listKey="uuid" listValue="name"/>
+							<s:select name="om.sm.uuid" id="supplier" cssClass="kuan" cssStyle="width:190px" list="supplierList" listKey="uuid" listValue="name"/>
 						</td>
 						<td height="30">
 							<a id="add"><img src="images/can_b_02.gif" border="0" /> </a>
@@ -48,7 +48,7 @@
 							<s:select cssClass="goodsType" cssStyle="width:200px" list="goodsTypeList" listKey="uuid" listValue="name"/>
 						</td>
 						<td>
-							<s:select cssClass="goods" cssStyle="width:200px" list="goodsList" listKey="uuid" listValue="name"/>
+							<s:select name="goodsUuids" cssClass="goods" cssStyle="width:200px" list="goodsList" listKey="uuid" listValue="name"/>
 						</td>
 						<td><input name="nums" class="num order_num" style="width:67px;border:1px solid black;text-align:right;padding:2px" type="text" value="1"/></td>
 						<td><input name="prices" class="prices order_num" style="width:93px;border:1px solid black;text-align:right;padding:2px" type="text" value="${goodsList[0].inPriceView}"/> 元</td>
@@ -80,7 +80,7 @@
 				</div>
 			</div>
 			</div>
-		</form>
+		</s:form>
 	</div>
 	
 	<div class="content-bbg"></div>

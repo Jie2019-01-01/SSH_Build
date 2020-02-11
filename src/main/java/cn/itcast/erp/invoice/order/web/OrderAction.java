@@ -80,6 +80,27 @@ public class OrderAction extends BaseAction{
 		return "buyInput";
 	}
 	
+	public Long[] goodsUuids;
+	public Integer[] nums;
+	public Double[] prices;
+	public String buySave() {
+		System.out.println("-------------供应商ID----------------");
+		System.out.println(om.getSm().getUuid());
+		System.out.println("-------------商品ID----------------");
+		for(Long goodsUuid: goodsUuids) {
+			System.out.println(goodsUuid);
+		}
+		System.out.println("-------------商品数量----------------");
+		for(Integer num: nums) {
+			System.out.println(num);
+		}
+		System.out.println("-------------商品单价----------------");
+		for(Double price: prices) {
+			System.out.println(price);
+		}
+		return "toBuyList";
+	}
+	
 	//-------------ajax----------------------------
 	public Long supplierUuid;
 	public Long goodsTypeUuid;
