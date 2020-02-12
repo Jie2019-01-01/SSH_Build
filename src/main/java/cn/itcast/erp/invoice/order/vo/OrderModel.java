@@ -2,8 +2,11 @@ package cn.itcast.erp.invoice.order.vo;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 
 import cn.itcast.erp.auth.emp.vo.EmpModel;
+import cn.itcast.erp.invoice.orderdetail.vo.OrderDetailModel;
 import cn.itcast.erp.invoice.supplier.vo.SupplierModel;
 import cn.itcast.erp.utils.format.FormatUtil;
 
@@ -39,7 +42,10 @@ public class OrderModel {
 	public static final String ORDER_TYPE_OF_SALE_NO_CHECK_VIEW = "未审核";
 	public static final Integer ORDER_TYPE_OF_SALE_CHECK_PASS = 221;
 	public static final String ORDER_TYPE_OF_SALE_CHECK_PASS_VIEW = "通过";
-	public static final Map<Integer, String> typeMap = new HashMap<Integer, String>();
+	
+	public static final Map<Integer, String> buyTypeMap = new TreeMap<Integer, String>();
+	public static final Map<Integer, String> saleTypeMap = new TreeMap<Integer, String>();
+	private static final Map<Integer, String> typeMap = new HashMap<Integer, String>();
 
 	static {
 		// 订单类别
@@ -49,15 +55,18 @@ public class OrderModel {
 		orderTypeMap.put(ORDER_ORDERTYPE_RETURN_OF_SALE, ORDER_ORDERTYPE_RETURN_OF_SALE_VIEW);
 		
 		// 订单状态
-		typeMap.put(ORDER_TYPE_OF_BUY_NO_CHECK, ORDER_TYPE_OF_BUY_NO_CHECK_VIEW);
-		typeMap.put(ORDER_TYPE_OF_BUY_CHECK_PASS, ORDER_TYPE_OF_BUY_CHECK_PASS_VIEW);
-		typeMap.put(ORDER_TYPE_OF_BUY_CHECK_NO_PASS, ORDER_TYPE_OF_BUY_CHECK_NO_PASS_VIEW);
-		typeMap.put(ORDER_TYPE_OF_BUY_BUYING, ORDER_TYPE_OF_BUY_BUYING_VIEW);
-		typeMap.put(ORDER_TYPE_OF_BUY_IN_STORE, ORDER_TYPE_OF_BUY_IN_STORE_VIEW);
-		typeMap.put(ORDER_TYPE_OF_BUY_COMPLETE, ORDER_TYPE_OF_BUY_COMPLETE_VIEW);
+		buyTypeMap.put(ORDER_TYPE_OF_BUY_NO_CHECK, ORDER_TYPE_OF_BUY_NO_CHECK_VIEW);
+		buyTypeMap.put(ORDER_TYPE_OF_BUY_CHECK_PASS, ORDER_TYPE_OF_BUY_CHECK_PASS_VIEW);
+		buyTypeMap.put(ORDER_TYPE_OF_BUY_CHECK_NO_PASS, ORDER_TYPE_OF_BUY_CHECK_NO_PASS_VIEW);
+		buyTypeMap.put(ORDER_TYPE_OF_BUY_BUYING, ORDER_TYPE_OF_BUY_BUYING_VIEW);
+		buyTypeMap.put(ORDER_TYPE_OF_BUY_IN_STORE, ORDER_TYPE_OF_BUY_IN_STORE_VIEW);
+		buyTypeMap.put(ORDER_TYPE_OF_BUY_COMPLETE, ORDER_TYPE_OF_BUY_COMPLETE_VIEW);
 		
-		typeMap.put(ORDER_TYPE_OF_SALE_NO_CHECK, ORDER_TYPE_OF_SALE_NO_CHECK_VIEW);
-		typeMap.put(ORDER_TYPE_OF_SALE_CHECK_PASS, ORDER_TYPE_OF_SALE_CHECK_PASS_VIEW);
+		saleTypeMap.put(ORDER_TYPE_OF_SALE_NO_CHECK, ORDER_TYPE_OF_SALE_NO_CHECK_VIEW);
+		saleTypeMap.put(ORDER_TYPE_OF_SALE_CHECK_PASS, ORDER_TYPE_OF_SALE_CHECK_PASS_VIEW);
+		
+		typeMap.putAll(buyTypeMap);
+		typeMap.putAll(saleTypeMap);
 	}
 	
 	// 唯一标识
@@ -83,11 +92,20 @@ public class OrderModel {
 	private String totalPriceView;
 	
 	// 带有关联关系的属性
+	// 多对一
 	private EmpModel creater;
 	private EmpModel checker;
 	private EmpModel completer;
 	private SupplierModel sm;
+	// 一对多
+	private Set<OrderDetailModel> odms; 
 	
+	public Set<OrderDetailModel> getOdms() {
+		return odms;
+	}
+	public void setOdms(Set<OrderDetailModel> odms) {
+		this.odms = odms;
+	}
 	public Long getUuid() {
 		return uuid;
 	}
@@ -118,14 +136,16 @@ public class OrderModel {
 	}
 	public void setCheckerTime(Long checkerTime) {
 		this.checkerTime = checkerTime;
-		this.checkerTimeView = FormatUtil.formatTime(checkerTime);
+		if(checkerTime!=null)
+			this.checkerTimeView = FormatUtil.formatTime(checkerTime);
 	}
 	public Long getEndTime() {
 		return endTime;
 	}
 	public void setEndTime(Long endTime) {
 		this.endTime = endTime;
-		this.endTimeView = FormatUtil.formatTime(endTime);
+		if(checkerTime!=null)
+			this.endTimeView = FormatUtil.formatTime(endTime);
 	}
 	public Integer getOrderType() {
 		return orderType;
@@ -139,6 +159,7 @@ public class OrderModel {
 	}
 	public void setType(Integer type) {
 		this.type = type;
+		this.typeView = typeMap.get(type);
 	}
 	public Double getTotalPrice() {
 		return totalPrice;

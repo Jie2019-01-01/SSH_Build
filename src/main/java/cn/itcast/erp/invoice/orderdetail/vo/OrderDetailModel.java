@@ -12,6 +12,7 @@ public class OrderDetailModel {
 	
 	private Double price;
 	private String priceView;
+	private String totalPriceView;
 	
 	private GoodsModel gm;
 	private OrderModel om;
@@ -34,7 +35,12 @@ public class OrderDetailModel {
 	public void setPrice(Double price) {
 		this.price = price;
 		this.priceView = FormatUtil.formatMonmey(price);
+		this.totalPriceView = FormatUtil.formatMonmey(this.num * this.price);
 	}
+	public String getTotalPriceView() {
+		return totalPriceView;
+	}
+	
 	public GoodsModel getGm() {
 		return gm;
 	}

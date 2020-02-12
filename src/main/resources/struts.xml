@@ -90,6 +90,7 @@
     	<action name="order_*" class="orderAction" method="{1}">
     		<result name="buyList">/WEB-INF/jsps/order/buy/buyList.jsp</result>
     		<result name="buyInput">/WEB-INF/jsps/order/buy/buyInput.jsp</result>
+    		<result name="buyDetail">/WEB-INF/jsps/order/buy/buyDetail.jsp</result>
     		<result name="toBuyList" type="redirectAction">order_buyList</result>
     		<result name="ajaxGetGtmAndGm" type="json">
     			<param name="includeProperties">
@@ -114,7 +115,7 @@
     		</result>
     		<allowed-methods>
     			buyList,buyInput,ajaxGetGtmAndGm,ajaxGetGtmAndGm2,
-    			ajaxGetGm,ajaxGetInPrice,buySave
+    			ajaxGetGm,ajaxGetInPrice,buySave,buyDetail
     		</allowed-methods>
     	</action>
     	
