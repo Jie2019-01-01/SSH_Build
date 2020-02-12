@@ -10,6 +10,7 @@ import cn.itcast.erp.invoice.order.dao.dao.OrderDao;
 import cn.itcast.erp.invoice.order.vo.OrderModel;
 import cn.itcast.erp.invoice.order.vo.OrderQueryModel;
 import cn.itcast.erp.invoice.orderdetail.vo.OrderDetailModel;
+import cn.itcast.erp.utils.exception.AppException;
 import cn.itcast.erp.utils.num.NumUtil;
 
 public class OrderEbo implements OrderEbi{
@@ -94,6 +95,42 @@ public class OrderEbo implements OrderEbi{
 	public List<OrderModel> getBuyAll(OrderQueryModel oqm, Integer pageNum, Integer pageCount) {
 		oqm.setOrderType(OrderModel.ORDER_ORDERTYPE_OF_BUY);
 		return orderDao.getAll(oqm, pageNum, pageCount);
+	}
+
+	private Integer[] orderTypes = {OrderModel.ORDER_ORDERTYPE_OF_BUY, OrderModel.ORDER_ORDERTYPE_RETURN_OF_BUY};
+	public Integer getCountBuyCheck(OrderQueryModel oqm) {
+		return orderDao.getCountBuyCheck(oqm, orderTypes);
+	}
+
+	public List<OrderModel> getAllBuyCheck(OrderQueryModel oqm, Integer pageNum, Integer pageCount) {
+		return orderDao.getAllBuyCheck(oqm, orderTypes);
+	}
+
+	public void buyCheckPass(Long uuid, EmpModel checker) {
+		// 使用快照完成
+		OrderModel om = orderDao.get(uuid);
+		// 逻辑校验：非“未审核状态”执行到这里都是非法操作
+		if(!om.getType().equals(OrderModel.ORDER_TYPE_OF_BUY_NO_CHECK)) {
+			throw new AppException("对不起，请不要进行非法操作！");
+		}
+		// 需要修改的字段
+		// type > 审核通过
+		om.setType(OrderModel.ORDER_TYPE_OF_BUY_CHECK_PASS);
+		// checker > loginEm
+		om.setChecker(checker);
+		// checkerTime
+		om.setCheckerTime(System.currentTimeMillis());
+	}
+
+	public void buyCheckNoPass(Long uuid, EmpModel checker) {
+		OrderModel om = orderDao.get(uuid);
+		// 逻辑校验：非“未审核状态”执行到这里都是非法操作
+		if(!om.getType().equals(OrderModel.ORDER_TYPE_OF_BUY_NO_CHECK)) {
+			throw new AppException("对不起，请不要进行非法操作！");
+		}
+		om.setType(OrderModel.ORDER_TYPE_OF_BUY_CHECK_NO_PASS);
+		om.setChecker(checker);
+		om.setCheckerTime(System.currentTimeMillis());
 	}
 
 }

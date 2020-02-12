@@ -144,7 +144,7 @@ public class OrderModel {
 	}
 	public void setEndTime(Long endTime) {
 		this.endTime = endTime;
-		if(checkerTime!=null)
+		if(endTime!=null)
 			this.endTimeView = FormatUtil.formatTime(endTime);
 	}
 	public Integer getOrderType() {

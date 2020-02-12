@@ -88,10 +88,17 @@
     	
     	<!-- Order -->
     	<action name="order_*" class="orderAction" method="{1}">
+    			<!-- 采购 -->
     		<result name="buyList">/WEB-INF/jsps/order/buy/buyList.jsp</result>
     		<result name="buyInput">/WEB-INF/jsps/order/buy/buyInput.jsp</result>
     		<result name="buyDetail">/WEB-INF/jsps/order/buy/buyDetail.jsp</result>
     		<result name="toBuyList" type="redirectAction">order_buyList</result>
+    			<!-- 采购审批 -->
+    		<result name="buyCheckList">/WEB-INF/jsps/order/buy/buyCheckList.jsp</result>
+    		<result name="buyCheckDetail">/WEB-INF/jsps/order/buy/buyCheckDetail.jsp</result>
+    		<result name="toBuyCheckList" type="redirectAction">order_buyCheckList</result>
+    			
+    			<!-- ajax -->
     		<result name="ajaxGetGtmAndGm" type="json">
     			<param name="includeProperties">
     				gtmList\[\d+\]\.uuid,
@@ -115,7 +122,8 @@
     		</result>
     		<allowed-methods>
     			buyList,buyInput,ajaxGetGtmAndGm,ajaxGetGtmAndGm2,
-    			ajaxGetGm,ajaxGetInPrice,buySave,buyDetail
+    			ajaxGetGm,ajaxGetInPrice,buySave,buyDetail,buyCheckList,
+    			buyCheckDetail,buyCheckPass,buyCheckNoPass
     		</allowed-methods>
     	</action>
     	

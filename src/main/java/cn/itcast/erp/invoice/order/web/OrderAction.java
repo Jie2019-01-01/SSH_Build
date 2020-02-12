@@ -96,6 +96,33 @@ public class OrderAction extends BaseAction{
 		return "buyDetail";
 	}
 	
+	//----------采购审批---------------------------------
+	// 显示审核列表
+	public String buyCheckList() {
+		Integer records = orderEbi.getCountBuyCheck(oqm);
+		setRecords(records);
+		List<OrderModel> orderList = orderEbi.getAllBuyCheck(oqm,pageNum,pageCount);
+		put("orderList", orderList);
+		return "buyCheckList";
+	}
+	
+	// 进入审核详情页
+	public String buyCheckDetail() {
+		om = orderEbi.get(om.getUuid());
+		return "buyCheckDetail";
+	}
+	
+	// 审核通过
+	public String buyCheckPass() {
+		orderEbi.buyCheckPass(om.getUuid(), getLogin());
+		return "toBuyCheckList";
+	}
+	// 审核驳回
+	public String buyCheckNoPass() {
+		orderEbi.buyCheckNoPass(om.getUuid(), getLogin());
+		return "toBuyCheckList";
+	}
+	
 	//-------------ajax----------------------------
 	public Long supplierUuid;
 	public Long goodsTypeUuid;

@@ -30,4 +30,29 @@ public interface OrderEbi extends BaseEbi<OrderModel, OrderQueryModel>{
 	 */
 	public List<OrderModel> getBuyAll(OrderQueryModel oqm, Integer pageNum, Integer pageCount);
 
+	/**
+	 * 获取采购审批的订单总量
+	 * @param oqm
+	 * @return
+	 */
+	public Integer getCountBuyCheck(OrderQueryModel oqm);
+
+	/**
+	 * 获取采购审批的订单
+	 * @param oqm
+	 * @param pageNum
+	 * @param pageCount
+	 * @return
+	 */
+	public List<OrderModel> getAllBuyCheck(OrderQueryModel oqm, Integer pageNum, Integer pageCount);
+
+	/**
+	 * 修改订单状态-审核通过
+	 * @param uuid 订单uuid
+	 * @param checker 审核人
+	 */ 
+	public void buyCheckPass(Long uuid, EmpModel checker);
+
+	public void buyCheckNoPass(Long uuid, EmpModel checker);
+
 }
