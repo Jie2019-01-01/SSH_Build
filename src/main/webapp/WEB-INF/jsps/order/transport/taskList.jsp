@@ -19,7 +19,7 @@
 		</div>
 	</div>
 	<div class="content-text">
-		<form action="list.jsp" method="post"> 
+		<s:form action="transport_taskList.action" method="post"> 
 			<div class="square-o-top">
 				<table width="100%" border="0" cellpadding="0" cellspacing="0"
 					style="font-size:14px; font-weight:bold; font-family:"黑体";">
@@ -41,7 +41,7 @@
 							</select>
 						</td>
 						<td>下单人:</td>
-						<td><input type="text" size="10" /></td>
+						<td><s:textfield size="10" name="oqm.creater.name"/></td>
 						<td>&nbsp;</td>
 						<td><a id="query"> 
 							<img src="images/can_b_01.gif" border="0" /> </a>
@@ -58,16 +58,13 @@
 						</td>
 						<td>发货方式:</td>
 						<td>
-							<select style="width:115px">
-								<option value="-1">----请-选-择----</option>
-								<option value="1">送货</option>
-								<option value="0">自提</option>
-							</select> 
+							<s:select list="@cn.itcast.erp.invoice.supplier.vo.SupplierModel@needsMap" 
+								 name="oqm.sm.needs" headerKey="-1" headerValue="---请-选-择--" cssStyle="width:115px"/> 
 						</td>
 						<td>审核人:</td>
-						<td><input type="text" size="10" /></td>
+						<td><s:textfield size="10" name="oqm.checker.name"/></td>
 						<td>跟单人:</td>
-						<td><input type="text" size="10" /></td>
+						<td><s:textfield size="10" name="oqm.completer.name"/></td>
 					</tr>
 				</table>
 			</div>
@@ -112,7 +109,7 @@
 					</s:iterator>
 				</table>
 			</div>
-		</form>
+		</s:form>
 	</div>
 	<div class="content-bbg"></div>
 </div>

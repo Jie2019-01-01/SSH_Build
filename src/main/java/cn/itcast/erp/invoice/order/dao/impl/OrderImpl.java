@@ -18,10 +18,29 @@ public class OrderImpl extends BaseDaoImpl<OrderModel> implements OrderDao{
 		if(oqm.getOrderType()!=null && oqm.getOrderType()!=-1) {
 			dc.add(Restrictions.eq("orderType", oqm.getOrderType()));
 		}
+		
+		dc.createAlias("sm", "s");
+		if(oqm.getSm()!=null && oqm.getSm().getUuid()!=null) {
+			dc.add(Restrictions.eq("s.uuid", oqm.getSm()));
+		}
+		// 发货方式、下单人、审核人、跟单人
+		if(oqm.getSm()!=null && oqm.getSm().getNeeds()!=null && oqm.getSm().getNeeds()!=-1) {
+			dc.add(Restrictions.eq("s.needs", oqm.getSm().getNeeds()));
+		}
 		if(oqm.getCreater()!=null && oqm.getCreater().getName()!=null
 				&& oqm.getCreater().getName().trim().length()>0) {
 			dc.createAlias("creater", "c1");
 			dc.add(Restrictions.like("c1.name", "%"+oqm.getCreater().getName().trim()+"%"));
+		}
+		if(oqm.getChecker()!=null && oqm.getChecker().getName()!=null
+				&& oqm.getChecker().getName().trim().length()>0) {
+			dc.createAlias("checker", "c2");
+			dc.add(Restrictions.like("c2.name", "%"+oqm.getChecker().getName().trim()+"%"));
+		}
+		if(oqm.getCompleter()!=null && oqm.getCompleter().getName()!=null 
+				&& oqm.getCompleter().getName().trim().length()>0) {
+			dc.createAlias("completer", "c3");
+			dc.add(Restrictions.like("c3.name", "%"+oqm.getCompleter().getName().trim()+"%"));
 		}
 	}
 	
