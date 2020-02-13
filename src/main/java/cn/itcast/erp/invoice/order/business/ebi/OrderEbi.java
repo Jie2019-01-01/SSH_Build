@@ -55,4 +55,25 @@ public interface OrderEbi extends BaseEbi<OrderModel, OrderQueryModel>{
 
 	public void buyCheckNoPass(Long uuid, EmpModel checker);
 
+	/**
+	 * 显示运输任务订单数
+	 * @param oqm 自定义条件模型
+	 * @return 运输任务订单数
+	 */
+	public Integer getCountTask(OrderQueryModel oqm);
+
+	/**
+	 * 显示运输任务列表
+	 * @param oqm 自定义条件模型
+	 * @return 运输任务列表
+	 */
+	public List<OrderModel> getAllTask(OrderQueryModel oqm, Integer pageNum, Integer pageCount);
+
+	/**
+	 * 指派任务
+	 * @param uuid 订单uuid
+	 * @param completer 跟单人
+	 */
+	public void assignTask(Long uuid, EmpModel completer);
+
 }

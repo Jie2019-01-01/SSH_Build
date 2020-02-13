@@ -59,4 +59,9 @@ public class EmpImpl extends BaseDaoImpl<EmpModel> implements EmpDao{
 		int row = query.executeUpdate();
 		return row>0;
 	}
+
+	public List<EmpModel> getByDep(Long depUuid) {
+		String hql = "from EmpModel where dm.uuid=:depUuid";
+		return (List<EmpModel>) this.getHibernateTemplate().findByNamedParam(hql, "depUuid", depUuid);
+	}
 }

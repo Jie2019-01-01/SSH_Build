@@ -26,8 +26,13 @@ public class OrderImpl extends BaseDaoImpl<OrderModel> implements OrderDao{
 	}
 	
 	// 采购审批的自定义查询条件
-	public void doQbc(BaseQueryModel bqm, DetachedCriteria dc, Integer[] orderTypes){
+	private void doQbc(BaseQueryModel bqm, DetachedCriteria dc, Integer[] orderTypes){
 		dc.add(Restrictions.in("orderType", orderTypes));
+		doQbc(bqm, dc);
+	}
+	// 运输任务的自定义查询条件
+	private void doQbcTask(BaseQueryModel bqm, DetachedCriteria dc, Integer[] orderTypes){
+		dc.add(Restrictions.in("type", orderTypes));
 		doQbc(bqm, dc);
 	}
 
@@ -43,6 +48,20 @@ public class OrderImpl extends BaseDaoImpl<OrderModel> implements OrderDao{
 		DetachedCriteria dc = DetachedCriteria.forClass(OrderModel.class);
 		doQbc(oqm, dc, orderTypes);
 		return (List<OrderModel>) this.getHibernateTemplate().findByCriteria(dc);
+	}
+
+	public Integer getCountTask(OrderQueryModel oqm, Integer[] types) {
+		DetachedCriteria dc = DetachedCriteria.forClass(OrderModel.class);
+		dc.setProjection(Projections.rowCount());
+		doQbcTask(oqm, dc, types);
+		Long count = (Long) this.getHibernateTemplate().findByCriteria(dc).get(0);
+		return count.intValue();
+	}
+
+	public List<OrderModel> getAllTask(OrderQueryModel oqm, Integer pageNum, Integer pageCount, Integer[] types) {
+		DetachedCriteria dc = DetachedCriteria.forClass(OrderModel.class);
+		doQbcTask(oqm, dc, types);
+		return (List<OrderModel>) this.getHibernateTemplate().findByCriteria(dc, (pageNum-1)*pageCount, pageCount);
 	}
 
 }

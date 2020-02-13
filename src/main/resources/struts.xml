@@ -130,5 +130,13 @@
     		<!-- OrderDetail -->
     	<action name="orderDetail_*" class="orderDetailAction" method="{1}">
     	</action>
+    	
+    		<!-- Transport -->
+    	<action name="transport_*" class="orderAction" method="{1}">
+    		<result name="taskList">/WEB-INF/jsps/order/transport/taskList.jsp</result>
+    		<result name="taskDetail">/WEB-INF/jsps/order/transport/taskDetail.jsp</result>
+    		<result name="toTaskList" type="redirectAction">transport_taskList</result>
+    		<allowed-methods>taskList,taskDetail,assign</allowed-methods>
+    	</action>
     </package>
 </struts>

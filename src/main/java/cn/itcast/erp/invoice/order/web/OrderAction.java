@@ -1,6 +1,9 @@
 package cn.itcast.erp.invoice.order.web;
 
 import java.util.List;
+
+import cn.itcast.erp.auth.emp.business.ebi.EmpEbi;
+import cn.itcast.erp.auth.emp.vo.EmpModel;
 import cn.itcast.erp.invoice.goods.business.ebi.GoodsEbi;
 import cn.itcast.erp.invoice.goods.vo.GoodsModel;
 import cn.itcast.erp.invoice.goodstype.business.ebi.GoodsTypeEbi;
@@ -23,6 +26,8 @@ public class OrderAction extends BaseAction{
 	private SupplierEbi supplierEbi;
 	private GoodsTypeEbi goodsTypeEbi;
 	private GoodsEbi goodsEbi;
+	private EmpEbi empEbi;
+	public void setEmpEbi(EmpEbi empEbi) {this.empEbi = empEbi;}
 	public void setSupplierEbi(SupplierEbi supplierEbi) {this.supplierEbi = supplierEbi;}
 	public void setGoodsTypeEbi(GoodsTypeEbi goodsTypeEbi) {this.goodsTypeEbi = goodsTypeEbi;}
 	public void setGoodsEbi(GoodsEbi goodsEbi) {this.goodsEbi = goodsEbi;}
@@ -122,6 +127,34 @@ public class OrderAction extends BaseAction{
 		orderEbi.buyCheckNoPass(om.getUuid(), getLogin());
 		return "toBuyCheckList";
 	}
+	
+	// --------------任务运输---------------------
+	public String taskList() {
+		Integer records = orderEbi.getCountTask(oqm);
+		setRecords(records);
+		List<OrderModel> orderList = orderEbi.getAllTask(oqm,pageNum,pageCount);
+		put("orderList", orderList);
+		return "taskList";
+	}
+	
+	public String taskDetail() {
+		om = orderEbi.get(om.getUuid());
+		// 获取运输部门员工,能访问这个方法的必是运输部门的人
+		List<EmpModel> empList = empEbi.getByDep(getLogin().getDm().getUuid());
+		put("empList", empList);
+		return "taskDetail";
+	}
+	
+	public String assign() {
+		orderEbi.assignTask(om.getUuid(), om.getCompleter());
+		return "toTaskList";
+	}
+	
+	
+	
+	
+	
+	
 	
 	//-------------ajax----------------------------
 	public Long supplierUuid;

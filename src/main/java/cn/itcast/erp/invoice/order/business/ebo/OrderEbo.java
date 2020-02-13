@@ -133,6 +133,41 @@ public class OrderEbo implements OrderEbi{
 		om.setCheckerTime(System.currentTimeMillis());
 	}
 
+	private Integer[] types = new Integer[] {
+		OrderModel.ORDER_TYPE_OF_BUY_CHECK_PASS,
+		OrderModel.ORDER_TYPE_OF_BUY_BUYING,
+		OrderModel.ORDER_TYPE_OF_BUY_IN_STORE,
+		OrderModel.ORDER_TYPE_OF_BUY_COMPLETE
+		};
+	public Integer getCountTask(OrderQueryModel oqm) {
+		// 哪些订单可以运输任务的列表中显示
+		//1.审核通过
+		//2.采购中
+		//3.入库中
+		//4.结单
+		return orderDao.getCountTask(oqm, types);
+	}
+
+	public List<OrderModel> getAllTask(OrderQueryModel oqm, Integer pageNum, Integer pageCount) {
+		return orderDao.getAllTask(oqm, pageNum, pageCount, types);
+	}
+
+	public void assignTask(Long uuid, EmpModel completer) {
+		// 快照更新
+		OrderModel temp = orderDao.get(uuid);
+		// 逻辑校验(集合判定)
+		// 这里为了方便，只用了一个，剩余判定：
+		// 		OrderModel.ORDER_TYPE_OF_BUY_BUYING， 
+		//		OrderModel.ORDER_TYPE_OF_BUY_IN_STORE
+		//		OrderModel.ORDER_TYPE_OF_BUY_COMPLETE
+		if(!temp.getType().equals(OrderModel.ORDER_TYPE_OF_BUY_CHECK_PASS)) {
+			throw new AppException("对不起，请不要进行非法操作！");
+		}
+		
+		temp.setType(OrderModel.ORDER_TYPE_OF_BUY_BUYING);
+		temp.setCompleter(completer);
+	}
+
 }
 
 

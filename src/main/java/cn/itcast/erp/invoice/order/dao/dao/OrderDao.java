@@ -24,4 +24,21 @@ public interface OrderDao extends BaseDao<OrderModel> {
 	 */
 	public List<OrderModel> getAllBuyCheck(OrderQueryModel oqm, Integer[] orderTypes);
 
+	/**
+	 * 获取可以下运输任务的订单数
+	 * @param oqm 自定义查询条件模型
+	 * @param types 允许下运输任务的订单状态
+	 * @return 可以下运输任务的订单数
+	 */
+	public Integer getCountTask(OrderQueryModel oqm, Integer[] types);
+
+	/**
+	 * 获取运输任务订单列表
+	 * @param oqm 自定义查询条件模型
+	 * @param types 允许下运输任务的订单状态
+	 * @return 可以下运输任务的订单数
+	 * @return
+	 */
+	public List<OrderModel> getAllTask(OrderQueryModel oqm, Integer pageNum, Integer pageCount, Integer[] types);
+
 }

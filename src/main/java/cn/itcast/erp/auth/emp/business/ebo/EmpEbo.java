@@ -127,4 +127,8 @@ public class EmpEbo implements EmpEbi{
 		newPwd = MD5Utils.md5(newPwd);
 		return empDao.changePwdByUserNameAndPwd(userName, pwd, newPwd);
 	}
+
+	public List<EmpModel> getByDep(Long depUuid) {
+		return empDao.getByDep(depUuid);
+	}
 }
