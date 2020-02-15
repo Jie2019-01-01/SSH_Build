@@ -143,5 +143,9 @@
     		
     		<allowed-methods>taskList,taskDetail,assign,queryTaskList,queryDetail,finished</allowed-methods>
     	</action>
+    	
+    		<!-- Store -->
+    	<action name="store_*" class="storeAction" method="{1}">
+    	</action>
     </package>
 </struts>
