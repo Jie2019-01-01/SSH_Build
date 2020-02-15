@@ -5,13 +5,12 @@
 <div class="content-right">
 	<div class="content-r-pic_w">
 		<div style="margin:8px auto auto 12px;margin-top:6px">
-			<span class="page_title">商品类别管理</span>
+			<span class="page_title">仓库管理</span>
 		</div>
 	</div>
 	<div class="content-text">
 		<div class="square-order">
-			<s:form action="goodsType_save.action" method="post">
-			<s:hidden name="gm.uuid"/>
+			<s:form action="store_save.action" method="post">
   			<div style="border:1px solid #cecece;">
 				<table width="100%"  border="0" cellpadding="0" cellspacing="0">
 				  <tr bgcolor="#FFFFFF">
@@ -20,26 +19,28 @@
 				</table>
 				<table width="100%"  border="0" cellpadding="0" cellspacing="0">
 				    <tr  bgcolor="#FFFFFF">
-				      <td width="18%" height="30" align="center">供应商</td>
-				      <td width="82%" colspan="3">
-				     	 <s:select name="gm.sm.uuid" cssClass="kuan" cssStyle="width:190px" list="supplierList" 
-				     	 	headerKey="-1" headerValue="----请-选-择----"  listKey="uuid" listValue="name"/>
+				      <td width="18%" height="30" align="center">仓库名称</td>
+				      <td width="32%">
+				      	<s:textfield name="sm.name" size="25"/>
+				      </td>
+				      <td width="18%" align="center">仓库地址</td>
+				      <td width="32%">
+				      	<s:textfield name="sm.address" size="25"/>
 				      </td>
 				    </tr>
 				    <tr  bgcolor="#FFFFFF">
 				      <td colspan="4">&nbsp;</td>
 				    </tr>
 				    <tr  bgcolor="#FFFFFF">
-				      <td width="18%" height="30" align="center">商品类别名称</td>
-				      <td width="82%" colspan="3">
-				      	<s:textfield name="gm.name" size="25"/>
+				      <td width="18%" height="30" align="center">管理员</td>
+				      <td width="32%" colspan="3">
+				     	 <s:select name="sm.em.uuid" list="empList" listKey="uuid" listValue="name"/>
 				      </td>
 				    </tr>
 				    <tr  bgcolor="#FFFFFF">
 				      <td colspan="4">&nbsp;</td>
 				    </tr>
 				</table>
-				
 			</div>
 			<div class="order-botton">
 				<div style="margin:1px auto auto 1px;">

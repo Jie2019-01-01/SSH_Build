@@ -68,17 +68,12 @@
 				      <td width="18%" height="30" align="center">供&nbsp;应&nbsp;商</td>
 				      <td width="32%">
 				      	<s:select id="supplier" name="gm.gtm.sm.uuid" cssStyle="width:190px" list="supplierList" 
-				      		headerKey="-1" headerValue="----请-选-择----" listKey="uuid" listValue="name"/>
+				      		listKey="uuid" listValue="name"/>
 				      </td>
 				      <td width="18%"align="center">商品类别</td>
 				      <td width="32%">
-				      	 <s:if test="#goodsTypeList.size==0">
-				      	 	<s:select id="goodsType" cssStyle="width:190px" list="#{'-1':'----请-选-择----'}"/>
-				      	 </s:if>
-				      	 <s:else>
-				      		<s:select id="goodsType" cssStyle="width:190px" list="goodsTypeList" 
+				      		<s:select id="goodsType" name="gm.gtm.uuid" cssStyle="width:190px" list="goodsTypeList" 
 				      			listKey="uuid" listValue="name"/>
-				      	 </s:else>
 					  </td>
 				    </tr>
 				    <tr bgcolor="#FFFFFF">

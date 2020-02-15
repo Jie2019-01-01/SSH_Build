@@ -21,7 +21,7 @@
 		//top.document.getElementById("context-msg").style.display = "block";
 		top.$('context-msg').style.display = "block";
 		top.$('context-msg-text').innerHTML=msg;
-		top.$('hid-action').value="actionName";
+		top.$('hid-action').value="goods_delete.action?gm.uuid="+uuid;
 		top.lock.show();
 	}
 </script>
@@ -45,22 +45,22 @@
 							
 						</td>
 						<td height="30">商&nbsp;品&nbsp;名</td>
-						<td><input type="text" size="14" /></td>
+						<td><s:textfield name="gqm.name" size="14"/></td>
 						<td>生产厂家</td>
-						<td><input type="text" size="14" /></td>
+						<td><s:textfield name="gqm.producer" size="14"/></td>
 						<td>单&nbsp;&nbsp;&nbsp;&nbsp;位</td>
 						<td><s:textfield name="gqm.unit" size="14"/></td>
 						<td width="70"><a id="query"><img src="images/can_b_01.gif" border="0" /></a></td>
 					</tr>
 					<tr>
 						<td height="30">进货价格</td>
-						<td><input type="text" size="14" /></td>
+						<td><s:textfield name="gqm.inPrice" size="14"/></td>
 						<td>到</td>
-						<td><input type="text" size="14" /></td>
+						<td><s:textfield name="gqm.maxInPrice" size="14"/></td>
 						<td height="30">销售价格</td>
-						<td><input type="text" size="14" /></td>
+						<td><s:textfield name="gqm.outPrice" size="14"/></td>
 						<td>到</td>
-						<td><input type="text" size="14" /></td>
+						<td><s:textfield name="gqm.maxOutPrice" size="14"/></td>
 						<td><a href="goods_input.action"><img src="images/can_b_02.gif" border="0" /></td>
 					</tr>
 				</table>
@@ -70,8 +70,8 @@
 				<table width="100%" border="1" cellpadding="0" cellspacing="0">
 					<tr align="center"
 						style="background:url(images/table_bg.gif) repeat-x;">
-						<td width="12%" height="30">供应商</td>
 						<td width="12%">商品名</td>
+						<td width="12%" height="30">供应商</td>
 						<td width="15%">生产厂家</td>
 						<td width="12%">产地</td>
 						<td width="12%">进货价格</td>
@@ -81,8 +81,8 @@
 					</tr>
 					<s:iterator value="goodsList">
 						<tr align="center" bgcolor="#FFFFFF">
-							<td width="13%" height="30">${gtm.sm.name}</td>
 							<td>${name}</td>
+							<td width="13%" height="30">${gtm.sm.name}</td>
 							<td>${producer}</td>
 							<td>${origin}</td>
 							<td align="right">${inPriceView}&nbsp;元&nbsp;</td>
@@ -98,12 +98,13 @@
 								</span> 
 								<img src="images/icon_04.gif" /> 
 								<span style="line-height:12px; text-align:center;"> 
-									<a href="javascript:void(0)" class="xiu" onclick="showMsg('是否删除该项数据？',318)">删除</a>
+									<a href="javascript:void(0)" class="xiu" onclick="showMsg('是否删除该项数据？',${uuid})">删除</a>
 								</span>
 							</td>
 						</tr>
 					</s:iterator>
 				</table>
+				<s:include value="../tools/pading.jsp"/>
 			</div>
 		</s:form>
 	</div>

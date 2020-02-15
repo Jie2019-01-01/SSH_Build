@@ -65,12 +65,17 @@
 				<table width="100%">
 					<tr>
 						<td width="50%" align="center">
+						<s:if test="om.type == @cn.itcast.erp.invoice.order.vo.OrderModel@ORDER_TYPE_OF_BUY_BUYING">
 							<s:a action="transport_finished.action" cssStyle="color:#0f0;font-size:20px;padding-top:2px;font-weight:bold;text-decoration:none;width:82px;height:28px;display:block;background:url(images/btn_bg.jpg)">
+								<s:param name="om.uuid" value="om.uuid"/>
 								结&nbsp;&nbsp;单
 							</s:a>
-							<a href="tasks.jsp" style="color:#f00;font-size:20px;padding-top:2px;font-weight:bold;text-decoration:none;width:82px;height:28px;display:block;background:url(images/btn_bg.jpg)">
+						</s:if>
+						<s:else>
+							<a href="javascript:history.back();" style="color:#f00;font-size:20px;padding-top:2px;font-weight:bold;text-decoration:none;width:82px;height:28px;display:block;background:url(images/btn_bg.jpg)">
 								已结单
 							</a>
+						</s:else>
 						</td>
 					</tr>
 				</table>

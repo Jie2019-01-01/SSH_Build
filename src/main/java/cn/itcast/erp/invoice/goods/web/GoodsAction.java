@@ -6,6 +6,7 @@ import cn.itcast.erp.invoice.goods.business.ebi.GoodsEbi;
 import cn.itcast.erp.invoice.goods.vo.GoodsModel;
 import cn.itcast.erp.invoice.goods.vo.GoodsQueryModel;
 import cn.itcast.erp.invoice.goodstype.business.ebi.GoodsTypeEbi;
+import cn.itcast.erp.invoice.goodstype.vo.GoodsTypeModel;
 import cn.itcast.erp.invoice.supplier.business.ebi.SupplierEbi;
 import cn.itcast.erp.invoice.supplier.vo.SupplierModel;
 import cn.itcast.erp.utils.base.BaseAction;
@@ -35,20 +36,27 @@ public class GoodsAction extends BaseAction{
 		setRecords(goodsEbi.getCount(gqm));
 		List<GoodsModel> goodsList = goodsEbi.getAll(gqm,pageNum,pageCount);
 		put("goodsList", goodsList);
-		List<SupplierModel> supplierList = supplierEbi.getAll();
+		// 显示包含类别、并且类别又包含商品的供应商信息
+		List<SupplierModel> supplierList = supplierEbi.getHasTypeAndGoods();
 		put("supplierList",supplierList);
 		return LIST;
 	}
 
 	//到添加
 	public String input(){
+		// 展示所有包含类别的供应商信息
+		List<SupplierModel> supplierList = supplierEbi.getHasType();
 		Long supplierUuid = null;
 		if(gm.getUuid()!=null){
 			gm = goodsEbi.get(gm.getUuid());
 			supplierUuid = gm.getGtm().getSm().getUuid();
-			put("goodsTypeList", goodsTypeEbi.getAllBySm(supplierUuid));
+		}else {
+			supplierUuid = supplierList.get(0).getUuid();
 		}
-		put("supplierList", supplierEbi.getHasType());
+		// 展示第一个供应商的类别信息
+		List<GoodsTypeModel> gtmList = goodsTypeEbi.getAllBySm(supplierUuid);
+		put("goodsTypeList", gtmList);
+		put("supplierList", supplierList);
 		return INPUT;
 	}
 
