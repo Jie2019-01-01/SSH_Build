@@ -14,7 +14,7 @@ public class GoodsEbo implements GoodsEbi{
 	}
 
 	public void save(GoodsModel gm) {
-		if(gm!=null && gm.getGtm()!=null && gm.getGtm().getUuid()!=-1) {
+		if(gm!=null && gm.getGtm()!=null && gm.getGtm().getUuid()!=null) {
 			goodsDao.save(gm);
 		}else {
 			throw new AppException("对不起，请指定供应商和商品类别!");

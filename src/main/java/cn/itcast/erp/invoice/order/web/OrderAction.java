@@ -150,6 +150,26 @@ public class OrderAction extends BaseAction{
 		return "toTaskList";
 	}
 	
+	// --------------任务查询---------------------
+	public String queryTaskList() {
+		// 只查询当前登录人的订单任务
+		Integer records = orderEbi.getCountQuery(oqm, getLogin());
+		setRecords(records);
+		List<OrderModel> orderList = orderEbi.getAllQuery(oqm, pageNum, pageCount, getLogin());
+		put("orderList", orderList);
+		return "queryTaskList";
+	}
+	
+	public String queryDetail() {
+		om = orderEbi.get(om.getUuid());
+		return "queryDetail";
+	}
+	
+	public String finished() {
+		// 接收om.uuid
+		orderEbi.statement(om);
+		return "toQueryList";
+	}
 	
 	
 	

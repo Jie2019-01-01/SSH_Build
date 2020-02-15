@@ -136,7 +136,12 @@
     		<result name="taskList">/WEB-INF/jsps/order/transport/taskList.jsp</result>
     		<result name="taskDetail">/WEB-INF/jsps/order/transport/taskDetail.jsp</result>
     		<result name="toTaskList" type="redirectAction">transport_taskList</result>
-    		<allowed-methods>taskList,taskDetail,assign</allowed-methods>
+    		
+    		<result name="queryTaskList">/WEB-INF/jsps/order/transport/queryTask.jsp</result>
+    		<result name="queryDetail">/WEB-INF/jsps/order/transport/queryDetail.jsp</result>
+    		<result name="toQueryList" type="redirectAction">transport_queryTaskList</result>
+    		
+    		<allowed-methods>taskList,taskDetail,assign,queryTaskList,queryDetail,finished</allowed-methods>
     	</action>
     </package>
 </struts>

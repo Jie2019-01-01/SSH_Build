@@ -72,7 +72,7 @@
 				      </td>
 				      <td width="18%"align="center">商品类别</td>
 				      <td width="32%">
-				      	 <s:if test="#goodsTypeList==null || #goodsTypeList.size==0">
+				      	 <s:if test="#goodsTypeList.size==0">
 				      	 	<s:select id="goodsType" cssStyle="width:190px" list="#{'-1':'----请-选-择----'}"/>
 				      	 </s:if>
 				      	 <s:else>

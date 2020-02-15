@@ -2,6 +2,7 @@ package cn.itcast.erp.invoice.order.dao.dao;
 
 import java.util.List;
 
+import cn.itcast.erp.auth.emp.vo.EmpModel;
 import cn.itcast.erp.invoice.order.vo.OrderModel;
 import cn.itcast.erp.invoice.order.vo.OrderQueryModel;
 import cn.itcast.erp.utils.base.BaseDao;
@@ -40,5 +41,4 @@ public interface OrderDao extends BaseDao<OrderModel> {
 	 * @return
 	 */
 	public List<OrderModel> getAllTask(OrderQueryModel oqm, Integer pageNum, Integer pageCount, Integer[] types);
-
 }

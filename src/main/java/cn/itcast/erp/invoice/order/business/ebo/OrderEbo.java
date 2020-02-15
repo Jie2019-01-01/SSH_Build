@@ -168,6 +168,25 @@ public class OrderEbo implements OrderEbi{
 		temp.setCompleter(completer);
 	}
 
+	public Integer getCountQuery(OrderQueryModel oqm, EmpModel loginer) {
+		// 当前登录人作为跟单人，显示出对应的任务数
+		oqm.setCompleter(loginer);
+		return orderDao.getCount(oqm);
+	}
+
+	public List<OrderModel> getAllQuery(OrderQueryModel oqm, Integer pageNum, Integer pageCount, EmpModel loginer) {
+		// 当前登录人作为跟单人，显示出对应的任务数
+		oqm.setCompleter(loginer);
+		return orderDao.getAll(oqm, pageNum, pageCount);
+	}
+
+	public void statement(OrderModel om) {
+		OrderModel temp = orderDao.get(om.getUuid());
+		// 修改订单状态(快照)
+		temp.setEndTime(System.currentTimeMillis());
+//		temp.setType(OrderModel);
+	}
+
 }
 
 

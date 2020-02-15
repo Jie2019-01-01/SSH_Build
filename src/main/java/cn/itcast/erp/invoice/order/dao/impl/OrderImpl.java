@@ -42,6 +42,10 @@ public class OrderImpl extends BaseDaoImpl<OrderModel> implements OrderDao{
 			dc.createAlias("completer", "c3");
 			dc.add(Restrictions.like("c3.name", "%"+oqm.getCompleter().getName().trim()+"%"));
 		}
+		// 根据跟单人查询
+		if(oqm.getCompleter()!=null && oqm.getCompleter().getUuid()!=null && oqm.getCompleter().getUuid()!=-1) {
+			dc.add(Restrictions.eq("completer", oqm.getCompleter()));
+		}
 	}
 	
 	// 采购审批的自定义查询条件
@@ -82,5 +86,4 @@ public class OrderImpl extends BaseDaoImpl<OrderModel> implements OrderDao{
 		doQbcTask(oqm, dc, types);
 		return (List<OrderModel>) this.getHibernateTemplate().findByCriteria(dc, (pageNum-1)*pageCount, pageCount);
 	}
-
 }

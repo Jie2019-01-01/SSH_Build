@@ -76,4 +76,28 @@ public interface OrderEbi extends BaseEbi<OrderModel, OrderQueryModel>{
 	 */
 	public void assignTask(Long uuid, EmpModel completer);
 
+	/**
+	 * 获取当前登录人的任务数
+	 * @param oqm 条件模型
+	 * @param loginer 登录人
+	 * @return 登录人的任务数
+	 */
+	public Integer getCountQuery(OrderQueryModel oqm, EmpModel loginer);
+
+	/**
+	 * 获取当前登录人的全部任务
+	 * @param oqm 条件模型
+	 * @param pageNum 当前页
+	 * @param pageCount 每页显示数
+	 * @param loginer 登录人
+	 * @return 登录人的全部任务
+	 */
+	public List<OrderModel> getAllQuery(OrderQueryModel oqm, Integer pageNum, Integer pageCount, EmpModel loginer);
+
+	/**
+	 * 结单
+	 * @param om 订单模型
+	 */
+	public void statement(OrderModel om);
+
 }
