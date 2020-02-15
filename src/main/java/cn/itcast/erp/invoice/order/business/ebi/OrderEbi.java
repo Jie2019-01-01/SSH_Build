@@ -100,4 +100,20 @@ public interface OrderEbi extends BaseEbi<OrderModel, OrderQueryModel>{
 	 */
 	public void statement(OrderModel om);
 
+	/**
+	 * 获取需要入库的订单数
+	 * @param oqm 条件模型
+	 * @return 订单数
+	 */
+	public Integer getCountInStore(OrderQueryModel oqm);
+
+	/**
+	 * 获取需要入库的订单集合
+	 * @param oqm 条件模型
+	 * @param pageNum 当前页
+	 * @param pageCount 每页显示数
+	 * @return 订单集合
+	 */
+	public List<OrderModel> getAllInStore(OrderQueryModel oqm, Integer pageNum, Integer pageCount);
+
 }

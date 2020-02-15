@@ -46,6 +46,10 @@ public class OrderImpl extends BaseDaoImpl<OrderModel> implements OrderDao{
 		if(oqm.getCompleter()!=null && oqm.getCompleter().getUuid()!=null && oqm.getCompleter().getUuid()!=-1) {
 			dc.add(Restrictions.eq("completer", oqm.getCompleter()));
 		}
+		// 订单状态查询
+		if(oqm.getType()!=null && oqm.getType()!=-1) {
+			dc.add(Restrictions.eq("type", oqm.getType()));
+		}
 	}
 	
 	// 采购审批的自定义查询条件

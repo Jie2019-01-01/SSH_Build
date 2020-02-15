@@ -171,7 +171,14 @@ public class OrderAction extends BaseAction{
 		return "toQueryList";
 	}
 	
-	
+	// ------------------------仓库管理---------------------
+	public String inStoreList() {
+		Integer records = orderEbi.getCountInStore(oqm);
+		setRecords(records);
+		List<OrderModel> orderList = orderEbi.getAllInStore(oqm, pageNum, pageCount);
+		put("orderList", orderList);
+		return "inStoreList";
+	}
 	
 	
 	

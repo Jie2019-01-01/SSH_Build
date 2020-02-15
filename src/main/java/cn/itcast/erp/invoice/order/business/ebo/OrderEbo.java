@@ -186,6 +186,17 @@ public class OrderEbo implements OrderEbi{
 		temp.setType(OrderModel.ORDER_TYPE_OF_BUY_IN_STORE);
 	}
 
+	public Integer getCountInStore(OrderQueryModel oqm) {
+		// 根据订单状态查询
+		oqm.setType(OrderModel.ORDER_TYPE_OF_BUY_IN_STORE);
+		return orderDao.getCount(oqm);
+	}
+
+	public List<OrderModel> getAllInStore(OrderQueryModel oqm, Integer pageNum, Integer pageCount) {
+		oqm.setType(OrderModel.ORDER_TYPE_OF_BUY_IN_STORE);
+		return orderDao.getAll(oqm, pageNum, pageCount);
+	}
+
 }
 
 
