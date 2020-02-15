@@ -23,7 +23,7 @@
 		</div>
 	</div>
 	<div class="content-text">
-		<<form action="list.jsp" method="post"> 
+		<form action="list.jsp" method="post"> 
 			<div class="square-o-top">
 				<table width="100%" border="0" cellpadding="0" cellspacing="0"
 					style="font-size:14px; font-weight:bold; font-family:"黑体";">

@@ -12,7 +12,7 @@
 	function showMsg(msg,uuid){
 		top.$('context-msg').style.display = "block";
 		top.$('context-msg-text').innerHTML=msg;
-		top.$('hid-action').value="actionName";
+		top.$('hid-action').value="goodsType_delete.action?gm.uuid="+uuid;
 		top.lock.show();
 	}
 </script>
@@ -33,14 +33,12 @@
 						<td width="62">供应商:</td>
 						<td width="142">
 							<s:select cssClass="kuan" list="supplierList" headerKey="-1" headerValue="----请-选-择----"  
-								listKey="uuid" listValue="name"/>
+								listKey="uuid" listValue="name" name="gqm.sm.uuid"/>
 						</td>
 						<td width="60">类别名称:</td>
-						<td width="149"><input type="text" size="18" /></td>
-						<td width="70"><a id="query"> <img
-								src="images/can_b_01.gif" border="0" /> </a></td>
-						<td width="70"><a href="goodsType_input.action"><img
-								src="images/can_b_02.gif" border="0" /> </a></td>
+						<td width="149"><s:textfield name="gqm.name" size="18"/></td>
+						<td width="70"><a id="query"><img src="images/can_b_01.gif" border="0" /></a></td>
+						<td width="70"><a href="goodsType_input.action"><img src="images/can_b_02.gif" border="0" /></a></td>
 					</tr>
 				</table>
 			</div>
@@ -49,22 +47,25 @@
 				<table width="100%" border="1" cellpadding="0" cellspacing="0">
 					<tr align="center"
 						style="background:url(images/table_bg.gif) repeat-x;">
-						<td width="30%" height="30">供应商</td>
-						<td width="30%">类别名称</td>
+						<td width="30%" height="30">类别名称</td>
+						<td width="30%">供应商</td>
 						<td width="40%">操作</td>
 					</tr>
 					<s:iterator value="goodsTypeList">
 						<tr align="center" bgcolor="#FFFFFF">
-							<td width="30%" height="30">${sm.name}</td>
 							<td>${name}</td>
+							<td width="30%" height="30">${sm.name}</td>
 							<td>
 								<img src="images/icon_3.gif" /> 
 								<span style="line-height:12px; text-align:center;"> 
-									<a href="./input.jsp" class="xiu">修改</a> 
+									<s:a action="goodsType_input.action" cssClass="xiu">
+										<s:param name="gm.uuid" value="uuid"/>
+										修改
+									</s:a>
 								</span> 
 								<img src="images/icon_04.gif" /> 
 								<span style="line-height:12px; text-align:center;"> 
-									<a href="javascript:void(0)" class="xiu" onclick="showMsg('是否删除该项数据？',318)">删除</a>
+									<a href="javascript:void(0)" class="xiu" onclick="showMsg('是否删除该项数据？',${uuid})">删除</a>
 								</span>
 							</td>
 						</tr>

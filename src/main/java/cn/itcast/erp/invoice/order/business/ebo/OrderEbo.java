@@ -183,8 +183,7 @@ public class OrderEbo implements OrderEbi{
 	public void statement(OrderModel om) {
 		OrderModel temp = orderDao.get(om.getUuid());
 		// 修改订单状态(快照)
-		temp.setEndTime(System.currentTimeMillis());
-//		temp.setType(OrderModel);
+		temp.setType(OrderModel.ORDER_TYPE_OF_BUY_IN_STORE);
 	}
 
 }

@@ -41,6 +41,10 @@ public class GoodsTypeEbo implements GoodsTypeEbi{
 		return goodsTypeDao.getCount(gqm);
 	}
 
+	public List<GoodsTypeModel> getBySm(Long uuid) {
+		return goodsTypeDao.getBySm(uuid);
+	}
+	
 	public List<GoodsTypeModel> getAllBySm(Long uuid) {
 		return goodsTypeDao.getAllBySm(uuid);
 	}

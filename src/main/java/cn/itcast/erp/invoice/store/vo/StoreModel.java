@@ -8,6 +8,7 @@ public class StoreModel {
 	private String name;
 	private String address;
 	
+	// 多对一
 	private EmpModel em;
 
 	public Long getUuid() {

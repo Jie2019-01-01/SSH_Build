@@ -16,4 +16,10 @@ public interface SupplierEbi extends BaseEbi<SupplierModel, SupplierQueryModel>{
 	 */
 	public List<SupplierModel> getHasType();
 
+	/**
+	 * 获取包含类别、并且类别又包含商品的供应商信息
+	 * @return 供应商信息
+	 */
+	public List<SupplierModel> getHasTypeAndGoods();
+
 }

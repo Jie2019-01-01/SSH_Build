@@ -1,7 +1,6 @@
 package cn.itcast.erp.invoice.store.business.ebo;
 
 import java.util.List;
-
 import cn.itcast.erp.invoice.store.business.ebi.StoreEbi;
 import cn.itcast.erp.invoice.store.dao.dao.StoreDao;
 import cn.itcast.erp.invoice.store.vo.StoreModel;
@@ -34,12 +33,11 @@ public class StoreEbo implements StoreEbi{
 		return storeDao.getAll();
 	}
 
-	public List<StoreModel> getAll(StoreQueryModel sqm, Integer pageNum,Integer pageCount) {
-		return storeDao.getAll(sqm,pageNum,pageCount);
+	public List<StoreModel> getAll(StoreQueryModel qm, Integer pageNum,Integer pageCount) {
+		return storeDao.getAll(qm,pageNum,pageCount);
 	}
 
-	public Integer getCount(StoreQueryModel sqm) {
-		return storeDao.getCount(sqm);
+	public Integer getCount(StoreQueryModel qm) {
+		return storeDao.getCount(qm);
 	}
-
 }

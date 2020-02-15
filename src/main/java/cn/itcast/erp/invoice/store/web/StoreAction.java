@@ -10,7 +10,7 @@ import cn.itcast.erp.invoice.store.vo.StoreQueryModel;
 import cn.itcast.erp.utils.base.BaseAction;
 
 public class StoreAction extends BaseAction{
-	
+
 	public StoreModel sm = new StoreModel();
 	public StoreQueryModel sqm = new StoreQueryModel();
 
@@ -19,6 +19,7 @@ public class StoreAction extends BaseAction{
 	public void setEmpEbi(EmpEbi empEbi) {
 		this.empEbi = empEbi;
 	}
+
 	public void setStoreEbi(StoreEbi storeEbi) {
 		this.storeEbi = storeEbi;
 	}

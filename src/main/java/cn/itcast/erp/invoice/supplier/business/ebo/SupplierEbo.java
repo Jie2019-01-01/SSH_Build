@@ -48,4 +48,8 @@ public class SupplierEbo implements SupplierEbi{
 		return supplierDao.getHasType();
 	}
 
+	public List<SupplierModel> getHasTypeAndGoods() {
+		return supplierDao.getHasTypeAndGoods();
+	}
+
 }

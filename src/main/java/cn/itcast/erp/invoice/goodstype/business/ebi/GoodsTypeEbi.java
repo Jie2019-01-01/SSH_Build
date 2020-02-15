@@ -11,9 +11,16 @@ import cn.itcast.erp.utils.base.BaseEbi;
 public interface GoodsTypeEbi extends BaseEbi<GoodsTypeModel, GoodsTypeQueryModel>{
 
 	/**
-	 * 获取供应商对应的商品各类
+	 * 获取供应商下的包含商品的类别信息
 	 * @param uuid 供应商uuid
-	 * @return 供应商对应的商品各类
+	 * @return 商品类别信息
+	 */
+	public List<GoodsTypeModel> getBySm(Long uuid);
+	
+	/**
+	 * 获取供应商下的全部商品类别信息
+	 * @param uuid 供应商uuid
+	 * @return 商品类别信息
 	 */
 	public List<GoodsTypeModel> getAllBySm(Long uuid);
 }

@@ -12,7 +12,7 @@
 	function showMsg(msg,uuid){
 		top.$('context-msg').style.display = "block";
 		top.$('context-msg-text').innerHTML=msg;
-		top.$('hid-action').value="actionName";
+		top.$('hid-action').value="supplier_delete.action?sm.uuid="+uuid;
 		top.lock.show();
 	}
 </script>
@@ -30,20 +30,20 @@
 					<tr>
 						<td width="28%" height="30">&nbsp;</td>
 						<td width="8%">供应商:</td>
-						<td width="17%"><input type="text" size="18" /></td>
+						<td width="17%"><s:textfield name="sqm.name" size="18"/></td>
 						<td width="8%">联系人:</td>
-						<td width="17%"><input type="text" size="18" /></td>
+						<td width="17%"><s:textfield name="sqm.contact" size="18"/></td>
 						<td width="12%">
 							<a id="query"><img src="images/can_b_01.gif" border="0" /> </a></td>
 					</tr>
 					<tr>
 						<td height="30">&nbsp;</td>
 						<td>电话:</td>
-						<td><input type="text" size="18" /></td>
+						<td><s:textfield name="sqm.tele" size="18"/></td>
 						<td>提货方式：</td>
 						<td>
 							<s:select cssClass="kuan" list="@cn.itcast.erp.invoice.supplier.vo.SupplierModel@needsMap" 
-							 headerKey="-1" headerValue="----请-选-择----"/>
+							 headerKey="-1" headerValue="----请-选-择----"  name="sqm.needs"/>
 						</td>
 						<td>
 							<a href="supplier_input.action"><img	src="images/can_b_02.gif" border="0" /> </a></td>
@@ -72,11 +72,14 @@
 							<td>
 								<img src="images/icon_3.gif" /> 
 								<span style="line-height:12px; text-align:center;"> 
-									<a href="./input.jsp" class="xiu">修改</a>
+									<s:a action="supplier_input.action" cssClass="xiu">
+										<s:param name="sm.uuid" value="uuid"/>
+										修改
+									</s:a>
 								</span> 
 								<img src="images/icon_04.gif" /> 
 								<span style="line-height:12px; text-align:center;"> 
-									<a href="javascript:void(0)" class="xiu" onclick="showMsg('是否删除该项数据？',318)">删除</a>
+									<a href="javascript:void(0)" class="xiu" onclick="showMsg('是否删除该项数据？',${uuid})">删除</a>
 								</span>
 							</td>
 						</tr>

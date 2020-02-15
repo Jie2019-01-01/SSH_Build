@@ -75,10 +75,10 @@ public class OrderAction extends BaseAction{
 	}
 	
 	public String buyInput() {
-		// 加载所有供应商信息
-		List<SupplierModel> supplierList = supplierEbi.getAll();
-		// 加载第一个供应商的商品分类信息
-		List<GoodsTypeModel> goodsTypeList = goodsTypeEbi.getAllBySm(supplierList.get(0).getUuid());
+		// 查询包含商品类别、并且商品类别又包含商品的供应商信息
+		List<SupplierModel> supplierList = supplierEbi.getHasTypeAndGoods();
+		// 加载第一个供应商的、同时包含商品的、商品分类信息
+		List<GoodsTypeModel> goodsTypeList = goodsTypeEbi.getBySm(supplierList.get(0).getUuid());
 		// 加载第一个商品分类的商品信息
 		List<GoodsModel> goodsList = goodsEbi.getByGtm(goodsTypeList.get(0).getUuid());
 		
@@ -182,7 +182,7 @@ public class OrderAction extends BaseAction{
 	public Long goodsUuid;
 	public String ajaxGetGtmAndGm() {
 		// 通过供应商uuid查询商品类别信息
-		gtmList = goodsTypeEbi.getAllBySm(supplierUuid);
+		gtmList = goodsTypeEbi.getBySm(supplierUuid);
 		// 通过商品类别uuid查询商品信息
 		if(gtmList.size()>0) {
 			gmList = goodsEbi.getByGtm(gtmList.get(0).getUuid());
@@ -196,7 +196,7 @@ public class OrderAction extends BaseAction{
 	public String used;
 	public String ajaxGetGtmAndGm2() {
 		// 通过供应商uuid查询商品类别信息
-		gtmList = goodsTypeEbi.getAllBySm(supplierUuid);
+		gtmList = goodsTypeEbi.getBySm(supplierUuid);
 		// 通过商品类别uuid查询商品信息
 		if(gtmList.size()>0) {
 			// 取出每一个商品类别，判断对应的分类是否全部添加了，是则从集合中移除该分类，不返回前端
