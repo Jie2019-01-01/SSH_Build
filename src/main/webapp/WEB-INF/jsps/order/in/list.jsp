@@ -51,9 +51,11 @@
 							<td>
 								<img src="images/icon_3.gif" /> 
 								<span style="line-height:12px; text-align:center;"> 
-									<a href="inDetail.jsp" class="xiu">入库
-									</a> 
-								</span>
+									<s:a action="order_inDetail.action" cssClass="xiu">
+										<s:param name="om.uuid" value="uuid"/>
+										入库
+									</s:a>
+								</span> 
 							</td>
 						</tr>
 					</s:iterator>

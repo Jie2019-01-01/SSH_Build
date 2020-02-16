@@ -68,6 +68,8 @@ public class OrderEbo implements OrderEbi{
 			OrderDetailModel odm = new OrderDetailModel();
 			// 封装某一类商品的数量
 			odm.setNum(nums[i]);
+			// 封装某一类商品的剩余数量
+			odm.setSurplus(nums[i]);
 			// 封装某一类商品的单价
 			odm.setPrice(prices[i]);
 			// 封装商品外键

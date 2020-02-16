@@ -11,6 +11,8 @@ import cn.itcast.erp.invoice.goodstype.vo.GoodsTypeModel;
 import cn.itcast.erp.invoice.order.business.ebi.OrderEbi;
 import cn.itcast.erp.invoice.order.vo.OrderModel;
 import cn.itcast.erp.invoice.order.vo.OrderQueryModel;
+import cn.itcast.erp.invoice.store.business.ebi.StoreEbi;
+import cn.itcast.erp.invoice.store.vo.StoreModel;
 import cn.itcast.erp.invoice.supplier.business.ebi.SupplierEbi;
 import cn.itcast.erp.invoice.supplier.vo.SupplierModel;
 import cn.itcast.erp.utils.base.BaseAction;
@@ -27,7 +29,9 @@ public class OrderAction extends BaseAction{
 	private GoodsTypeEbi goodsTypeEbi;
 	private GoodsEbi goodsEbi;
 	private EmpEbi empEbi;
+	private StoreEbi storeEbi;
 	public void setEmpEbi(EmpEbi empEbi) {this.empEbi = empEbi;}
+	public void setStoreEbi(StoreEbi storeEbi) {this.storeEbi = storeEbi;}
 	public void setSupplierEbi(SupplierEbi supplierEbi) {this.supplierEbi = supplierEbi;}
 	public void setGoodsTypeEbi(GoodsTypeEbi goodsTypeEbi) {this.goodsTypeEbi = goodsTypeEbi;}
 	public void setGoodsEbi(GoodsEbi goodsEbi) {this.goodsEbi = goodsEbi;}
@@ -180,6 +184,13 @@ public class OrderAction extends BaseAction{
 		return "inStoreList";
 	}
 	
+	public String inDetail() {
+		om = orderEbi.get(om.getUuid());
+		// 将所有仓库查询出来
+		List<StoreModel> storeList = storeEbi.getAll();
+		put("storeList", storeList);
+		return "inDetail";
+	}
 	
 	
 	

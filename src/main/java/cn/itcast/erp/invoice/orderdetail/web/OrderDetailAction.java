@@ -48,4 +48,13 @@ public class OrderDetailAction extends BaseAction{
 		return TO_LIST;
 	}
 
+	// -------------ajax----------------------
+	public String ajaxGetSurplus() {
+		om = orderDetailEbi.get(om.getUuid());
+		return "ajaxGetSurplus";
+	}
+	
+	public OrderDetailModel getOm() {
+		return om;
+	}
 }

@@ -9,6 +9,7 @@ public class OrderDetailModel {
 	private Long uuid;
 	
 	private Integer num;
+	private Integer surplus;
 	
 	private Double price;
 	private String priceView;
@@ -17,6 +18,12 @@ public class OrderDetailModel {
 	private GoodsModel gm;
 	private OrderModel om;
 	
+	public Integer getSurplus() {
+		return surplus;
+	}
+	public void setSurplus(Integer surplus) {
+		this.surplus = surplus;
+	}
 	public Long getUuid() {
 		return uuid;
 	}

@@ -99,6 +99,7 @@
     		<result name="toBuyCheckList" type="redirectAction">order_buyCheckList</result>
     			<!-- 仓库管理 -->
     		<result name="inStoreList">/WEB-INF/jsps/order/in/list.jsp</result>
+    		<result name="inDetail">/WEB-INF/jsps/order/in/inDetail.jsp</result>
     			
     			<!-- ajax -->
     		<result name="ajaxGetGtmAndGm" type="json">
@@ -126,12 +127,19 @@
     			buyList,buyInput,ajaxGetGtmAndGm,ajaxGetGtmAndGm2,
     			ajaxGetGm,ajaxGetInPrice,buySave,buyDetail,buyCheckList,
     			buyCheckDetail,buyCheckPass,buyCheckNoPass,
-    			inStoreList
+    			inStoreList,inDetail
     		</allowed-methods>
     	</action>
     	
     		<!-- OrderDetail -->
     	<action name="orderDetail_*" class="orderDetailAction" method="{1}">
+    		<result name="ajaxGetSurplus" type="json">
+    			<param name="root">om</param>
+			    <param name="includeProperties">
+			        surplus
+			    </param>
+    		</result>
+    		<allowed-methods>ajaxGetSurplus</allowed-methods>
     	</action>
     	
     		<!-- Transport -->
